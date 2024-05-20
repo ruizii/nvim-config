@@ -32,10 +32,19 @@ return {
 				"eslint",
 			},
 			handlers = {
-				function(server_name)
-					require("lspconfig")[server_name].setup({})
-				end, -- default for anything that doesn't have an explicit handler
-				require("lspconfig").lua_ls.setup({}),
+				require("lspconfig").lua_ls.setup({
+					settings = {
+						Lua = {
+							diagnostics = {
+								globals = { "vim" },
+							},
+							hint = {
+								enable = true,
+								arrayIndex = "Disable",
+							},
+						},
+					},
+				}),
 				require("lspconfig").pyright.setup({
 					settings = {
 						python = {
