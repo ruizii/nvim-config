@@ -28,10 +28,11 @@ function Plugin.init()
 	-- See :help vim.diagnostic.config()
 	vim.diagnostic.config({
 		virtual_text = true,
+		signs = true,
 		severity_sort = true,
 		float = {
 			border = "single",
-			source = "always",
+			source = "if_many",
 		},
 	})
 
