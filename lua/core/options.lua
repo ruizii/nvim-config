@@ -41,4 +41,3 @@ opt.smoothscroll = true
 opt.pumblend = 0
 vim.g.markdown_recommended_style = 0
 vim.cmd([[autocmd FileType * set formatoptions-=ro]])
-vim.cmd([[autocmd TextYankPost * silent! lua vim.highlight.on_yank()]])
