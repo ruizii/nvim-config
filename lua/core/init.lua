@@ -7,7 +7,14 @@ local set_colorscheme = function(colorscheme)
 end
 
 local load_utils = function()
-	require("core.load-utils").load_utils()
+	local autocmds = require("utils.autocmds")
+	local mappings = require("utils.mappings")
+
+	local commands = vim.tbl_extend("force", autocmds, mappings)
+
+	for _, value in pairs(commands) do
+		value()
+	end
 end
 
 local load_core = function()
