@@ -7,8 +7,4 @@ function M.create_autocmd(events, opts)
 	vim.api.nvim_create_autocmd(events, opts)
 end
 
-function M.opts_extend(default, opts)
-	return vim.tbl_extend("force", default, opts ~= nil and opts or {})
-end
-
 return M

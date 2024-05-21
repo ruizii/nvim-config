@@ -1,5 +1,3 @@
-local opts_extend = require("utils.helpers").opts_extend
-
 local M = {}
 
 function M.smart_dd()
@@ -18,14 +16,9 @@ function M.visual_codeblock_shift()
 	vim.api.nvim_set_keymap("v", ">", ">gv", { noremap = true, silent = true })
 end
 
-function M.ctrl_backspace_delete(opts)
-	opts = opts_extend({ cmd_mode = true, insert_mode = true }, opts)
-	if opts.insert_mode then
-		vim.api.nvim_set_keymap("i", "<C-BS>", "<C-w>", { noremap = true })
-	end
-	if opts.cmd_mode then
-		vim.api.nvim_set_keymap("c", "<C-BS>", "<C-w>", { noremap = true })
-	end
+function M.ctrl_backspace_delete()
+	vim.api.nvim_set_keymap("i", "<C-BS>", "<C-w>", { noremap = true })
+	vim.api.nvim_set_keymap("c", "<C-BS>", "<C-w>", { noremap = true })
 end
 
 return M
