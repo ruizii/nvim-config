@@ -1,5 +1,7 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
+	event = "VeryLazy",
+	build = ":TSUpdate",
 	opts = function(_, opts)
 		opts.highlight = {
 			enable = true,

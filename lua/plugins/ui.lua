@@ -17,6 +17,7 @@ return { -- Adds git related signs to the gutter, as well as utilities for manag
 	},
 	{
 		"lukas-reineke/indent-blankline.nvim",
+		-- event = "VeryLazy",
 		config = function()
 			local highlight = {
 				"RainbowYellow",
@@ -69,7 +70,7 @@ return { -- Adds git related signs to the gutter, as well as utilities for manag
 					diagnostic = true,
 					gitsigns = true, -- Requires gitsigns
 					handle = true,
-					search = false, -- Requires hlslens
+					search = true, -- Requires hlslens
 					ale = false, -- Requires ALE
 				},
 			})
@@ -104,5 +105,15 @@ return { -- Adds git related signs to the gutter, as well as utilities for manag
 
 			enable_tailwind = true,
 		},
+	},
+	{
+		"kevinhwang91/nvim-hlslens",
+		lazy = true,
+		branch = "main",
+		config = function()
+			require("scrollbar.handlers.search").setup({
+				override_lens = function() end,
+			})
+		end,
 	},
 }

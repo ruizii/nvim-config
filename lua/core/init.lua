@@ -12,7 +12,7 @@ local load_core = function()
 	require("core.mappings")
 	require("core.lazy")
 
-	set_colorscheme("neodark")
+	set_colorscheme("onedark")
 end
 
 load_core()

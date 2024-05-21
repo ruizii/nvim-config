@@ -1,5 +1,6 @@
 return {
 	"j-hui/fidget.nvim",
+	event = "VeryLazy",
 	opts = {
 		progress = {
 			poll_rate = 0, -- How and when to poll for progress messages
