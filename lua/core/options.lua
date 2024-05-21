@@ -1,29 +1,3 @@
-vim.g.autoformat = false
--- This file is automatically loaded by plugins.core
-
--- LazyVim root dir detection
--- Each entry can be:
--- * the name of a detector function like `lsp` or `cwd`
--- * a pattern or array of patterns like `.git` or `lua`.
--- * a function with signature `function(buf) -> string|string[]`
-vim.g.root_spec = { "lsp", { ".git", "lua" }, "cwd" }
-
--- LazyVim automatically configures lazygit:
---  * theme, based on the active colorscheme.
---  * editorPreset to nvim-remote
---  * enables nerd font icons
--- Set to false to disable.
-vim.g.lazygit_config = true
-
--- Optionally setup the terminal to use
--- This sets `vim.o.shell` and does some additional configuration for:
--- * pwsh
--- * powershell
--- LazyVim.terminal.setup("pwsh")
-
--- Hide deprecation warnings
-vim.g.deprecation_warnings = false
-
 local opt = vim.opt
 
 opt.autowrite = true -- Enable auto write
@@ -52,7 +26,6 @@ opt.relativenumber = true -- Relative line numbers
 opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize", "help", "globals", "skiprtp", "folds" }
 opt.shiftround = true -- Round indent
 opt.shiftwidth = 4 -- Size of an indent
---
 opt.shortmess:append({ W = true, I = true, c = true, C = true })
 opt.showmode = false -- Dont show mode since we have a statusline
 opt.signcolumn = "yes" -- Always show the signcolumn, otherwise it would shift the text each time
@@ -71,7 +44,4 @@ opt.virtualedit = "block" -- Allow cursor to move where there is no text in visu
 opt.wildmode = "longest:full,full" -- Command-line completion mode
 opt.wrap = false -- Disable line wrap
 opt.smoothscroll = true
-opt.foldexpr = "v:lua.require'utils'.ui.foldexpr()"
-opt.foldmethod = "expr"
-opt.foldtext = ""
 vim.g.markdown_recommended_style = 0

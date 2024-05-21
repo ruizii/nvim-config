@@ -2,19 +2,17 @@ local leader_map = function()
 	vim.g.mapleader = " "
 end
 
-local set_colorscheme = function()
-	vim.cmd.colorscheme("neodark")
+local set_colorscheme = function(colorscheme)
+	vim.api.nvim_command(string.format("colorscheme %s", colorscheme))
 end
 
 local load_core = function()
 	leader_map()
-
-	require("core.lazy")
-	require("core.mappings")
-	require("utils.highlight_yank")
 	require("core.options")
+	require("core.mappings")
+	require("core.lazy")
 
-	set_colorscheme()
+	set_colorscheme("neodark")
 end
 
 load_core()

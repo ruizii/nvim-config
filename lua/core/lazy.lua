@@ -12,44 +12,40 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-	{
-		import = "plugins",
-
-		defaults = {
-			lazy = false,
-			version = false,
-		},
-
-		ui = {
-			border = "single",
-		},
-
-		checker = {
+	spec = {
+		{ import = "plugins" },
+	},
+	defaults = {
+		lazy = false,
+		version = false,
+	},
+	ui = {
+		border = "single",
+	},
+	checker = {
+		enabled = true,
+	},
+	performance = {
+		cache = {
 			enabled = true,
+			path = vim.fn.stdpath("cache") .. "/lazy/cache",
+			disable_events = { "VimEnter", "BufReadPre" },
 		},
-
-		performance = {
-			cache = {
-				enabled = true,
-				path = vim.fn.stdpath("cache") .. "/lazy/cache",
-				disable_events = { "VimEnter", "BufReadPre" },
-			},
-			reset_packpath = true,
-			rtp = {
-				reset = true,
-				disabled_plugins = {
-					"gzip",
-					"matchit",
-					"matchparen",
-					"netrwPlugin",
-					"spellfile",
-					"shada",
-					"tarPlugin",
-					"tohtml",
-					"tutor",
-					"zipPlugin",
-					"syntax_completion",
-				},
+		reset_packpath = true,
+		rtp = {
+			reset = true,
+			disabled_plugins = {
+				"gzip",
+				"matchit",
+				"matchparen",
+				"netrwPlugin",
+				"spellfile",
+				"shada",
+				"tarPlugin",
+				"tohtml",
+				"tutor",
+				"zipPlugin",
+				"syntax_completion",
 			},
 		},
 	},
