@@ -97,19 +97,27 @@ return { -- Adds git related signs to the gutter, as well as utilities for manag
 		"xiyaowong/transparent.nvim",
 		opts = {
 			extra_groups = {
-				"Normal",
-				"Float",
-				"Pmenu",
 				"NormalFloat",
-				"TabLineFill",
-				"Comment",
-				"NormalNC",
-				"TabLine",
-				"TabLineSel",
 				"FloatBorder",
-				"NeoTreeNormal",
-				"NeoTreeNormalINC",
-				"NeoTreeEndOfBuffer",
+				"Pmenu",
+				"WinBar",
+			},
+			exclude_groups = {
+				"Normal",
+			},
+		},
+	},
+	{
+		"fgheng/winbar.nvim",
+		opts = {
+			enabled = true,
+			show_file_path = false,
+			show_symbols = true,
+			exlude_filetype = {
+				"help",
+				"alpha",
+				"toggleterm",
+				"neo-tree",
 			},
 		},
 	},

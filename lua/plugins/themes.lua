@@ -1,10 +1,13 @@
 return {
 	{
-		"VDuchauffour/neodark.nvim",
-		lazy = true,
-	},
-	{
 		"navarasu/onedark.nvim",
 		lazy = true,
+		opts = {
+			transparent = true,
+			style = "dark",
+			lualine = {
+				transparent = true,
+			},
+		},
 	},
 }

@@ -11,8 +11,6 @@ return {
 			local w_percentage = 1
 			local w_limit = 140
 
-			vim.api.nvim_set_hl(0, "TelescopeResultsNormal", { bg = "Normal:bg", blend = 0 })
-			vim.api.nvim_set_hl(0, "TelescopeSelection", { bg = "Normal:bg", blend = 0 })
 			vim.api.nvim_set_hl(0, "TodoBgFIX", { blend = 0 })
 			vim.api.nvim_set_hl(0, "TodoBgNOTE", { blend = 0 })
 			vim.api.nvim_set_hl(0, "TodoBgTODO", { blend = 0 })

@@ -75,15 +75,10 @@ return {
 				},
 				window = {
 					completion = {
-						-- winhighlight = "Normal:Normal",
 						border = "single",
-						scrollbar = false,
 					},
-
 					documentation = {
-						-- winhighlight = "",
 						border = "single",
-						scrollbar = false,
 					},
 				},
 				sorting = {
