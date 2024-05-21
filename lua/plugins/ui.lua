@@ -1,7 +1,8 @@
 return { -- Adds git related signs to the gutter, as well as utilities for managing changes
 	{
 		"lewis6991/gitsigns.nvim",
-		event = { "BufReadPre", "BufNewFile" },
+		lazy = true,
+		event = { "BufReadPost", "BufWritePost", "BufNewFile" },
 		config = function()
 			require("gitsigns").setup({
 				signcolumn = false, -- Toggle with `:Gitsigns toggle_signs`
@@ -29,7 +30,7 @@ return { -- Adds git related signs to the gutter, as well as utilities for manag
 			--- auto update the highlight style on colorscheme change
 			vim.api.nvim_create_autocmd({ "ColorScheme" }, {
 				pattern = { "*" },
-				callback = function(ev)
+				callback = function()
 					vim.api.nvim_set_hl(0, "IlluminatedWordText", { link = "Visual" })
 					vim.api.nvim_set_hl(0, "IlluminatedWordRead", { link = "Visual" })
 					vim.api.nvim_set_hl(0, "IlluminatedWordWrite", { link = "Visual" })
@@ -52,41 +53,39 @@ return { -- Adds git related signs to the gutter, as well as utilities for manag
 	},
 	{
 		"lukas-reineke/indent-blankline.nvim",
-		config = function()
-			require("ibl").setup({
-				scope = {
-					show_start = false,
-					show_end = false,
-				},
-			})
-		end,
+		event = { "BufReadPost", "BufWritePost", "BufNewFile" },
+		main = "ibl",
+		opts = {
+			scope = {
+				show_start = false,
+				show_end = false,
+			},
+		},
 	},
 	{
 		"petertriho/nvim-scrollbar",
 		lazy = true,
-		config = function()
-			require("scrollbar").setup({
-				handle = {
-					color = "#60606f",
+		opts = {
+			handle = {
+				color = "#60606f",
+			},
+			marks = {
+				Cursor = {
+					text = "-",
 				},
-				marks = {
-					Cursor = {
-						text = "-",
-					},
-					Search = {
-						color = "#FFEA00",
-					},
+				Search = {
+					color = "#FFEA00",
 				},
-				handlers = {
-					cursor = true,
-					diagnostic = true,
-					gitsigns = true, -- Requires gitsigns
-					handle = true,
-					search = true, -- Requires hlslens
-					ale = false, -- Requires ALE
-				},
-			})
-		end,
+			},
+			handlers = {
+				cursor = true,
+				diagnostic = true,
+				gitsigns = true, -- Requires gitsigns
+				handle = true,
+				search = true, -- Requires hlslens
+				ale = false, -- Requires ALE
+			},
+		},
 	},
 	{
 		"HiPhish/rainbow-delimiters.nvim",

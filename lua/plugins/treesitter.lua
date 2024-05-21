@@ -1,6 +1,8 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
-	event = { "BufReadPost", "BufNewFile" },
+	event = { "BufReadPost", "BufWritePost", "BufNewFile", "VeryLazy" },
+	lazy = true,
+	cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
 	build = ":TSUpdate",
 	opts = function(_, opts)
 		opts.sync_install = false

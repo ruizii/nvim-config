@@ -6,9 +6,9 @@ Plugin.dependencies = {
 	{ "williamboman/mason-lspconfig.nvim" },
 }
 
-Plugin.cmd = { "LspInfo", "LspInstall", "LspUnInstall" }
+Plugin.cmd = { "LspInfo", "LspInstall", "LspUnInstall", "LspStart" }
 
-Plugin.event = { "BufReadPre", "BufNewFile" }
+Plugin.event = { "BufReadPost", "BufNewFile" }
 
 function Plugin.init()
 	local sign = function(opts)

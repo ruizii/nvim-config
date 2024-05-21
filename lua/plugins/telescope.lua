@@ -2,6 +2,7 @@
 return {
 	{
 		"nvim-telescope/telescope.nvim",
+		lazy = true,
 		cmd = "Telescope",
 		dependencies = { "nvim-lua/plenary.nvim" },
 		config = function()
@@ -69,5 +70,6 @@ return {
 	},
 	{
 		"nvim-telescope/telescope-ui-select.nvim",
+		lazy = true,
 	},
 }

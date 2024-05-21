@@ -17,7 +17,6 @@ require("lazy").setup({
 	},
 	defaults = {
 		lazy = false,
-		version = false,
 	},
 	ui = {
 		border = "single",
@@ -25,11 +24,13 @@ require("lazy").setup({
 	checker = {
 		enabled = true,
 	},
+	change_detection = {
+		enabled = false,
+		notify = false,
+	},
 	performance = {
 		cache = {
 			enabled = true,
-			path = vim.fn.stdpath("cache") .. "/lazy/cache",
-			disable_events = { "VimEnter", "BufReadPre" },
 		},
 		reset_packpath = true,
 		rtp = {
