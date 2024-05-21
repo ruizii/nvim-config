@@ -32,11 +32,13 @@ opt.tabstop = 4 -- Number of spaces tabs count for
 opt.termguicolors = true -- True color support
 opt.timeoutlen = 300 -- Lower than default (1000) to quickly trigger which-key
 opt.undofile = true
-opt.undolevels = 10000
+opt.undolevels = 2000
 opt.updatetime = 200 -- Save swap file and trigger CursorHold
 opt.virtualedit = "block" -- Allow cursor to move where there is no text in visual block mode
 opt.wildmode = "longest:full,full" -- Command-line completion mode
 opt.wrap = false -- Disable line wrap
 opt.smoothscroll = true
+opt.pumblend = 0
 vim.g.markdown_recommended_style = 0
 vim.cmd([[autocmd FileType * set formatoptions-=ro]])
+vim.cmd([[au TextYankPost * silent! lua vim.highlight.on_yank()]])

@@ -16,37 +16,49 @@ return { -- Adds git related signs to the gutter, as well as utilities for manag
 		end,
 	},
 	{
-		"lukas-reineke/indent-blankline.nvim",
-		-- event = "VeryLazy",
-		config = function()
-			local highlight = {
-				"RainbowYellow",
-				"RainbowBlue",
-				"RainbowGreen",
-				"RainbowViolet",
-				"RainbowOrange",
-				"RainbowRed",
-				"RainbowCyan",
-			}
-			local hooks = require("ibl.hooks")
-			hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
-				vim.api.nvim_set_hl(0, "RainbowYellow", { fg = "#E5C07B" })
-				vim.api.nvim_set_hl(0, "RainbowBlue", { fg = "#61AFEF" })
-				vim.api.nvim_set_hl(0, "RainbowOrange", { fg = "#D19A66" })
-				vim.api.nvim_set_hl(0, "RainbowCyan", { fg = "#56B6C2" })
-				vim.api.nvim_set_hl(0, "RainbowRed", { fg = "#E06C75" })
-				vim.api.nvim_set_hl(0, "RainbowGreen", { fg = "#98C379" })
-				vim.api.nvim_set_hl(0, "RainbowViolet", { fg = "#C678DD" })
-			end)
-			vim.g.rainbow_delimiters = { highlight = highlight }
+		"RRethy/vim-illuminate",
+		enabled = true,
+		event = { "InsertEnter" },
 
+		config = function()
+			-- change the highlight style
+			vim.api.nvim_set_hl(0, "IlluminatedWordText", { link = "Visual" })
+			vim.api.nvim_set_hl(0, "IlluminatedWordRead", { link = "Visual" })
+			vim.api.nvim_set_hl(0, "IlluminatedWordWrite", { link = "Visual" })
+
+			--- auto update the highlight style on colorscheme change
+			vim.api.nvim_create_autocmd({ "ColorScheme" }, {
+				pattern = { "*" },
+				callback = function(ev)
+					vim.api.nvim_set_hl(0, "IlluminatedWordText", { link = "Visual" })
+					vim.api.nvim_set_hl(0, "IlluminatedWordRead", { link = "Visual" })
+					vim.api.nvim_set_hl(0, "IlluminatedWordWrite", { link = "Visual" })
+				end,
+			})
+
+			require("illuminate").configure({
+				delay = 400,
+				large_file_cutoff = 2000,
+				providers = {
+					"lsp",
+				},
+				filetypes_denylist = {
+					"TelescopePrompt",
+					"neo-tree",
+				},
+				min_count_to_highlight = 2,
+			})
+		end,
+	},
+	{
+		"lukas-reineke/indent-blankline.nvim",
+		config = function()
 			require("ibl").setup({
 				scope = {
 					show_start = false,
 					show_end = false,
 				},
 			})
-			hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
 		end,
 	},
 	{
@@ -79,13 +91,16 @@ return { -- Adds git related signs to the gutter, as well as utilities for manag
 	{
 		"HiPhish/rainbow-delimiters.nvim",
 		dependencies = "nvim-treesitter/nvim-treesitter",
-		event = "BufReadPre",
+		event = { "BufReadPost", "BufNewFile" },
 		main = "rainbow-delimiters.setup",
 	},
 	{
 		"xiyaowong/transparent.nvim",
 		opts = {
 			extra_groups = {
+				"Normal",
+				"Float",
+				"Pmenu",
 				"NormalFloat",
 				"TabLineFill",
 				"Comment",
@@ -93,11 +108,15 @@ return { -- Adds git related signs to the gutter, as well as utilities for manag
 				"TabLine",
 				"TabLineSel",
 				"FloatBorder",
+				"NeoTreeNormal",
+				"NeoTreeNormalINC",
+				"NeoTreeEndOfBuffer",
 			},
 		},
 	},
 	{
 		"brenoprata10/nvim-highlight-colors",
+		event = { "BufReadPost", "BufNewFile" },
 		opts = {
 			render = "virtual",
 			virtual_symbol = "■",
@@ -115,5 +134,10 @@ return { -- Adds git related signs to the gutter, as well as utilities for manag
 				override_lens = function() end,
 			})
 		end,
+	},
+
+	{
+		"folke/twilight.nvim",
+		opts = {},
 	},
 }

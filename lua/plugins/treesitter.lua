@@ -1,10 +1,16 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
-	event = "VeryLazy",
+	event = { "BufReadPost", "BufNewFile" },
 	build = ":TSUpdate",
 	opts = function(_, opts)
+		opts.sync_install = false
 		opts.highlight = {
+			additional_vim_regex_highlighting = false,
 			enable = true,
+		}
+
+		opts.indent = {
+			enable = false,
 		}
 
 		opts.ensure_installed = {

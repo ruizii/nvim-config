@@ -2,13 +2,19 @@
 return {
 	{
 		"nvim-telescope/telescope.nvim",
-		tag = "0.1.6",
+		cmd = "Telescope",
 		dependencies = { "nvim-lua/plenary.nvim" },
 		config = function()
 			local ts = require("telescope")
 			local h_percentage = 0.85
 			local w_percentage = 1
 			local w_limit = 140
+
+			vim.api.nvim_set_hl(0, "TelescopeResultsNormal", { bg = "Normal:bg", blend = 0 })
+			vim.api.nvim_set_hl(0, "TelescopeSelection", { bg = "Normal:bg", blend = 0 })
+			vim.api.nvim_set_hl(0, "TodoBgFIX", { blend = 0 })
+			vim.api.nvim_set_hl(0, "TodoBgNOTE", { blend = 0 })
+			vim.api.nvim_set_hl(0, "TodoBgTODO", { blend = 0 })
 
 			local standard_setup = {
 				borderchars = {
@@ -17,7 +23,7 @@ return {
 					results = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
 					preview = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
 				},
-				layout_strategy = "horizontal", -- HORIZONTAL, VERTICAL, FLEX
+				layout_strategy = "horizontal",
 				layout_config = {
 					horizontal = {
 						prompt_position = "top",
@@ -63,11 +69,5 @@ return {
 	},
 	{
 		"nvim-telescope/telescope-ui-select.nvim",
-	},
-	{
-		"ziontee113/icon-picker.nvim",
-		config = function()
-			require("icon-picker").setup({ disable_legacy_commands = true })
-		end,
 	},
 }

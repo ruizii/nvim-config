@@ -1,17 +1,18 @@
 return {
 	{
 		"hrsh7th/nvim-cmp",
-		event = "VeryLazy",
+		event = { "InsertEnter", "CmdlineEnter" },
 		dependencies = {
-			-- Snippet Engine & its associated nvim-cmp source
 			"L3MON4D3/LuaSnip",
 			"saadparwaiz1/cmp_luasnip",
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-path",
+			"hrsh7th/cmp-nvim-lsp-signature-help",
 		},
 		config = function()
 			local cmp = require("cmp")
 			local luasnip = require("luasnip")
+			local compare = require("cmp.config.compare")
 			luasnip.config.setup({})
 
 			cmp.setup({
@@ -51,20 +52,35 @@ return {
 				}),
 				sources = {
 					{ name = "nvim_lsp" },
+					{ name = "nvim_lsp_signature_help" },
 					{ name = "luasnip" },
 					{ name = "path" },
 				},
 				window = {
-					completion = cmp.config.window.bordered({
-						winhighlight = "NormalFloat:NormalFloat,Normal:Pmenu,CursorLine:PmenuSel,Search:None",
+					completion = {
+						-- winhighlight = "Normal:Normal",
 						border = "single",
 						scrollbar = false,
-					}),
+					},
 
-					documentation = cmp.config.window.bordered({
-						winhighlight = "NormalFloat:NormalFloat,Search:None",
+					documentation = {
+						-- winhighlight = "",
 						border = "single",
-					}),
+						scrollbar = false,
+					},
+				},
+				sorting = {
+					priority_weight = 2,
+					comparators = {
+						compare.offset,
+						compare.exact,
+						compare.score,
+						compare.recently_used,
+						compare.kind,
+						compare.sort_text,
+						compare.length,
+						compare.order,
+					},
 				},
 			})
 		end,
