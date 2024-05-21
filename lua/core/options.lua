@@ -16,6 +16,7 @@ opt.fillchars = {
 	eob = " ",
 }
 opt.foldlevel = 99
+opt.cmdheight = 0
 opt.ignorecase = true -- Ignore case
 opt.inccommand = "nosplit" -- preview incremental substitute
 opt.laststatus = 3 -- global statusline
