@@ -95,4 +95,14 @@ return { -- Adds git related signs to the gutter, as well as utilities for manag
 			},
 		},
 	},
+	{
+		"brenoprata10/nvim-highlight-colors",
+		opts = {
+			render = "virtual",
+			virtual_symbol = "■",
+			enable_named_colors = true,
+
+			enable_tailwind = true,
+		},
+	},
 }

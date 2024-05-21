@@ -54,7 +54,7 @@ return {
 			poll_rate = 10, -- How frequently to update and render notifications
 			filter = vim.log.levels.INFO, -- Minimum notifications level
 			history_size = 128, -- Number of removed messages to retain in history
-			override_vim_notify = false, -- Automatically override vim.notify() with Fidget
+			override_vim_notify = true, -- Automatically override vim.notify() with Fidget
 
 			-- Options related to how notifications are rendered as text
 			view = {
