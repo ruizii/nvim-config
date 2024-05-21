@@ -1,21 +1,15 @@
 local opt = vim.opt
 
 opt.autowrite = true -- Enable auto write
+opt.foldlevel = 99
+opt.foldlevelstart = 99
+opt.foldenable = true
 opt.clipboard = "unnamedplus" -- Sync with system clipboard
 opt.completeopt = "menu,menuone,noselect"
 opt.conceallevel = 2 -- Hide * markup for bold and italic, but not markers with substitutions
 opt.confirm = true -- Confirm to save changes before exiting modified buffer
 opt.cursorline = false -- Enable highlighting of the current line
 opt.expandtab = true -- Use spaces instead of tabs
-opt.fillchars = {
-	foldopen = "",
-	foldclose = "",
-	fold = " ",
-	foldsep = " ",
-	diff = "╱",
-	eob = " ",
-}
-opt.foldlevel = 99
 opt.cmdheight = 0
 opt.ignorecase = true -- Ignore case
 opt.inccommand = "nosplit" -- preview incremental substitute
@@ -24,7 +18,6 @@ opt.mouse = "a" -- Enable mouse mode
 opt.number = true -- Print line number
 opt.pumblend = 10 -- Popup blend
 opt.relativenumber = true -- Relative line numbers
-opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize", "help", "globals", "skiprtp", "folds" }
 opt.shiftround = true -- Round indent
 opt.shiftwidth = 4 -- Size of an indent
 opt.shortmess:append({ W = true, I = true, c = true, C = true })

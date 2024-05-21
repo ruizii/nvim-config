@@ -32,8 +32,6 @@ return {
 				icon_style = "Question", -- Highlight group for group icons
 				priority = 30, -- Ordering priority for LSP notification group
 				skip_history = true, -- Whether progress notifications should be omitted from history
-				-- How to format a progress message
-				format_message = require("fidget.progress.display").default_format_message,
 				-- How to format a progress annotation
 				format_annote = function(msg)
 					return msg.title

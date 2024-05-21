@@ -49,15 +49,6 @@ return { -- Adds git related signs to the gutter, as well as utilities for manag
 		end,
 	},
 	{
-		"nvim-neo-tree/neo-tree.nvim",
-		branch = "v3.x",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
-			"MunifTanjim/nui.nvim",
-		},
-	},
-	{
 		"petertriho/nvim-scrollbar",
 		lazy = true,
 		config = function()

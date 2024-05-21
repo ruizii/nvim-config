@@ -43,7 +43,10 @@ end
 
 function Plugin.config()
 	local lspconfig = require("lspconfig")
-	local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
+	local capabilities = vim.lsp.protocol.make_client_capabilities()
+	capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+	capabilities.textDocument.completion.completionItem.snippetSupport = true
+	capabilities.textDocument.foldingRange = { dynamicRegistration = false, lineFoldingOnly = true }
 
 	local group = vim.api.nvim_create_augroup("lsp_cmds", { clear = true })
 
@@ -67,12 +70,12 @@ function Plugin.config()
 			function(server)
 				-- See :help lspconfig-setup
 				lspconfig[server].setup({
-					capabilities = lsp_capabilities,
+					capabilities = capabilities,
 				})
 			end,
 			["tsserver"] = function()
 				lspconfig.tsserver.setup({
-					capabilities = lsp_capabilities,
+					capabilities = capabilities,
 					settings = {
 						completions = {
 							completeFunctionCalls = true,
@@ -81,10 +84,48 @@ function Plugin.config()
 				})
 			end,
 			["lua_ls"] = function()
-				require("plugins.lsp.lua_ls")
+				lspconfig.lua_ls.setup({
+
+					capabilities = capabilities,
+					settings = {
+						Lua = {
+							runtime = {
+								-- Tell the language server which version of Lua you're using
+								version = "LuaJIT",
+							},
+							diagnostics = {
+								-- Get the language server to recognize the `vim` global
+								globals = { "vim" },
+							},
+							workspace = {
+								library = {
+									-- Make the server aware of Neovim runtime files
+									vim.fn.expand("$VIMRUNTIME/lua"),
+									vim.fn.stdpath("config") .. "/lua",
+								},
+								checkThirdParty = false,
+							},
+							telemetry = {
+								enable = false,
+							},
+						},
+					},
+				})
 			end,
 			["pyright"] = function()
-				require("plugins.lsp.clangd")
+				lspconfig.pyright.setup({
+					settings = {
+						python = {
+							{
+								analysis = {
+									diagnosticSeverityOverrides = {
+										reportWildcardImportFromLibrary = "none",
+									},
+								},
+							},
+						},
+					},
+				})
 			end,
 		},
 	})
