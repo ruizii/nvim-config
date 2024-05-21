@@ -7,10 +7,6 @@ return {
 			plugins = { spelling = true },
 			key_labels = { ["<leader>"] = "SPC" },
 		})
-
-		wk.register({
-			_ = { "gcc" },
-		}, { prefix = "<leader>" })
 	end,
 
 	opts = {

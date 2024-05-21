@@ -59,7 +59,7 @@ return { -- Adds git related signs to the gutter, as well as utilities for manag
 	},
 	{
 		"petertriho/nvim-scrollbar",
-		event = "User AstroFile",
+		lazy = true,
 		config = function()
 			require("scrollbar").setup({
 				handle = {
@@ -87,7 +87,7 @@ return { -- Adds git related signs to the gutter, as well as utilities for manag
 	{
 		"HiPhish/rainbow-delimiters.nvim",
 		dependencies = "nvim-treesitter/nvim-treesitter",
-		event = "User AstroFile",
+		event = "BufReadPre",
 		main = "rainbow-delimiters.setup",
 	},
 	{

@@ -45,3 +45,4 @@ opt.wildmode = "longest:full,full" -- Command-line completion mode
 opt.wrap = false -- Disable line wrap
 opt.smoothscroll = true
 vim.g.markdown_recommended_style = 0
+vim.cmd([[autocmd FileType * set formatoptions-=ro]])
