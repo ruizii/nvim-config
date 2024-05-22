@@ -17,6 +17,7 @@ opt.infercase = true
 opt.inccommand = "nosplit" -- preview incremental substitute
 opt.laststatus = 3 -- global statusline
 opt.mouse = "a" -- Enable mouse mode
+opt.mousemoveevent = true
 opt.number = true -- Print line number
 opt.relativenumber = true -- Relative line numbers
 opt.shiftround = true -- Round indent
