@@ -6,3 +6,7 @@ vim.keymap.set("n", "<C-s>", "<cmd>silent! update | redraw<CR>", { noremap = tru
 vim.keymap.set({ "i", "x" }, "<C-s>", "<ESC><cmd>silent! update | redraw<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>h", "<cmd>bprev<CR>", { remap = true })
 vim.keymap.set("n", "<leader>l", "<cmd>bnext<CR>", { remap = true })
+vim.keymap.set("n", "<leader><leader>", "<cmd>Telescope buffers<CR>", { remap = true })
+vim.keymap.set("n", "<leader>c", "<cmd>bdelete<CR>", { noremap = true })
+vim.keymap.set("n", "<leader>f", "<cmd>Telescope find_files<CR>", { remap = true })
+vim.keymap.set("n", "<leader>g", "<cmd>Telescope live_grep<CR>", { remap = true })

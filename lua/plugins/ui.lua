@@ -149,6 +149,7 @@ return { -- Adds git related signs to the gutter, as well as utilities for manag
 	{
 		"kevinhwang91/nvim-hlslens",
 		lazy = true,
+		event = "VeryLazy",
 		branch = "main",
 		config = function()
 			require("scrollbar.handlers.search").setup({
