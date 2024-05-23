@@ -25,7 +25,6 @@ return {
 			dashboard.button("r", "" .. sep .. " Recent Files", "<Cmd>Telescope frecency<CR>"),
 			dashboard.button("g", "󰈞" .. sep .. " Grep Files", ":Telescope live_grep<CR>"),
 			dashboard.button("p", "󰉓" .. sep .. " Projects", "<Cmd>Telescope project<CR>"),
-			dashboard.button("s", "" .. sep .. " Last Session", "<Cmd>SessionManager load_last_session<cr>"),
 			dashboard.button("q", "󰅙" .. sep .. " Quit", "<Cmd>qa<CR>"),
 		}
 

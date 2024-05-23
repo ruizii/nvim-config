@@ -101,7 +101,6 @@ return { -- Adds git related signs to the gutter, as well as utilities for manag
 				right_trunc_marker = ".",
 				max_name_length = 15,
 				max_prefix_length = 6,
-				diagnostics = "nvim_lsp",
 				show_buffer_icons = true,
 				persist_buffer_sort = true,
 				enforce_regular_tabs = true,
@@ -110,10 +109,6 @@ return { -- Adds git related signs to the gutter, as well as utilities for manag
 					delay = 0,
 					reveal = { "close" },
 				},
-				diagnostics_indicator = function(count, level)
-					local icon = level:match("error") and "" or ""
-					return icon .. count
-				end,
 			},
 		},
 	},
