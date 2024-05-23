@@ -41,9 +41,6 @@ return {
 				format_group_name = function(group)
 					return tostring(group)
 				end,
-				overrides = { -- Override options from the default notification config
-					rust_analyzer = { name = "rust-analyzer" },
-				},
 			},
 			lsp = {
 				progress_ringbuf_size = 0, -- Configure the nvim's LSP progress ring buffer size

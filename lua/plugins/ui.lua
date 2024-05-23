@@ -3,22 +3,18 @@ return { -- Adds git related signs to the gutter, as well as utilities for manag
 		"lewis6991/gitsigns.nvim",
 		lazy = true,
 		event = { "BufReadPost", "BufWritePost", "BufNewFile" },
-		config = function()
-			require("gitsigns").setup({
-				signcolumn = false, -- Toggle with `:Gitsigns toggle_signs`
-				numhl = true, -- Toggle with `:Gitsigns toggle_numhl`
-				linehl = false, -- Toggle with `:Gitsigns toggle_linehl`
-				word_diff = false, -- Toggle with `:Gitsigns toggle_word_diff`
-				auto_attach = true,
-				attach_to_untracked = false,
-				current_line_blame = false, -- Toggle with `:Gitsigns toggle_current_line_blame`
-			})
-			require("scrollbar.handlers.gitsigns").setup()
-		end,
+		opts = {
+			signcolumn = false, -- Toggle with `:Gitsigns toggle_signs`
+			numhl = true, -- Toggle with `:Gitsigns toggle_numhl`
+			linehl = false, -- Toggle with `:Gitsigns toggle_linehl`
+			word_diff = false, -- Toggle with `:Gitsigns toggle_word_diff`
+			auto_attach = true,
+			attach_to_untracked = false,
+			current_line_blame = false, -- Toggle with `:Gitsigns toggle_current_line_blame`
+		},
 	},
 	{
 		"RRethy/vim-illuminate",
-		enabled = true,
 		event = { "InsertEnter" },
 
 		config = function()
@@ -60,30 +56,15 @@ return { -- Adds git related signs to the gutter, as well as utilities for manag
 				show_start = false,
 				show_end = false,
 			},
-		},
-	},
-	{
-		"petertriho/nvim-scrollbar",
-		lazy = true,
-		opts = {
-			handle = {
-				color = "#60606f",
-			},
-			marks = {
-				Cursor = {
-					text = "-",
+			exclude = {
+				filetypes = {
+					"help",
+					"alpha",
+					"lazy",
+					"mason",
+					"toggleterm",
+					"lazyterm",
 				},
-				Search = {
-					color = "#FFEA00",
-				},
-			},
-			handlers = {
-				cursor = true,
-				diagnostic = true,
-				gitsigns = true, -- Requires gitsigns
-				handle = true,
-				search = true, -- Requires hlslens
-				ale = false, -- Requires ALE
 			},
 		},
 	},
@@ -111,6 +92,7 @@ return { -- Adds git related signs to the gutter, as well as utilities for manag
 		"akinsho/bufferline.nvim",
 		version = "*",
 		dependencies = "nvim-tree/nvim-web-devicons",
+		event = { "BufReadPost", "BufWritePost", "BufNewFile" },
 		opts = {
 			options = {
 				separator_style = { "", "" },
@@ -137,7 +119,7 @@ return { -- Adds git related signs to the gutter, as well as utilities for manag
 	},
 	{
 		"brenoprata10/nvim-highlight-colors",
-		event = { "BufReadPost", "BufNewFile" },
+		event = { "BufReadPost", "BufWritePost", "BufNewFile" },
 		opts = {
 			render = "virtual",
 			virtual_symbol = "■",
@@ -147,19 +129,14 @@ return { -- Adds git related signs to the gutter, as well as utilities for manag
 		},
 	},
 	{
-		"kevinhwang91/nvim-hlslens",
-		lazy = true,
-		event = "VeryLazy",
-		branch = "main",
+		"dstein64/nvim-scrollview",
+		event = { "BufReadPost", "BufWritePost", "BufNewFile" },
+		opts = {
+			signs_on_startup = { "all" },
+		},
 		config = function()
-			require("scrollbar.handlers.search").setup({
-				override_lens = function() end,
-			})
+			require("scrollview").setup({})
+			require("scrollview.contrib.gitsigns").setup()
 		end,
-	},
-
-	{
-		"folke/twilight.nvim",
-		opts = {},
 	},
 }

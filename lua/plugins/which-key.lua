@@ -1,6 +1,6 @@
 return {
 	"folke/which-key.nvim",
-	event = "VeryLazy",
+	event = { "BufReadPost", "BufWritePost", "BufNewFile" },
 	opts = {
 		plugins = { spelling = true },
 		key_labels = { ["<leader>"] = "SPC" },

@@ -5,9 +5,6 @@ return {
 		opts = {
 			transparent = true,
 			style = "dark",
-			lualine = {
-				transparent = true,
-			},
 		},
 	},
 }

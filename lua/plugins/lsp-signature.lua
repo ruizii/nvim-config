@@ -1,6 +1,6 @@
 return {
 	"ray-x/lsp_signature.nvim",
-	event = "VeryLazy",
+	event = { "BufReadPost", "BufWritePost", "BufNewFile" },
 	config = function()
 		require("lsp_signature").setup({
 			doc_lines = 0,

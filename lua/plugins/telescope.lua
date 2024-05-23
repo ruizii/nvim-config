@@ -3,7 +3,34 @@ return {
 		"nvim-telescope/telescope.nvim",
 		lazy = true,
 		cmd = "Telescope",
-		dependencies = { "nvim-lua/plenary.nvim" },
+		dependencies = {
+			{ "nvim-lua/plenary.nvim" },
+			{
+				"nvim-telescope/telescope-frecency.nvim",
+				config = function()
+					require("telescope").load_extension("frecency")
+				end,
+			},
+			{
+				"nvim-telescope/telescope-ui-select.nvim",
+				config = function()
+					require("telescope").load_extension("ui-select")
+				end,
+			},
+			{
+				"nvim-telescope/telescope-project.nvim",
+				config = function()
+					require("telescope").load_extension("project")
+				end,
+			},
+			{
+				"nvim-telescope/telescope-fzf-native.nvim",
+				build = "make",
+				config = function()
+					require("telescope").load_extension("fzf")
+				end,
+			},
+		},
 		config = function()
 			local ts = require("telescope")
 			local h_percentage = 0.85
@@ -13,10 +40,10 @@ return {
 			vim.api.nvim_set_hl(0, "TodoBgFIX", { blend = 0 })
 			vim.api.nvim_set_hl(0, "TodoBgNOTE", { blend = 0 })
 			vim.api.nvim_set_hl(0, "TodoBgTODO", { blend = 0 })
+			vim.api.nvim_set_hl(0, "TelescopePathSeparator", { link = "Comment" })
 
 			local standard_setup = {
 				borderchars = {
-					--           N    E    S    W   NW   NE   SE   SW
 					prompt = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
 					results = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
 					preview = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
@@ -65,24 +92,11 @@ return {
 						override_file_sorter = true,
 						case_mode = "smart_case",
 					},
+					frecency = {
+						ignore_patterns = { "*.git/*", "*/tmp/*", "term://*" },
+					},
 				},
 			})
-
-			require("telescope").load_extension("ui-select")
-			require("telescope").load_extension("project")
-			require("telescope").load_extension("fzf")
 		end,
-	},
-	{
-		"nvim-telescope/telescope-ui-select.nvim",
-		lazy = true,
-	},
-	{
-		"nvim-telescope/telescope-project.nvim",
-		lazy = true,
-	},
-	{
-		"nvim-telescope/telescope-fzf-native.nvim",
-		build = "make",
 	},
 }
