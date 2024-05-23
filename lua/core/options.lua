@@ -3,6 +3,7 @@ local opt = vim.opt
 opt.foldlevel = 99
 opt.foldlevelstart = 99
 opt.foldenable = true
+opt.foldcolumn = "1"
 opt.preserveindent = true
 opt.clipboard = "unnamedplus" -- Sync with system clipboard
 opt.completeopt = { "menu", "menuone", "noselect" }
