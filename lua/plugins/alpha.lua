@@ -22,7 +22,7 @@ return {
 		dashboard.section.buttons.val = {
 			dashboard.button("f", "󰈢" .. sep .. " File Browser", "<Cmd>Telescope find_files<CR>"),
 			dashboard.button("n", "󰈔" .. sep .. " New File", "<Cmd>ene <BAR> startinsert<CR>"),
-			dashboard.button("r", "" .. sep .. " Recent Files", "<Cmd>Telescope frecency<CR>"),
+			dashboard.button("r", "" .. sep .. " Recent Files", "<Cmd>Telescope oldfiles<CR>"),
 			dashboard.button("g", "󰈞" .. sep .. " Grep Files", ":Telescope live_grep<CR>"),
 			dashboard.button("p", "󰉓" .. sep .. " Projects", "<Cmd>Telescope project<CR>"),
 			dashboard.button("s", "" .. sep .. " Update Plugins", "<Cmd>Lazy sync<CR>"),

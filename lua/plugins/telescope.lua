@@ -6,12 +6,6 @@ return {
 		dependencies = {
 			{ "nvim-lua/plenary.nvim" },
 			{
-				"nvim-telescope/telescope-frecency.nvim",
-				config = function()
-					require("telescope").load_extension("frecency")
-				end,
-			},
-			{
 				"nvim-telescope/telescope-ui-select.nvim",
 				config = function()
 					require("telescope").load_extension("ui-select")
@@ -28,6 +22,12 @@ return {
 				build = "make",
 				config = function()
 					require("telescope").load_extension("fzf")
+				end,
+			},
+			{
+				"jvgrootveld/telescope-zoxide",
+				config = function()
+					require("telescope").load_extension("zoxide")
 				end,
 			},
 		},
@@ -91,9 +91,6 @@ return {
 						override_generic_sorter = true,
 						override_file_sorter = true,
 						case_mode = "smart_case",
-					},
-					frecency = {
-						ignore_patterns = { "*.git/*", "*/tmp/*", "term://*" },
 					},
 				},
 			})
