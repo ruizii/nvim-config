@@ -104,6 +104,7 @@ return { -- Adds git related signs to the gutter, as well as utilities for manag
 				show_buffer_icons = true,
 				persist_buffer_sort = true,
 				enforce_regular_tabs = true,
+				indicator = "underline",
 				hover = {
 					enabled = true,
 					delay = 0,
