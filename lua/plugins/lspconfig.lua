@@ -127,6 +127,9 @@ function Plugin.config()
 					},
 				})
 			end,
+			["gopls"] = function()
+				lspconfig.gopls.setup({})
+			end,
 		},
 	})
 end
