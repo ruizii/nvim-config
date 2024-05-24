@@ -2,11 +2,7 @@ return {
 	"folke/noice.nvim",
 	event = "VeryLazy",
 	dependencies = {
-		-- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
 		"MunifTanjim/nui.nvim",
-		-- OPTIONAL:
-		--   `nvim-notify` is only needed, if you want to use the notification view.
-		--   If not available, we use `mini` as the fallback
 	},
 	opts = {
 		lsp = {
@@ -14,6 +10,12 @@ return {
 				["vim.lsp.util.convert_input_to_markdown_lines"] = true,
 				["vim.lsp.util.stylize_markdown"] = true,
 				["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
+			},
+			hover = {
+				enabled = true,
+			},
+			signature = {
+				enabled = true,
 			},
 		},
 		presets = {
@@ -27,6 +29,7 @@ return {
 				win_options = {
 					winblend = 0,
 				},
+				position = { col = -3 },
 			},
 			cmdline_popup = {
 				border = {
@@ -43,8 +46,20 @@ return {
 				},
 			},
 		},
-		format = {
-			view = "mini",
+		routes = {
+			{ filter = { event = "msg_show", find = "%d+B written$" }, view = "mini" },
+			{ filter = { event = "msg_show", find = "%d+L, %d+B$" }, view = "mini" },
+			{ filter = { event = "msg_show", find = "%-%-No lines in buffer%-%-" }, view = "mini" },
+
+			-- search pattern not found
+			{ filter = { event = "msg_show", find = "^E486: Pattern not found" }, view = "mini" },
+
+			-- Word added to spellfile via `zg`
+			{ filter = { event = "msg_show", find = "^Word .*%.add$" }, view = "mini" },
+
+			-- nvim-treesitter
+			{ filter = { event = "msg_show", find = "^%[nvim%-treesitter%]" }, view = "mini" },
+			{ filter = { event = "notify", find = "All parsers are up%-to%-date" }, view = "mini" },
 		},
 	},
 }

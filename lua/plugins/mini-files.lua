@@ -1,6 +1,7 @@
 return {
 	"echasnovski/mini.files",
 	event = { "BufReadPost", "BufWritePost", "BufNewFile" },
+	version = false,
 	keys = {
 		{
 			"<C-b>",
@@ -11,5 +12,5 @@ return {
 			{ remap = true, silent = true },
 		},
 	},
-	version = false,
+	config = true,
 }

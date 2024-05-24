@@ -10,6 +10,7 @@ return {
 				config = function()
 					require("telescope").load_extension("ui-select")
 				end,
+				ft = "mason",
 			},
 			{
 				"nvim-telescope/telescope-project.nvim",
