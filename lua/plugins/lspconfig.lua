@@ -4,6 +4,22 @@ local user = {}
 Plugin.dependencies = {
 	{ "hrsh7th/cmp-nvim-lsp" },
 	{ "williamboman/mason-lspconfig.nvim" },
+	{
+		"ray-x/lsp_signature.nvim",
+		event = "VeryLazy",
+		opts = {
+			doc_lines = 0,
+			wrap = true,
+			floating_window_above_cur_line = true,
+			handler_opts = {
+				border = "single",
+			},
+			hint_enable = false,
+
+			floating_window_off_x = 50,
+			close_timeout = 4000,
+		},
+	},
 }
 
 Plugin.cmd = { "LspInfo", "LspInstall", "LspUnInstall", "LspStart" }
@@ -130,6 +146,9 @@ function Plugin.config()
 			["gopls"] = function()
 				lspconfig.gopls.setup({})
 			end,
+			["clangd"] = function()
+				lspconfig.clangd.setup({})
+			end,
 		},
 	})
 end
@@ -142,7 +161,6 @@ function user.on_attach()
 
 	-- You can search each function in the help page.
 	-- For example :help vim.lsp.buf.hover()
-
 	bufmap("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>")
 	bufmap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>")
 	bufmap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>")

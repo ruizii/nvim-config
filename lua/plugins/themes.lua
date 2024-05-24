@@ -19,4 +19,11 @@ return {
 			},
 		},
 	},
+	{
+		"diegoulloao/neofusion.nvim",
+		lazy = true,
+		opts = {
+			transparent_mode = true,
+		},
+	},
 }

@@ -22,7 +22,11 @@ return {
 				lazy = true,
 			},
 			{
-				"hrsh7th/cmp-nvim-lsp-signature-help",
+				"hrsh7th/cmp-buffer",
+				lazy = true,
+			},
+			{
+				"onsails/lspkind.nvim",
 				lazy = true,
 			},
 		},
@@ -30,6 +34,13 @@ return {
 			local cmp = require("cmp")
 			local luasnip = require("luasnip")
 			local compare = require("cmp.config.compare")
+
+			local function has_words_before()
+				local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+				return col ~= 0
+					and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+			end
+
 			luasnip.config.setup({})
 
 			cmp.setup({
@@ -41,7 +52,7 @@ return {
 				completion = { completeopt = "menu,menuone,noinsert" },
 				mapping = cmp.mapping.preset.insert({
 					["<Tab>"] = cmp.mapping(function(fallback)
-						if cmp.visible() then
+						if cmp.visible() and has_words_before() then
 							cmp.confirm({ select = true })
 						else
 							fallback()
@@ -68,10 +79,10 @@ return {
 					end, { "i", "s" }),
 				}),
 				sources = {
-					{ name = "nvim_lsp" },
-					{ name = "nvim_lsp_signature_help" },
-					{ name = "luasnip" },
-					{ name = "path" },
+					{ name = "nvim_lsp", priority = 1000 },
+					{ name = "luasnip", priority = 750 },
+					{ name = "path", priority = 500 },
+					{ name = "buffer", priority = 250 },
 				},
 				window = {
 					completion = {
@@ -95,11 +106,21 @@ return {
 					},
 				},
 				formatting = {
-					format = function(_, vim_item)
-						vim_item.menu = ""
-						vim_item.kind = ""
-						return vim_item
-					end,
+					format = require("lspkind").cmp_format({
+						mode = "symbol",
+						maxwidth = 50,
+						ellipsis_char = "...",
+						before = function(entry, vim_item)
+							vim_item.menu = ""
+							return vim_item
+						end,
+						menu = {
+							nvim_lsp = "[LSP]",
+							luasnip = "[LuaSnip]",
+							buffer = "[Buffer]",
+							path = "[Path]",
+						},
+					}),
 				},
 			})
 		end,
