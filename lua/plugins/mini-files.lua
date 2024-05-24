@@ -12,9 +12,4 @@ return {
 		},
 	},
 	version = false,
-	opts = {
-		mappings = {
-			go_in_plus = "<CR>",
-		},
-	},
 }

@@ -4,6 +4,11 @@ return {
 		lazy = true,
 		cmd = "Mason",
 		build = ":MasonUpdate",
+		dependencies = {
+			{
+				"nvim-telescope/telescope-ui-select.nvim",
+			},
+		},
 		opts = {
 			ui = { border = "single" },
 			ensure_installed = {
