@@ -1,17 +1,9 @@
 return {
 	{
 		"nvim-telescope/telescope.nvim",
-		lazy = true,
 		cmd = "Telescope",
 		dependencies = {
 			{ "nvim-lua/plenary.nvim" },
-			{
-				"nvim-telescope/telescope-ui-select.nvim",
-				config = function()
-					require("telescope").load_extension("ui-select")
-				end,
-				ft = "mason",
-			},
 			{
 				"nvim-telescope/telescope-project.nvim",
 				config = function()
@@ -84,9 +76,6 @@ return {
 				}),
 
 				extensions = {
-					["ui-select"] = {
-						require("telescope.themes").get_dropdown({}),
-					},
 					fzf = {
 						fuzzy = true,
 						override_generic_sorter = true,
