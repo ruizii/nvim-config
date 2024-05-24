@@ -7,22 +7,6 @@ Plugin.dependencies = {
 		"williamboman/mason-lspconfig.nvim",
 		event = { "BufReadPre", "BufNewFile" },
 	},
-	{
-		"ray-x/lsp_signature.nvim",
-		event = "VeryLazy",
-		opts = {
-			doc_lines = 0,
-			wrap = true,
-			floating_window_above_cur_line = true,
-			handler_opts = {
-				border = "single",
-			},
-			hint_enable = false,
-
-			floating_window_off_x = 50,
-			close_timeout = 4000,
-		},
-	},
 }
 
 Plugin.cmd = { "LspInfo", "LspInstall", "LspUnInstall", "LspStart" }
@@ -54,11 +38,6 @@ function Plugin.init()
 			source = "if_many",
 		},
 	})
-
-	vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "single" })
-
-	vim.lsp.handlers["textDocument/signatureHelp"] =
-		vim.lsp.with(vim.lsp.handlers.signature_help, { border = "single" })
 end
 
 function Plugin.config()
