@@ -3,7 +3,10 @@ local user = {}
 
 Plugin.dependencies = {
 	{ "hrsh7th/cmp-nvim-lsp" },
-	{ "williamboman/mason-lspconfig.nvim" },
+	{
+		"williamboman/mason-lspconfig.nvim",
+		event = { "BufReadPre", "BufNewFile" },
+	},
 	{
 		"ray-x/lsp_signature.nvim",
 		event = "VeryLazy",
