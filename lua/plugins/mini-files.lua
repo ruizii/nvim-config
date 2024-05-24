@@ -1,6 +1,5 @@
 return {
 	"echasnovski/mini.files",
-	event = { "BufReadPost", "BufWritePost", "BufNewFile" },
 	version = false,
 	keys = {
 		{
