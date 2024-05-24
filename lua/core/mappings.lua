@@ -6,8 +6,8 @@ vim.keymap.set("n", "gc", "<nop>")
 vim.keymap.set({ "i", "x" }, "<C-s>", "<ESC><cmd>silent! update | redraw<CR>", { noremap = true, silent = true })
 
 -- Buffer navigation
-vim.keymap.set("n", "H", "<cmd>bprev<CR>", { remap = true })
-vim.keymap.set("n", "L", "<cmd>bnext<CR>", { remap = true })
+vim.keymap.set("n", "<Tab>", "<cmd>bprev<CR>", { remap = true })
+vim.keymap.set("n", "<S-Tab>", "<cmd>bnext<CR>", { remap = true })
 vim.keymap.set("n", "<leader>c", "<cmd>bdelete<CR>", { noremap = true })
 
 -- Telescope
