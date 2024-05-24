@@ -32,4 +32,20 @@ function M.remove_whitespace_on_save()
 	})
 end
 
+function M.close_help_on_q()
+	create_autocmd("Filetype", {
+		group = "userconfig",
+		desc = "keymap 'q' to close help/quickfix/netrw/etc windows",
+		pattern = "help,qf,netrw",
+		callback = function()
+			vim.keymap.set(
+				"n",
+				"q",
+				"<C-w>c",
+				{ buffer = true, desc = "Quit (or Close) help, quickfix, netrw, etc windows" }
+			)
+		end,
+	})
+end
+
 return M
