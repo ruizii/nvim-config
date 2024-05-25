@@ -2,7 +2,7 @@ return { -- Adds git related signs to the gutter, as well as utilities for manag
 	{
 		"lewis6991/gitsigns.nvim",
 		lazy = true,
-		event = { "BufReadPost", "BufWritePost", "BufNewFile" },
+		event = { "BufReadPost", "BufNewFile" },
 		opts = {
 			signcolumn = false, -- Toggle with `:Gitsigns toggle_signs`
 			numhl = true, -- Toggle with `:Gitsigns toggle_numhl`
@@ -49,7 +49,7 @@ return { -- Adds git related signs to the gutter, as well as utilities for manag
 	},
 	{
 		"lukas-reineke/indent-blankline.nvim",
-		event = { "BufReadPost", "BufWritePost", "BufNewFile" },
+		event = { "BufReadPost", "BufNewFile" },
 		main = "ibl",
 		opts = {
 			scope = {
@@ -89,33 +89,8 @@ return { -- Adds git related signs to the gutter, as well as utilities for manag
 		},
 	},
 	{
-		"akinsho/bufferline.nvim",
-		version = "*",
-		dependencies = "nvim-tree/nvim-web-devicons",
-		event = { "BufReadPost", "BufWritePost", "BufNewFile" },
-		opts = {
-			options = {
-				separator_style = { "", "" },
-				modified_icon = "●",
-				left_trunc_marker = ".",
-				right_trunc_marker = ".",
-				max_name_length = 15,
-				max_prefix_length = 6,
-				show_buffer_icons = true,
-				persist_buffer_sort = true,
-				enforce_regular_tabs = true,
-				indicator = "underline",
-				hover = {
-					enabled = true,
-					delay = 0,
-					reveal = { "close" },
-				},
-			},
-		},
-	},
-	{
 		"brenoprata10/nvim-highlight-colors",
-		event = { "BufReadPost", "BufWritePost", "BufNewFile" },
+		event = { "BufReadPost", "BufNewFile" },
 		opts = {
 			render = "virtual",
 			virtual_symbol = "■",
@@ -126,7 +101,7 @@ return { -- Adds git related signs to the gutter, as well as utilities for manag
 	},
 	{
 		"dstein64/nvim-scrollview",
-		event = { "BufReadPost", "BufWritePost", "BufNewFile" },
+		event = { "BufReadPost", "BufNewFile" },
 		opts = {
 			signs_on_startup = { "all" },
 		},

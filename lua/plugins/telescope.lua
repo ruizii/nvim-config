@@ -25,6 +25,22 @@ return {
 			},
 		},
 		config = function()
+			-- Function for opening files when tab-selected or opening a single file
+			local select_one_or_multi = function(prompt_bufnr)
+				local picker = require("telescope.actions.state").get_current_picker(prompt_bufnr)
+				local multi = picker:get_multi_selection()
+				if not vim.tbl_isempty(multi) then
+					require("telescope.actions").close(prompt_bufnr)
+					for _, j in pairs(multi) do
+						if j.path ~= nil then
+							vim.cmd(string.format("%s %s", "edit", j.path))
+						end
+					end
+				else
+					require("telescope.actions").select_default(prompt_bufnr)
+				end
+			end
+
 			local ts = require("telescope")
 			local h_percentage = 0.85
 			local w_percentage = 1
@@ -68,6 +84,7 @@ return {
 						i = {
 							["<C-o>"] = require("telescope.actions.layout").toggle_preview,
 							["<Esc>"] = require("telescope.actions").close,
+							["<CR>"] = select_one_or_multi,
 						},
 					},
 				}),
