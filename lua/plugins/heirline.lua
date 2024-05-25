@@ -35,8 +35,7 @@ return {
 		--- @param hl_tbl table | nil
 		--- @return table
 		local function make_hl(hl_tbl)
-			local statusline = utils.get_highlight("onedark")
-			local base_hl = { bg = "none", fg = statusline.fg }
+			local base_hl = { bg = "none", fg = "bright_fg" }
 
 			if not hl_tbl then
 				return base_hl
@@ -60,10 +59,10 @@ return {
 					nt = "Nt",
 					v = "VISUAL",
 					vs = "Vs",
-					V = "V_",
+					V = "VISUAL",
 					Vs = "Vs",
-					["\22"] = "VISUAL_B",
-					["\22s"] = "VISUAL_B",
+					["\22"] = "VISUAL",
+					["\22s"] = "VISUAL",
 					s = "S",
 					S = "S_",
 					["\19"] = "^S",
@@ -89,19 +88,19 @@ return {
 					i = "yellow",
 					v = "purple",
 					V = "purple",
-					["\22"] = "blue",
-					c = "bright_fg",
+					["\22"] = "purple",
+					c = "green",
 					s = "purple",
 					S = "purple",
 					["\19"] = "purple",
 					R = "red",
 					r = "red",
 					["!"] = "red",
-					t = "bright_fg",
+					t = "blue",
 				},
 			},
 			provider = function(self)
-				return " " .. self.mode_names[self.mode]
+				return " " .. self.mode_names[self.mode]
 			end,
 			init = function(self)
 				self.mode = vim.fn.mode()
@@ -210,7 +209,7 @@ return {
 			provider = function()
 				return "   " .. vim.bo.filetype
 			end,
-			hl = make_hl({ bold = true }),
+			hl = { fg = "blue" },
 		}
 
 		local Ruler = {
@@ -231,7 +230,7 @@ return {
 				local curr_line = vim.api.nvim_win_get_cursor(0)[1]
 				local lines = vim.api.nvim_buf_line_count(0)
 				local i = math.floor((curr_line - 1) / lines * #self.sbar) + 1
-				return string.rep(self.sbar[i], 2) .. " %P  "
+				return string.rep(self.sbar[i], 2) .. " %P"
 			end,
 			hl = { fg = "diag_hint", bg = "none" },
 		}
@@ -295,7 +294,7 @@ return {
 
 			{ -- git branch name
 				provider = function(self)
-					return " " .. self.status_dict.head
+					return "  " .. self.status_dict.head
 				end,
 				hl = { bold = true },
 			},
@@ -336,8 +335,7 @@ return {
 		local Align = { provider = "%=", hl = make_hl() }
 		local Space = { provider = " ", hl = make_hl() }
 
-        -- stylua: ignore
-        local LeftBlock = {Space, ViMode, Space, Space,FilenameBlock, Space, Space, Git   }
+		local LeftBlock = { ViMode, Space, Space, FilenameBlock, Space, Space, Git }
 		local RightBlock = {
 			Diagnostics,
 			Space,
@@ -351,7 +349,6 @@ return {
 			Space,
 			Space,
 			ScrollBar,
-			Space,
 		}
 
 		local StatusLine = {

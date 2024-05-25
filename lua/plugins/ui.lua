@@ -102,11 +102,10 @@ return { -- Adds git related signs to the gutter, as well as utilities for manag
 	{
 		"dstein64/nvim-scrollview",
 		event = { "BufReadPost", "BufNewFile" },
-		opts = {
-			signs_on_startup = { "all" },
-		},
 		config = function()
-			require("scrollview").setup({})
+			require("scrollview").setup({
+				signs_on_startup = { "all" },
+			})
 			require("scrollview.contrib.gitsigns").setup()
 		end,
 	},

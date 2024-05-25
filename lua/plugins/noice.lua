@@ -29,7 +29,6 @@ return {
 				win_options = {
 					winblend = 0,
 				},
-				position = { col = -3 },
 			},
 			cmdline_popup = {
 				border = {
