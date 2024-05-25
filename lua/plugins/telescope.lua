@@ -65,12 +65,9 @@ return {
 					border = { prompt = { 1, 1, 1, 1 }, results = { 1, 1, 1, 1 }, preview = { 1, 1, 1, 1 } },
 					path_display = { "filename_first" }, -- trunctate or filename_first
 					mappings = {
-						n = {
-							["o"] = require("telescope.actions.layout").toggle_preview,
-							["<C-c>"] = require("telescope.actions").close,
-						},
 						i = {
 							["<C-o>"] = require("telescope.actions.layout").toggle_preview,
+							["<Esc>"] = require("telescope.actions").close,
 						},
 					},
 				}),
