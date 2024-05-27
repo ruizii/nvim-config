@@ -1,26 +1,13 @@
 return {
 	"CRAG666/code_runner.nvim",
-	dependencies = {
-		"akinsho/toggleterm.nvim",
-		version = "*",
-		cmd = { "RunCode", "RunFile", "RunProject" },
-		keys = { "<C-t>" },
-		opts = {
-			open_mapping = [[<C-t>]],
-			hide_numbers = true,
-			autochdir = true,
-			insert_mappings = true,
-			shade_terminals = false,
-			close_on_exit = false,
-		},
-	},
 	cmd = { "RunCode", "RunFile", "RunProject" },
 	config = function()
 		require("code_runner").setup({
-			mode = "toggleterm",
+			mode = "term",
 			startinsert = true,
+			focus = true,
 			term = {
-				size = 15,
+				size = 18,
 			},
 			filetype = {
 				python = "python -u",

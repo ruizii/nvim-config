@@ -48,4 +48,15 @@ function M.close_help_on_q()
 	})
 end
 
+function M.disable_lnum_on_terminal()
+	create_autocmd("TermOpen", {
+		desc = "Disable line numbers on terminal",
+		pattern = "*",
+		callback = function()
+			vim.api.nvim_command("startinsert")
+			vim.api.nvim_command("setlocal nonumber norelativenumber signcolumn=no")
+		end,
+	})
+end
+
 return M
