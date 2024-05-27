@@ -1,5 +1,6 @@
 return {
 	"folke/which-key.nvim",
+	spelling = { enabled = false },
 	event = { "BufReadPost", "BufNewFile" },
 	opts = {
 		key_labels = { ["<leader>"] = "SPC" },
