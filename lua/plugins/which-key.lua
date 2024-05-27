@@ -2,7 +2,6 @@ return {
 	"folke/which-key.nvim",
 	event = { "BufReadPost", "BufNewFile" },
 	opts = {
-		plugins = { spelling = true },
 		key_labels = { ["<leader>"] = "SPC" },
 		icons = {
 			group = vim.g.icons_enabled ~= false and "" or "+",
@@ -12,5 +11,16 @@ return {
 		window = {
 			border = "single",
 		},
+		defaults = {
+			mode = { "n", "v" },
+			["<leader>l"] = { name = "Lsp" },
+			["<leader>f"] = { name = "Telescope" },
+		},
 	},
+
+	config = function(_, opts)
+		local wk = require("which-key")
+		wk.setup(opts)
+		wk.register(opts.defaults)
+	end,
 }
