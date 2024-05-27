@@ -15,7 +15,7 @@ end
 
 local load_colorscheme = function(colorscheme)
 	vim.api.nvim_command(string.format("colorscheme %s", colorscheme))
-	require("core.transparent")
+	require("utils.transparent")
 end
 
 local load_core = function()
