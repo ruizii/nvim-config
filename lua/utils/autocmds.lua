@@ -54,7 +54,7 @@ function M.disable_lnum_on_terminal()
 		pattern = "*",
 		callback = function()
 			vim.api.nvim_command("startinsert")
-			vim.api.nvim_command("setlocal nonumber norelativenumber signcolumn=no")
+			vim.api.nvim_command("setlocal nonumber norelativenumber signcolumn=no winheight=16")
 		end,
 	})
 end

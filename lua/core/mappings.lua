@@ -31,3 +31,6 @@ vim.keymap.set("n", "<F5>", "<cmd>RunCode<CR>", { noremap = true, silent = false
 vim.keymap.set("n", "<leader>la", function()
 	vim.lsp.buf.code_action()
 end)
+
+vim.keymap.set("n", "<C-t>", "<cmd>18sp +te<CR>")
+vim.api.nvim_set_keymap("t", "<C-t>", "<C-\\><C-n>:bd!<CR>", { noremap = true, silent = true })
