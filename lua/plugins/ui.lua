@@ -75,20 +75,6 @@ return { -- Adds git related signs to the gutter, as well as utilities for manag
 		main = "rainbow-delimiters.setup",
 	},
 	{
-		"xiyaowong/transparent.nvim",
-		opts = {
-			extra_groups = {
-				"NormalFloat",
-				"FloatBorder",
-				"Pmenu",
-				"WinBar",
-			},
-			exclude_groups = {
-				"Normal",
-			},
-		},
-	},
-	{
 		"brenoprata10/nvim-highlight-colors",
 		event = { "BufReadPost", "BufNewFile" },
 		opts = {

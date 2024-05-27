@@ -3,7 +3,7 @@ return {
 		"navarasu/onedark.nvim",
 		lazy = true,
 		opts = {
-			transparent = true,
+			-- transparent = true,
 			style = "dark",
 			highlights = {
 				DiagnosticVirtualTextOk = { fg = "#b3f6c0", bg = "none" },

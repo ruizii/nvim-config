@@ -19,7 +19,9 @@ return {
 		local sep = " "
 
 		dashboard.section.buttons.val = {
-			dashboard.button("f", "󰈢" .. sep .. " File Browser", "<Cmd>Telescope find_files<CR>"),
+			dashboard.button("f", "󰈢" .. sep .. " File Browser", function()
+				require("utils.telescope-fallback").project_files()
+			end),
 			dashboard.button("n", "󰈔" .. sep .. " New File", "<Cmd>ene <BAR> startinsert<CR>"),
 			dashboard.button("r", "" .. sep .. " Recent Files", "<Cmd>Telescope oldfiles<CR>"),
 			dashboard.button("g", "󰈞" .. sep .. " Grep Files", ":Telescope live_grep<CR>"),
