@@ -5,6 +5,7 @@ return {
 	config = function()
 		local Harpoonline = require("harpoonline")
 		Harpoonline.setup({
+			icon = "",
 			on_update = function()
 				require("lualine").refresh()
 			end,
