@@ -16,6 +16,7 @@ vim.keymap.set(
 	{ desc = "Find Files", remap = true }
 )
 vim.keymap.set("n", "<leader>f/", "<cmd>Telescope live_grep<CR>", { desc = "Live Grep", remap = true })
+vim.keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<CR>", { desc = "Help files", remap = true })
 vim.keymap.set("n", "<leader>fr", "<cmd>Telescope oldfiles<CR>", { desc = "Recent Files", remap = true })
 vim.keymap.set("n", "<leader>ft", "<cmd>TodoTelescope<CR>", { desc = "Todo", remap = true })
 vim.keymap.set("n", "<leader>fz", "<cmd>Telescope zoxide list<CR>", { desc = "Change Directory", remap = true })
