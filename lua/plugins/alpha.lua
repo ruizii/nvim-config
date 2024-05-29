@@ -22,7 +22,7 @@ return {
 			dashboard.button("f", "󰈢" .. sep .. " File Browser", function()
 				require("utils.telescope-fallback").project_files()
 			end),
-			dashboard.button("n", "󰈔" .. sep .. " New File", "<Cmd>ene <BAR> startinsert<CR>"),
+			dashboard.button("n", "󰈔" .. sep .. " New File", "<Cmd>ene <BAR><CR>"),
 			dashboard.button("r", "" .. sep .. " Recent Files", "<Cmd>Telescope oldfiles<CR>"),
 			dashboard.button("g", "󰈞" .. sep .. " Grep Files", ":Telescope live_grep<CR>"),
 			dashboard.button("p", "󰉓" .. sep .. " Projects", "<Cmd>Telescope project<CR>"),
