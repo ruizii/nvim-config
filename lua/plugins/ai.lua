@@ -2,7 +2,7 @@ return {
 	"David-Kunz/gen.nvim",
 	cmd = "Gen",
 	keys = {
-		{ "<leader>]", "<cmd>Gen Chat<CR>", mode = { "n" }, desc = "AI" },
+		{ "<leader>]", "<cmd>Gen<CR>", mode = { "n" }, desc = "AI" },
 	},
 	opts = {
 		model = "codeqwen:7b-chat-v1.5-q5_1",
