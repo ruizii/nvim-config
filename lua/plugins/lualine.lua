@@ -13,7 +13,13 @@ return {
 		local lualine_c = { Harpoonline.format, "filename" }
 		require("lualine").setup({
 			sections = {
-				lualine_c = lualine_c,
+				lualine_c = {
+					lualine_c,
+					{
+						"filename",
+						path = 2,
+					},
+				},
 			},
 			options = {
 				theme = "onedark",

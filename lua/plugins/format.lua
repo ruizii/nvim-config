@@ -15,6 +15,7 @@ return {
 			c = { "clang-format" },
 			cpp = { "clang-format" },
 			go = { "goimports", "gofmt" },
+			sh = { "shfmt" },
 		},
 	},
 }

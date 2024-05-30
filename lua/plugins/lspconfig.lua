@@ -72,7 +72,7 @@ function Plugin.config()
 					capabilities = capabilities,
 				})
 			end,
-			["tsserver"] = function()
+			tsserver = function()
 				lspconfig.tsserver.setup({
 					capabilities = capabilities,
 					settings = {
@@ -82,35 +82,59 @@ function Plugin.config()
 					},
 				})
 			end,
-			["lua_ls"] = function()
+			lua_ls = function()
 				lspconfig.lua_ls.setup({
 					capabilities = capabilities,
+					on_init = function(client)
+						local path = client.workspace_folders
+							and client.workspace_folders[1]
+							and client.workspace_folders[1].name
+						if
+							not path
+							or not (vim.uv.fs_stat(path .. "/.luarc.json") or vim.uv.fs_stat(path .. "/.luarc.jsonc"))
+						then
+							client.config.settings = vim.tbl_deep_extend("force", client.config.settings, {
+								Lua = {
+									runtime = {
+										version = "LuaJIT",
+									},
+									workspace = {
+										checkThirdParty = false,
+										library = {
+											vim.env.VIMRUNTIME,
+											"${3rd}/luv/library",
+										},
+									},
+								},
+							})
+							client.notify(
+								vim.lsp.protocol.Methods.workspace_didChangeConfiguration,
+								{ settings = client.config.settings }
+							)
+						end
+
+						return true
+					end,
 					settings = {
 						Lua = {
-							runtime = {
-								-- Tell the language server which version of Lua you're using
-								version = "LuaJIT",
+							-- Using stylua for formatting.
+							format = { enable = false },
+							hint = {
+								enable = true,
+								arrayIndex = "Disable",
 							},
+							completion = { callSnippet = "Replace" },
 							diagnostics = {
-								-- Get the language server to recognize the `vim` global
-								globals = { "vim" },
-							},
-							workspace = {
-								library = {
-									-- Make the server aware of Neovim runtime files
-									vim.fn.expand("$VIMRUNTIME/lua"),
-									vim.fn.stdpath("config") .. "/lua",
+								globals = {
+									"vim",
 								},
-								checkThirdParty = false,
-							},
-							telemetry = {
-								enable = false,
 							},
 						},
 					},
 				})
 			end,
-			["pyright"] = function()
+
+			pyright = function()
 				lspconfig.pyright.setup({
 					settings = {
 						python = {
@@ -125,11 +149,21 @@ function Plugin.config()
 					},
 				})
 			end,
-			["gopls"] = function()
+			gopls = function()
 				lspconfig.gopls.setup({})
 			end,
-			["clangd"] = function()
-				lspconfig.clangd.setup({})
+			clangd = function()
+				lspconfig.clangd.setup({
+					capabilities = capabilities,
+					cmd = {
+						"clangd",
+						"--clang-tidy",
+						"--header-insertion=iwyu",
+						"--completion-style=detailed",
+						"--function-arg-placeholders",
+						"--fallback-style=none",
+					},
+				})
 			end,
 		},
 	})
