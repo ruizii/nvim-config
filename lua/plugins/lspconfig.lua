@@ -2,6 +2,31 @@ local Plugin = { "neovim/nvim-lspconfig" }
 local user = {}
 
 Plugin.dependencies = {
+	{
+		"aznhe21/actions-preview.nvim",
+		config = function()
+			vim.keymap.set({ "v", "n" }, "<leader>la", require("actions-preview").code_actions)
+			require("actions-preview").setup({
+				telescope = {
+					sorting_strategy = "ascending",
+					layout_strategy = "vertical",
+					layout_config = {
+						width = 0.6,
+						height = 0.7,
+						prompt_position = "top",
+						preview_cutoff = 20,
+						preview_height = function(_, _, max_lines)
+							return max_lines - 15
+						end,
+					},
+				},
+			})
+		end,
+	},
+	{
+		"https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+		config = true,
+	},
 	{ "hrsh7th/cmp-nvim-lsp" },
 	{
 		"williamboman/mason-lspconfig.nvim",
@@ -30,7 +55,7 @@ function Plugin.init()
 
 	-- See :help vim.diagnostic.config()
 	vim.diagnostic.config({
-		virtual_text = true,
+		virtual_text = false,
 		signs = true,
 		severity_sort = true,
 		float = {
@@ -182,10 +207,10 @@ function user.on_attach()
 	bufmap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>")
 	bufmap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>")
 	bufmap("n", "go", "<cmd>lua vim.lsp.buf.type_definition()<cr>")
+
 	bufmap("n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>")
 	bufmap("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<cr>")
 	bufmap("n", "<F2>", "<cmd>lua vim.lsp.buf.rename()<cr>")
-	bufmap("n", "<F4>", "<cmd>lua vim.lsp.buf.code_action()<cr>")
 	bufmap("n", "gl", "<cmd>lua vim.diagnostic.open_float()<cr>")
 	bufmap("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<cr>")
 	bufmap("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<cr>")
