@@ -1,6 +1,7 @@
 return {
 	"rebelot/heirline.nvim",
 	dependencies = { "nvim-tree/nvim-web-devicons", "navarasu/onedark.nvim" },
+	event = { "BufReadPre", "BufNewFile" },
 	config = function()
 		local conditions = require("heirline.conditions")
 		local utils = require("heirline.utils")
@@ -195,7 +196,7 @@ return {
 					return fsize .. suffix[1]
 				end
 				local i = math.floor((math.log(fsize) / math.log(1024)))
-				return string.format(" [%.2g%s]", fsize / math.pow(1024, i), suffix[i + 1])
+				return " [" .. string.format("%.2g%s", fsize / math.pow(1024, i), suffix[i + 1]) .. "]"
 			end,
 			hl = { fg = "blue" },
 		}
@@ -456,7 +457,10 @@ return {
 				end
 			end,
 
-			falltrough = false,
+			-- the first statusline with no condition, or which condition returns true is used.
+			-- think of it as a switch case with breaks to stop fallthrough.
+			fallthrough = false,
+
 			SpecialStatusLine,
 			TerminalStatusLine,
 			InactiveStatusline,
