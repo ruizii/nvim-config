@@ -6,10 +6,6 @@ return {
 			{
 				"williamboman/mason-lspconfig.nvim",
 			},
-			{
-				"folke/neodev.nvim",
-				opts = {},
-			},
 		},
 
 		config = function()
@@ -20,8 +16,6 @@ return {
 				require("cmp_nvim_lsp").default_capabilities()
 			)
 			capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = false
-
-			require("neodev").setup({})
 
 			local sign = function(opts)
 				vim.fn.sign_define(opts.name, {
@@ -68,6 +62,9 @@ return {
 					end,
 					clangd = function()
 						lspconfig.clangd.setup({
+							-- init_options = {
+							-- 	fallbackFlags = { "--std=c++20" },
+							-- },
 							capabilities = capabilities,
 							cmd = {
 								"clangd",
@@ -132,12 +129,6 @@ return {
 										Lua = {
 											runtime = {
 												version = "LuaJIT",
-											},
-											workspace = {
-												checkThirdParty = false,
-												library = {
-													vim.env.VIMRUNTIME,
-												},
 											},
 										},
 									})
