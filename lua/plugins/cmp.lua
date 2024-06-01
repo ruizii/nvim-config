@@ -58,9 +58,7 @@ return {
 							fallback()
 						end
 					end, { "i", "s" }),
-					-- Select the [n]ext item
 					["<Down>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
-					-- Select the [p]revious item
 					["<Up>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
 
 					-- Scroll the documentation window [b]ack / [f]orward
