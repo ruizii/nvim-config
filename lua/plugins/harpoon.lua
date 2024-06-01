@@ -4,7 +4,11 @@ return {
 	dependencies = { "nvim-lua/plenary.nvim" },
 	config = function()
 		-- REQUIRED
-		require("harpoon"):setup()
+		require("harpoon"):setup({
+			settings = {
+				save_on_toggle = true,
+			},
+		})
 		-- REQUIRED
 	end,
 	keys = {

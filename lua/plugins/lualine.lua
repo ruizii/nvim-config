@@ -13,6 +13,9 @@ return {
 		local lualine_c = { Harpoonline.format, "filename" }
 		require("lualine").setup({
 			sections = {
+				lualine_a = {
+					"buffers",
+				},
 				lualine_c = {
 					lualine_c,
 					{
