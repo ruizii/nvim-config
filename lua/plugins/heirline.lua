@@ -69,8 +69,8 @@ return {
 		}
 
 		local mode_colors = {
-			NORMAL = "green",
-			INSERT = "yellow",
+			NORMAL = "blue",
+			INSERT = "green",
 			VISUAL = "purple",
 			["V-LINE"] = "purple",
 			["V-BLOCK"] = "purple",
@@ -81,7 +81,7 @@ return {
 			REPLACE = "red",
 			MORE = "orange",
 			SHELL = "red",
-			TERMINAL = "green",
+			TERMINAL = "blue",
 		}
 
 		local function GetModeName(mode)
@@ -440,11 +440,8 @@ return {
 			condition = function()
 				return conditions.buffer_matches({ buftype = { "terminal" } })
 			end,
-			hl = { bg = "dark_red" },
+			hl = { bg = "none" },
 			{ condition = conditions.is_active, ViMode, Space },
-			FileType,
-			Space,
-			Align,
 		}
 
 		local StatusLines = {
