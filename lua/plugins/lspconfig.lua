@@ -32,11 +32,6 @@ Plugin.dependencies = {
 		"williamboman/mason-lspconfig.nvim",
 		event = { "BufReadPre", "BufNewFile" },
 	},
-	{
-		"folke/neodev.nvim",
-		ft = "lua",
-		opts = {},
-	},
 }
 
 Plugin.cmd = { "LspInfo", "LspInstall", "LspUnInstall", "LspStart" }
