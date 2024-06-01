@@ -32,6 +32,11 @@ Plugin.dependencies = {
 		"williamboman/mason-lspconfig.nvim",
 		event = { "BufReadPre", "BufNewFile" },
 	},
+	{
+		"folke/neodev.nvim",
+		ft = "lua",
+		opts = {},
+	},
 }
 
 Plugin.cmd = { "LspInfo", "LspInstall", "LspUnInstall", "LspStart" }
@@ -66,6 +71,7 @@ function Plugin.init()
 end
 
 function Plugin.config()
+	require("neodev").setup({})
 	local lspconfig = require("lspconfig")
 	local capabilities = vim.lsp.protocol.make_client_capabilities()
 	capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
