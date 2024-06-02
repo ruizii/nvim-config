@@ -6,7 +6,7 @@ vim.keymap.set("n", "<C-s>", "<cmd>silent! update | redraw<CR>", { noremap = tru
 vim.keymap.set("n", "gc", "<nop>")
 vim.keymap.set({ "i", "x" }, "<C-s>", "<ESC><cmd>silent! update | redraw<CR>", { noremap = true, silent = true })
 
-vim.keymap.set("n", "<leader>c", "<cmd>bdelete<CR>", { noremap = true })
+vim.keymap.set("n", "<leader>c", "<cmd>close<CR>", { noremap = true })
 
 -- Telescope
 vim.keymap.set(

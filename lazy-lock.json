@@ -20,6 +20,7 @@
   "luvit-meta": { "branch": "main", "commit": "ce76f6f6cdc9201523a5875a4471dcfe0186eb60" },
   "mason-lspconfig.nvim": { "branch": "main", "commit": "a4caa0d083aab56f6cd5acf2d42331b74614a585" },
   "mason.nvim": { "branch": "main", "commit": "0950b15060067f752fde13a779a994f59516ce3d" },
+  "mini.clue": { "branch": "main", "commit": "629f7ddb071faf8eba77c5c56a295a0a206df94c" },
   "neofusion.nvim": { "branch": "main", "commit": "e31af10360c22ee9a3f94507c821168212df726a" },
   "noice.nvim": { "branch": "main", "commit": "69c6ad5c1f1c0777125d0275f9871d8609cb0521" },
   "nui.nvim": { "branch": "main", "commit": "b1b3dcd6ed8f355c78bad3d395ff645be5f8b6ae" },
@@ -38,6 +39,5 @@
   "telescope-zoxide": { "branch": "main", "commit": "68966349aa1b8e9ade403e18479ecf79447389a7" },
   "telescope.nvim": { "branch": "master", "commit": "dfa230be84a044e7f546a6c2b0a403c739732b86" },
   "todo-comments.nvim": { "branch": "main", "commit": "e1549807066947818113a7d7ed48f637e49620d3" },
-  "vim-illuminate": { "branch": "master", "commit": "5eeb7951fc630682c322e88a9bbdae5c224ff0aa" },
-  "which-key.nvim": { "branch": "main", "commit": "4b7167f8fb2dba3d01980735e3509e172c024c29" }
+  "vim-illuminate": { "branch": "master", "commit": "5eeb7951fc630682c322e88a9bbdae5c224ff0aa" }
 }
