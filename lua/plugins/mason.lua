@@ -5,7 +5,12 @@ return {
 		cmd = "Mason",
 		build = ":MasonUpdate",
 		opts = {
-			ui = { border = "single" },
+			ui = {
+				border = "single",
+				keymaps = {
+					apply_language_filter = "<leader>f",
+				},
+			},
 			ensure_installed = {
 				"bashls",
 				"clangd",
