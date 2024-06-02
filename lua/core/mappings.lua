@@ -24,7 +24,6 @@ vim.keymap.set("n", "<leader>fz", "<cmd>Telescope zoxide list<CR>", { desc = "Ch
 vim.keymap.set("n", "<leader>fb", function()
 	require("telescope.builtin").buffers({
 		sort_mru = true,
-		ignore_current_buffer = true,
 		show_all_buffers = false,
 	})
 end, { desc = "Buffers", remap = true })
@@ -35,7 +34,7 @@ vim.keymap.set("n", "<F5>", "<cmd>RunCode<CR>", { noremap = true, silent = false
 -- Lsp
 vim.keymap.set("n", "<leader>la", function()
 	vim.lsp.buf.code_action()
-end)
+end, { desc = "Code action" })
 
 vim.keymap.set("n", "<C-t>", "<cmd>18sp +te<CR>")
 vim.api.nvim_set_keymap("t", "<C-t>", "<C-\\><C-n>:bd!<CR>", { noremap = true, silent = true })
