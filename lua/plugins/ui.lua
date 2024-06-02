@@ -90,7 +90,9 @@ return { -- Adds git related signs to the gutter, as well as utilities for manag
 		event = { "BufReadPost", "BufNewFile" },
 		config = function()
 			require("scrollview").setup({
-				signs_on_startup = { "all" },
+				signs_on_startup = { "diagnostics", "search", "conflicts", "cursor" },
+				current_only = true,
+				mode = "simple",
 			})
 			require("scrollview.contrib.gitsigns").setup()
 		end,
