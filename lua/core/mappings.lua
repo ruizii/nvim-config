@@ -5,6 +5,7 @@ vim.keymap.set({ "x", "o" }, "<Leader>/", "gc", { desc = "Toggle comment", remap
 vim.keymap.set("n", "<C-s>", "<cmd>silent! update | redraw<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "gc", "<nop>")
 vim.keymap.set({ "i", "x" }, "<C-s>", "<ESC><cmd>silent! update | redraw<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "c", '"_c', { noremap = true, silent = true })
 
 vim.keymap.set("n", "<leader>c", "<cmd>close<CR>", { noremap = true })
 
