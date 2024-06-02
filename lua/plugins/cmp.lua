@@ -2,38 +2,16 @@ return {
 	{
 		"hrsh7th/nvim-cmp",
 		version = false,
-		lazy = true,
-		event = { "InsertEnter" },
+		event = "InsertEnter",
 		dependencies = {
-			{
-				"L3MON4D3/LuaSnip",
-				lazy = true,
-			},
-			{
-				"saadparwaiz1/cmp_luasnip",
-				lazy = true,
-			},
-			{
-				"hrsh7th/cmp-nvim-lsp",
-				lazy = true,
-			},
-			{
-				"hrsh7th/cmp-path",
-				lazy = true,
-			},
-			{
-				"hrsh7th/cmp-buffer",
-				lazy = true,
-			},
-			{
-				"onsails/lspkind.nvim",
-				lazy = true,
-			},
+			"hrsh7th/cmp-buffer",
+			"hrsh7th/cmp-path",
+			"onsails/lspkind.nvim",
 		},
 		config = function()
 			local cmp = require("cmp")
-			local luasnip = require("luasnip")
-			local compare = require("cmp.config.compare")
+			local defaults = require("cmp.config.default")()
+			local lspkind = require("lspkind")
 
 			local function has_words_before()
 				local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -41,15 +19,15 @@ return {
 					and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 			end
 
-			luasnip.config.setup({})
-
 			cmp.setup({
 				snippet = {
 					expand = function(args)
 						vim.snippet.expand(args.body)
 					end,
 				},
-				completion = { completeopt = "menu,menuone,noinsert" },
+				completion = {
+					completeopt = "menu,menuone,noinsert",
+				},
 				mapping = cmp.mapping.preset.insert({
 					["<Tab>"] = cmp.mapping(function(fallback)
 						if cmp.visible() and has_words_before() then
@@ -60,28 +38,15 @@ return {
 					end, { "i", "s" }),
 					["<Down>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
 					["<Up>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
-
-					-- Scroll the documentation window [b]ack / [f]orward
 					["<C-b>"] = cmp.mapping.scroll_docs(-4),
 					["<C-f>"] = cmp.mapping.scroll_docs(4),
-
-					["<C-n>"] = cmp.mapping(function()
-						if luasnip.expand_or_locally_jumpable() then
-							luasnip.expand_or_jump()
-						end
-					end, { "i", "s" }),
-					["<C-p>"] = cmp.mapping(function()
-						if luasnip.locally_jumpable(-1) then
-							luasnip.jump(-1)
-						end
-					end, { "i", "s" }),
 				}),
-				sources = {
+				sources = cmp.config.sources({
 					{ name = "nvim_lsp", priority = 1000 },
-					{ name = "luasnip", priority = 750 },
 					{ name = "path", priority = 500 },
+				}, {
 					{ name = "buffer", priority = 250 },
-				},
+				}),
 				window = {
 					completion = {
 						border = "single",
@@ -90,31 +55,15 @@ return {
 						border = "single",
 					},
 				},
-				sorting = {
-					priority_weight = 2,
-					comparators = {
-						compare.offset,
-						compare.exact,
-						compare.score,
-						compare.recently_used,
-						compare.kind,
-						compare.sort_text,
-						compare.length,
-						compare.order,
-					},
-				},
+				sorting = defaults.sorting,
 				formatting = {
-					format = require("lspkind").cmp_format({
+					format = lspkind.cmp_format({
 						mode = "symbol",
 						maxwidth = 50,
 						ellipsis_char = "...",
-						before = function(entry, vim_item)
-							vim_item.menu = ""
-							return vim_item
-						end,
+						show_labelDetails = true,
 						menu = {
 							nvim_lsp = "[LSP]",
-							luasnip = "[LuaSnip]",
 							buffer = "[Buffer]",
 							path = "[Path]",
 						},
@@ -122,5 +71,51 @@ return {
 				},
 			})
 		end,
+	},
+	{
+		"garymjr/nvim-snippets",
+		keys = {
+			{
+				"<Tab>",
+				function()
+					if vim.snippet.active({ direction = 1 }) then
+						vim.schedule(function()
+							vim.snippet.jump(1)
+						end)
+						return
+					end
+					return "<Tab>"
+				end,
+				expr = true,
+				silent = true,
+				mode = "i",
+			},
+			{
+				"<Tab>",
+				function()
+					vim.schedule(function()
+						vim.snippet.jump(1)
+					end)
+				end,
+				expr = true,
+				silent = true,
+				mode = "s",
+			},
+			{
+				"<S-Tab>",
+				function()
+					if vim.snippet.active({ direction = -1 }) then
+						vim.schedule(function()
+							vim.snippet.jump(-1)
+						end)
+						return
+					end
+					return "<S-Tab>"
+				end,
+				expr = true,
+				silent = true,
+				mode = { "i", "s" },
+			},
+		},
 	},
 }

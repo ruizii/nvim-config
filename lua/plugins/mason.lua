@@ -7,9 +7,6 @@ return {
 		opts = {
 			ui = {
 				border = "single",
-				keymaps = {
-					apply_language_filter = "<leader>f",
-				},
 			},
 			ensure_installed = {
 				"bashls",
