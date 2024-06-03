@@ -7,7 +7,6 @@ return {
 	},
 	version = false,
 	build = ":TSUpdate",
-	lazy = vim.fn.argc(-1) == 0,
 	cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
 	opts = function()
 		local options = {
