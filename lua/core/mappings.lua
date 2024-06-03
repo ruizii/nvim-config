@@ -7,7 +7,7 @@ vim.keymap.set("n", "gc", "<nop>")
 vim.keymap.set({ "i", "x" }, "<C-s>", "<ESC><cmd>silent! update | redraw<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "c", '"_c', { noremap = true, silent = true })
 
-vim.keymap.set("n", "<leader>c", "<cmd>close<CR>", { noremap = true })
+vim.keymap.set("n", "<leader>c", "<cmd>close<CR>", { desc = "Close window", noremap = true })
 
 -- Telescope
 vim.keymap.set(
@@ -16,12 +16,18 @@ vim.keymap.set(
 	"<cmd>lua require('utils.telescope-fallback').project_files()<CR>",
 	{ desc = "Find Files", remap = true }
 )
-vim.keymap.set("n", "<leader>fd", "<cmd>Telescope diagnostics<CR>", { desc = "Look diagnostics", remap = true })
+vim.keymap.set("n", "<leader>fd", "<cmd>Telescope diagnostics<CR>", { desc = "Diagnostics", remap = true })
+vim.keymap.set(
+	"n",
+	"<leader>fs",
+	"<cmd>Telescope lsp_document_symbols<CR>",
+	{ desc = "Document symbols", remap = true }
+)
 vim.keymap.set("n", "<leader>fg", "<cmd>Telescope live_grep<CR>", { desc = "Live Grep", remap = true })
 vim.keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<CR>", { desc = "Help files", remap = true })
 vim.keymap.set("n", "<leader>fr", "<cmd>Telescope oldfiles<CR>", { desc = "Recent Files", remap = true })
 vim.keymap.set("n", "<leader>ft", "<cmd>TodoTelescope<CR>", { desc = "Todo", remap = true })
-vim.keymap.set("n", "<leader>fz", "<cmd>Telescope zoxide list<CR>", { desc = "Change Directory", remap = true })
+vim.keymap.set("n", "<leader>fz", "<cmd>Telescope zoxide list<CR>", { desc = "Change directory", remap = true })
 vim.keymap.set("n", "<leader>fb", function()
 	require("telescope.builtin").buffers({
 		sort_mru = true,
