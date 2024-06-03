@@ -1,9 +1,19 @@
 return {
 	"CRAG666/code_runner.nvim",
-	cmd = { "RunCode", "RunFile", "RunProject" },
+	dependencies = {
+		"akinsho/toggleterm.nvim",
+	},
+	keys = {
+		{
+			"<F5>",
+			"<cmd>RunCode<cr>",
+			desc = "Run code",
+		},
+	},
+	cmd = "RunCode",
 	config = function()
 		require("code_runner").setup({
-			mode = "term",
+			mode = "toggleterm",
 			startinsert = true,
 			focus = true,
 			term = {

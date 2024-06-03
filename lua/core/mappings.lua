@@ -35,13 +35,9 @@ vim.keymap.set("n", "<leader>fb", function()
 	})
 end, { desc = "Buffers", remap = true })
 
--- Code Runner
-vim.keymap.set("n", "<F5>", "<cmd>RunCode<CR>", { noremap = true, silent = false })
-
 -- Lsp
 vim.keymap.set("n", "<leader>la", function()
 	vim.lsp.buf.code_action()
 end, { desc = "Code action" })
 
-vim.keymap.set("n", "<C-t>", "<cmd>18sp +te<CR>")
-vim.api.nvim_set_keymap("t", "<C-t>", "<C-\\><C-n>:bd!<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("t", "<esc><esc>", "<C-\\><C-n><CR>", { noremap = true, silent = true })

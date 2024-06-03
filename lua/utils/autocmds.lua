@@ -44,16 +44,6 @@ create_autocmd("Filetype", {
 	end,
 })
 
-create_autocmd("TermOpen", {
-	group = "userconfig",
-	desc = "Disable line numbers on terminal",
-	pattern = "*",
-	callback = function()
-		vim.api.nvim_command("startinsert")
-		vim.api.nvim_command("setlocal nonumber norelativenumber signcolumn=no winheight=16")
-	end,
-})
-
 create_autocmd("LspAttach", {
 	group = "userconfig",
 	callback = function()
