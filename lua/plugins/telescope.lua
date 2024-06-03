@@ -52,35 +52,35 @@ return {
 			vim.api.nvim_set_hl(0, "TodoBgTODO", { blend = 0 })
 			vim.api.nvim_set_hl(0, "TelescopePathSeparator", { link = "Comment" })
 
-			local standard_setup = {
-				borderchars = {
-					prompt = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
-					results = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
-					preview = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
-				},
-				layout_strategy = "horizontal",
-				layout_config = {
-					horizontal = {
-						prompt_position = "top",
-						width = function(_, cols, _)
-							return math.min(math.floor(w_percentage * cols), w_limit)
-						end,
-						height = function(_, _, rows)
-							return math.floor(rows * h_percentage)
-						end,
-						preview_width = 80,
-						preview_cutoff = 10,
-						preview_height = 0.4,
-					},
-				},
-			}
-
 			ts.setup({
-				defaults = vim.tbl_extend("error", standard_setup, {
+				defaults = {
+					borderchars = {
+						prompt = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+						results = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+						preview = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+					},
+					layout_strategy = "horizontal",
+					layout_config = {
+						horizontal = {
+							prompt_position = "top",
+							width = function(_, cols, _)
+								return math.min(math.floor(w_percentage * cols), w_limit)
+							end,
+							height = function(_, _, rows)
+								return math.floor(rows * h_percentage)
+							end,
+							preview_width = 80,
+							preview_cutoff = 10,
+							preview_height = 0.4,
+						},
+						vertical = {
+							mirror = false,
+						},
+					},
 					results_title = "",
 					sorting_strategy = "ascending",
 					border = { prompt = { 1, 1, 1, 1 }, results = { 1, 1, 1, 1 }, preview = { 1, 1, 1, 1 } },
-					path_display = { "filename_first" }, -- trunctate or filename_first
+					path_display = { "filename_first" },
 					mappings = {
 						i = {
 							["<C-o>"] = require("telescope.actions.layout").toggle_preview,
@@ -88,7 +88,7 @@ return {
 							["<CR>"] = select_one_or_multi,
 						},
 					},
-				}),
+				},
 
 				extensions = {
 					fzf = {
