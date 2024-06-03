@@ -22,6 +22,13 @@ return {
 		end,
 	},
 	{
+		"folke/todo-comments.nvim",
+		event = "User FilePost",
+		cmd = { "TodoTrouble", "TodoTelescope" },
+		dependencies = "nvim-lua/plenary.nvim",
+		opts = {},
+	},
+	{
 		"lukas-reineke/indent-blankline.nvim",
 		event = "User FilePost",
 		main = "ibl",
