@@ -4,25 +4,6 @@ return {
 		event = "User FilePost",
 
 		config = function()
-			local on_attach = function()
-				vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", { buffer = true })
-				vim.keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<cr>", { buffer = true })
-				vim.keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", { buffer = true })
-				vim.keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", { buffer = true })
-				vim.keymap.set("n", "go", "<cmd>lua vim.lsp.buf.type_definition()<cr>", { buffer = true })
-				vim.keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>", { buffer = true })
-				vim.keymap.set("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<cr>", { buffer = true })
-				vim.keymap.set(
-					"n",
-					"<leader>lr",
-					"<cmd>lua vim.lsp.buf.rename()<cr>",
-					{ desc = "Lsp rename", buffer = true }
-				)
-				vim.keymap.set("n", "gl", "<cmd>lua vim.diagnostic.open_float()<cr>", { buffer = true })
-				vim.keymap.set("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<cr>", { buffer = true })
-				vim.keymap.set("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<cr>", { buffer = true })
-			end
-
 			local on_init = function(client)
 				if client.supports_method("textDocument/semanticTokens") then
 					client.server_capabilities.semanticTokensProvider = nil
@@ -65,7 +46,6 @@ return {
 
 			lspconfig.lua_ls.setup({
 				lspconfig.lua_ls.setup({
-					on_attach = on_attach,
 					capabilities = capabilities,
 					on_init = on_init,
 					settings = {
@@ -85,13 +65,11 @@ return {
 			})
 
 			lspconfig.gopls.setup({
-				on_attach = on_attach,
 				on_init = on_init,
 				capabilities = capabilities,
 			})
 
 			lspconfig.clangd.setup({
-				on_attach = on_attach,
 				on_init = on_init,
 				capabilities = capabilities,
 				cmd = {
@@ -105,7 +83,6 @@ return {
 			})
 
 			lspconfig.pyright.setup({
-				on_attach = on_attach,
 				on_init = on_init,
 				capabilities = capabilities,
 				settings = {
@@ -120,7 +97,6 @@ return {
 			})
 
 			lspconfig.jsonls.setup({
-				on_attach = on_attach,
 				on_init = on_init,
 				capabilities = capabilities,
 				settings = {
@@ -136,7 +112,6 @@ return {
 			})
 
 			lspconfig.eslint.setup({
-				on_attach = on_attach,
 				on_init = on_init,
 				capabilities = capabilities,
 				settings = { format = false },

@@ -1,7 +1,10 @@
 local utils = require("utils.create-autocmd")
 local create_autocmd = utils.create_autocmd
 
+vim.api.nvim_create_augroup("userconfig", { clear = true })
+
 create_autocmd("TextYankPost", {
+	group = "userconfig",
 	desc = "Highlight text on yank",
 	pattern = "*",
 	callback = function()
@@ -14,12 +17,14 @@ create_autocmd("TextYankPost", {
 })
 
 create_autocmd("BufWinEnter", {
+	group = "userconfig",
 	desc = "Open file in last position",
 	pattern = "*",
 	command = [[ if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g`\"" | endif ]],
 })
 
 create_autocmd("BufWritePre", {
+	group = "userconfig",
 	desc = "Remove whitespaces on save",
 	pattern = "*",
 	command = "%s/\\s\\+$//e",
@@ -40,11 +45,31 @@ create_autocmd("Filetype", {
 })
 
 create_autocmd("TermOpen", {
+	group = "userconfig",
 	desc = "Disable line numbers on terminal",
 	pattern = "*",
 	callback = function()
 		vim.api.nvim_command("startinsert")
 		vim.api.nvim_command("setlocal nonumber norelativenumber signcolumn=no winheight=16")
+	end,
+})
+
+create_autocmd("LspAttach", {
+	group = "userconfig",
+	desc = "Load keymappings to buffer on lsp attach",
+	pattern = "*",
+	callback = function()
+		vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", { buffer = true })
+		vim.keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<cr>", { buffer = true })
+		vim.keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", { buffer = true })
+		vim.keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", { buffer = true })
+		vim.keymap.set("n", "go", "<cmd>lua vim.lsp.buf.type_definition()<cr>", { buffer = true })
+		vim.keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>", { buffer = true })
+		vim.keymap.set("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<cr>", { buffer = true })
+		vim.keymap.set("n", "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<cr>", { desc = "Lsp rename", buffer = true })
+		vim.keymap.set("n", "gl", "<cmd>lua vim.diagnostic.open_float()<cr>", { buffer = true })
+		vim.keymap.set("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<cr>", { buffer = true })
+		vim.keymap.set("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<cr>", { buffer = true })
 	end,
 })
 
