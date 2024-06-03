@@ -1,22 +1,25 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
-	event = { "BufReadPost", "BufNewFile", "VeryLazy" },
+	event = { "BufReadPost", "BufNewFile" },
+	dependencies = {
+		"HiPhish/rainbow-delimiters.nvim",
+		main = "rainbow-delimiters.setup",
+	},
 	version = false,
 	build = ":TSUpdate",
 	lazy = vim.fn.argc(-1) == 0,
 	cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
-	init = function(plugin)
-		require("lazy.core.loader").add_to_rtp(plugin)
-		require("nvim-treesitter.query_predicates")
+	opts = function()
+		local options = {
+			auto_install = true,
+			sync_install = false,
+			highlight = {
+				enable = true,
+				additional_vim_regex_highlighting = false,
+			},
+		}
+		return options
 	end,
-	opts = {
-		auto_install = true,
-		sync_install = false,
-		highlight = {
-			enable = true,
-			additional_vim_regex_highlighting = false,
-		},
-	},
 	config = function(_, opts)
 		require("nvim-treesitter.configs").setup(opts)
 	end,

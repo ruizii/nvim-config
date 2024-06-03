@@ -1,22 +1,54 @@
 return {
 	{
 		"neovim/nvim-lspconfig",
-		event = { "BufReadPre", "BufNewFile" },
-		dependencies = {
-			{
-				"williamboman/mason-lspconfig.nvim",
-				"hrsh7th/cmp-nvim-lsp",
-			},
-		},
+		event = "User FilePost",
 
 		config = function()
+			local on_attach = function()
+				vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", { buffer = true })
+				vim.keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<cr>", { buffer = true })
+				vim.keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", { buffer = true })
+				vim.keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", { buffer = true })
+				vim.keymap.set("n", "go", "<cmd>lua vim.lsp.buf.type_definition()<cr>", { buffer = true })
+				vim.keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>", { buffer = true })
+				vim.keymap.set("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<cr>", { buffer = true })
+				vim.keymap.set(
+					"n",
+					"<leader>lr",
+					"<cmd>lua vim.lsp.buf.rename()<cr>",
+					{ desc = "Lsp rename", buffer = true }
+				)
+				vim.keymap.set("n", "gl", "<cmd>lua vim.diagnostic.open_float()<cr>", { buffer = true })
+				vim.keymap.set("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<cr>", { buffer = true })
+				vim.keymap.set("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<cr>", { buffer = true })
+			end
+
+			local on_init = function(client)
+				if client.supports_method("textDocument/semanticTokens") then
+					client.server_capabilities.semanticTokensProvider = nil
+				end
+			end
+
 			local lspconfig = require("lspconfig")
-			local capabilities = vim.tbl_deep_extend(
-				"force",
-				vim.lsp.protocol.make_client_capabilities(),
-				require("cmp_nvim_lsp").default_capabilities()
-			)
-			capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = false
+			local capabilities = vim.lsp.protocol.make_client_capabilities()
+
+			capabilities.textDocument.completion.completionItem = {
+				documentationFormat = { "markdown", "plaintext" },
+				snippetSupport = true,
+				preselectSupport = true,
+				insertReplaceSupport = true,
+				labelDetailsSupport = true,
+				deprecatedSupport = true,
+				commitCharactersSupport = true,
+				tagSupport = { valueSet = { 1 } },
+				resolveSupport = {
+					properties = {
+						"documentation",
+						"detail",
+						"additionalTextEdits",
+					},
+				},
+			}
 
 			local sign = function(opts)
 				vim.fn.sign_define(opts.name, {
@@ -31,6 +63,85 @@ return {
 			sign({ name = "DiagnosticSignHint", text = "󰠠" })
 			sign({ name = "DiagnosticSignInfo", text = "" })
 
+			lspconfig.lua_ls.setup({
+				lspconfig.lua_ls.setup({
+					on_attach = on_attach,
+					capabilities = capabilities,
+					on_init = on_init,
+					settings = {
+						Lua = {
+							format = { enable = false },
+							hint = {
+								enable = true,
+								arrayIndex = "Disable",
+							},
+							completion = {
+								enable = true,
+								callSnippet = "Replace",
+							},
+						},
+					},
+				}),
+			})
+
+			lspconfig.gopls.setup({
+				on_attach = on_attach,
+				on_init = on_init,
+				capabilities = capabilities,
+			})
+
+			lspconfig.clangd.setup({
+				on_attach = on_attach,
+				on_init = on_init,
+				capabilities = capabilities,
+				cmd = {
+					"clangd",
+					"--clang-tidy",
+					"--header-insertion=iwyu",
+					"--completion-style=detailed",
+					"--function-arg-placeholders",
+					"--fallback-style=none",
+				},
+			})
+
+			lspconfig.pyright.setup({
+				on_attach = on_attach,
+				on_init = on_init,
+				capabilities = capabilities,
+				settings = {
+					python = {
+						analysis = {
+							diagnosticSeverityOverrides = {
+								reportWildcardImportFromLibrary = "none",
+							},
+						},
+					},
+				},
+			})
+
+			lspconfig.jsonls.setup({
+				on_attach = on_attach,
+				on_init = on_init,
+				capabilities = capabilities,
+				settings = {
+					json = {
+						validate = { enable = true },
+						format = { enable = true },
+					},
+				},
+				on_new_config = function(config)
+					config.settings.json.schemas = config.settings.json.schemas or {}
+					vim.list_extend(config.settings.json.schemas, require("schemastore").json.schemas())
+				end,
+			})
+
+			lspconfig.eslint.setup({
+				on_attach = on_attach,
+				on_init = on_init,
+				capabilities = capabilities,
+				settings = { format = false },
+			})
+
 			vim.diagnostic.config({
 				virtual_text = true,
 				signs = true,
@@ -39,122 +150,6 @@ return {
 				float = {
 					border = "single",
 					source = true,
-				},
-			})
-
-			require("mason-lspconfig").setup({
-				ensure_installed = {
-					"gopls",
-					"bashls",
-					"cssls",
-					"eslint",
-					"jsonls",
-					"lua_ls",
-					"pyright",
-				},
-				handlers = {
-					function(server)
-						lspconfig[server].setup({ capabilities = capabilities })
-					end,
-					gopls = function()
-						lspconfig.gopls.setup({
-							capabilities = capabilities,
-						})
-					end,
-					clangd = function()
-						lspconfig.clangd.setup({
-							-- init_options = {
-							-- 	fallbackFlags = { "--std=c++20" },
-							-- },
-							capabilities = capabilities,
-							cmd = {
-								"clangd",
-								"--clang-tidy",
-								"--header-insertion=iwyu",
-								"--completion-style=detailed",
-								"--function-arg-placeholders",
-								"--fallback-style=none",
-							},
-						})
-					end,
-					eslint = function()
-						lspconfig.eslint.setup({
-							capabilities = capabilities,
-							settings = { format = false },
-						})
-					end,
-					jsonls = function()
-						lspconfig.jsonls.setup({
-							capabilities = capabilities,
-							settings = {
-								json = {
-									validate = { enable = true },
-									format = { enable = true },
-								},
-							},
-							on_new_config = function(config)
-								config.settings.json.schemas = config.settings.json.schemas or {}
-								vim.list_extend(config.settings.json.schemas, require("schemastore").json.schemas())
-							end,
-						})
-					end,
-					pyright = function()
-						lspconfig.pyright.setup({
-							capabilities = capabilities,
-							settings = {
-								python = {
-									analysis = {
-										diagnosticSeverityOverrides = {
-											reportWildcardImportFromLibrary = "none",
-										},
-									},
-								},
-							},
-						})
-					end,
-					lua_ls = function()
-						lspconfig.lua_ls.setup({
-							capabilities = capabilities,
-							on_init = function(client)
-								local path = client.workspace_folders
-									and client.workspace_folders[1]
-									and client.workspace_folders[1].name
-								if
-									not path
-									or not (
-										vim.uv.fs_stat(path .. "/.luarc.json")
-										or vim.uv.fs_stat(path .. "/.luarc.jsonc")
-									)
-								then
-									client.config.settings = vim.tbl_deep_extend("force", client.config.settings, {
-										Lua = {
-											runtime = {
-												version = "LuaJIT",
-											},
-										},
-									})
-									client.notify(
-										vim.lsp.protocol.Methods.workspace_didChangeConfiguration,
-										{ settings = client.config.settings }
-									)
-								end
-								return true
-							end,
-							settings = {
-								Lua = {
-									format = { enable = false },
-									hint = {
-										enable = true,
-										arrayIndex = "Disable",
-									},
-									completion = {
-										enable = true,
-										callSnippet = "Replace",
-									},
-								},
-							},
-						})
-					end,
 				},
 			})
 		end,

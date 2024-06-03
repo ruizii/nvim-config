@@ -1,7 +1,7 @@
 return { -- Adds git related signs to the gutter, as well as utilities for managing changes
 	{
 		"lewis6991/gitsigns.nvim",
-		event = { "BufReadPost", "BufNewFile" },
+		event = "User FilePost",
 		opts = {
 			signcolumn = false, -- Toggle with `:Gitsigns toggle_signs`
 			numhl = true, -- Toggle with `:Gitsigns toggle_numhl`
@@ -14,7 +14,7 @@ return { -- Adds git related signs to the gutter, as well as utilities for manag
 	},
 	{
 		"RRethy/vim-illuminate",
-		event = { "BufReadPost", "BufNewFile" },
+		event = "User FilePost",
 		config = function()
 			-- change the highlight style
 			vim.api.nvim_set_hl(0, "IlluminatedWordText", { link = "Visual" })
@@ -36,7 +36,7 @@ return { -- Adds git related signs to the gutter, as well as utilities for manag
 	},
 	{
 		"lukas-reineke/indent-blankline.nvim",
-		event = { "BufReadPost", "BufNewFile" },
+		event = "User FilePost",
 		main = "ibl",
 		opts = {
 			scope = {
@@ -56,14 +56,8 @@ return { -- Adds git related signs to the gutter, as well as utilities for manag
 		},
 	},
 	{
-		"HiPhish/rainbow-delimiters.nvim",
-		dependencies = "nvim-treesitter/nvim-treesitter",
-		event = { "BufReadPost", "BufNewFile" },
-		main = "rainbow-delimiters.setup",
-	},
-	{
 		"brenoprata10/nvim-highlight-colors",
-		event = { "BufReadPost", "BufNewFile" },
+		event = "User FilePost",
 		opts = {
 			render = "virtual",
 			virtual_symbol = "■",
@@ -74,7 +68,7 @@ return { -- Adds git related signs to the gutter, as well as utilities for manag
 	},
 	{
 		"dstein64/nvim-scrollview",
-		event = { "BufReadPost", "BufNewFile" },
+		event = "User FilePost",
 		config = function()
 			require("scrollview").setup({
 				signs_on_startup = { "diagnostics", "search", "conflicts", "cursor" },

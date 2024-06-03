@@ -36,6 +36,8 @@ return {
 			},
 			clues = {
 				-- Enhance this by adding descriptions for <Leader> mapping groups
+				{ mode = "n", keys = "<leader>l", desc = "+Lsp" },
+				{ mode = "n", keys = "<leader>f", desc = "+Telescope" },
 				miniclue.gen_clues.builtin_completion(),
 				miniclue.gen_clues.g(),
 				miniclue.gen_clues.marks(),

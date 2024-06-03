@@ -3,12 +3,10 @@ local leader_map = function()
 end
 
 local load_utils = function()
-	local autocmds = require("utils.autocmds")
+	require("utils.autocmds")
 	local mappings = require("utils.mappings")
 
-	local commands = vim.tbl_extend("force", autocmds, mappings)
-
-	for _, value in pairs(commands) do
+	for _, value in pairs(mappings) do
 		value()
 	end
 end

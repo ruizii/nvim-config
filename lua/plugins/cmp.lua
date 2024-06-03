@@ -6,7 +6,15 @@ return {
 		dependencies = {
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-path",
+			"hrsh7th/cmp-nvim-lsp",
 			"onsails/lspkind.nvim",
+			{
+				"windwp/nvim-autopairs",
+				opts = {
+					fast_wrap = {},
+					disable_filetype = { "TelescopePrompt", "vim" },
+				},
+			},
 		},
 		config = function()
 			local cmp = require("cmp")

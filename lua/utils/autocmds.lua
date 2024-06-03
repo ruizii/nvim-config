@@ -1,8 +1,8 @@
-local M = {}
+-- local M = {}
 local utils = require("utils.create-autocmd")
 local create_autocmd = utils.create_autocmd
 
-function M.highlight_on_yank()
+-- function M.highlight_on_yank()
 	create_autocmd("TextYankPost", {
 		desc = "Highlight text on yank",
 		pattern = "*",
@@ -14,25 +14,25 @@ function M.highlight_on_yank()
 			})
 		end,
 	})
-end
+-- end
 
-function M.open_file_last_position()
+-- function M.open_file_last_position()
 	create_autocmd("BufWinEnter", {
 		desc = "Open file in last position",
 		pattern = "*",
 		command = [[ if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g`\"" | endif ]],
 	})
-end
+-- end
 
-function M.remove_whitespace_on_save()
+-- function M.remove_whitespace_on_save()
 	create_autocmd("BufWritePre", {
 		desc = "Remove whitespaces on save",
 		pattern = "*",
 		command = "%s/\\s\\+$//e",
 	})
-end
+-- end
 
-function M.close_help_on_q()
+-- function M.close_help_on_q()
 	create_autocmd("Filetype", {
 		group = "userconfig",
 		desc = "keymap 'q' to close help/quickfix/netrw/etc windows",
@@ -46,9 +46,9 @@ function M.close_help_on_q()
 			)
 		end,
 	})
-end
+-- end
 
-function M.disable_lnum_on_terminal()
+-- function M.disable_lnum_on_terminal()
 	create_autocmd("TermOpen", {
 		desc = "Disable line numbers on terminal",
 		pattern = "*",
@@ -57,31 +57,33 @@ function M.disable_lnum_on_terminal()
 			vim.api.nvim_command("setlocal nonumber norelativenumber signcolumn=no winheight=16")
 		end,
 	})
-end
+-- end
 
-function M.load_lsp_keymaps()
-	create_autocmd("LspAttach", {
-		desc = "Configure lsp keymaps",
-		pattern = "*",
-		callback = function()
-			vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", { buffer = true })
-			vim.keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<cr>", { buffer = true })
-			vim.keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", { buffer = true })
-			vim.keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", { buffer = true })
-			vim.keymap.set("n", "go", "<cmd>lua vim.lsp.buf.type_definition()<cr>", { buffer = true })
-			vim.keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>", { buffer = true })
-			vim.keymap.set("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<cr>", { buffer = true })
-			vim.keymap.set(
-				"n",
-				"<leader>lr",
-				"<cmd>lua vim.lsp.buf.rename()<cr>",
-				{ desc = "Lsp rename", buffer = true }
-			)
-			vim.keymap.set("n", "gl", "<cmd>lua vim.diagnostic.open_float()<cr>", { buffer = true })
-			vim.keymap.set("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<cr>", { buffer = true })
-			vim.keymap.set("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<cr>", { buffer = true })
+-- function M.load()
+	vim.api.nvim_create_autocmd({ "UIEnter", "BufReadPost", "BufNewFile" }, {
+		group = vim.api.nvim_create_augroup("NvFilePost", { clear = true }),
+		callback = function(args)
+			local file = vim.api.nvim_buf_get_name(args.buf)
+			local buftype = vim.api.nvim_buf_get_option(args.buf, "buftype")
+
+			if not vim.g.ui_entered and args.event == "UIEnter" then
+				vim.g.ui_entered = true
+			end
+
+			if file ~= "" and buftype ~= "nofile" and vim.g.ui_entered then
+				vim.api.nvim_exec_autocmds("User", { pattern = "FilePost", modeline = false })
+				vim.api.nvim_del_augroup_by_name("NvFilePost")
+
+				vim.schedule(function()
+					vim.api.nvim_exec_autocmds("FileType", {})
+
+					if vim.g.editorconfig then
+						require("editorconfig").config(args.buf)
+					end
+				end, 0)
+			end
 		end,
 	})
-end
+-- end
 
-return M
+-- return M
