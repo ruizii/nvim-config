@@ -241,6 +241,7 @@ return {
 
 			provider = function()
 				local names = {}
+				---@diagnostic disable-next-line
 				for _, server in pairs(vim.lsp.get_active_clients({ bufnr = 0 })) do
 					table.insert(names, server.name)
 				end

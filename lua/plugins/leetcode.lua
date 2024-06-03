@@ -10,7 +10,9 @@ return {
 		"nvim-tree/nvim-web-devicons",
 	},
 	opts = {
+		---@diagnostic disable-next-line
 		---@type lc.lang
+		---@diagnostic disable-next-line
 		lang = "cpp",
 		arg = "leetcode.nvim",
 	},

@@ -56,6 +56,7 @@ return {
 					},
 				},
 				sorting = defaults.sorting,
+				---@diagnostic disable-next-line
 				formatting = {
 					format = lspkind.cmp_format({
 						mode = "symbol",
