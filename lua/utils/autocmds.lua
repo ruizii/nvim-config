@@ -56,8 +56,6 @@ create_autocmd("TermOpen", {
 
 create_autocmd("LspAttach", {
 	group = "userconfig",
-	desc = "Load keymappings to buffer on lsp attach",
-	pattern = "*",
 	callback = function()
 		vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", { buffer = true })
 		vim.keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<cr>", { buffer = true })
