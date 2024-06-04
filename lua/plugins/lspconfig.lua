@@ -94,8 +94,8 @@ return {
 
 			lspconfig.lua_ls.setup({
 				lspconfig.lua_ls.setup({
-					capabilities = capabilities,
 					on_init = on_init,
+					capabilities = capabilities,
 					settings = {
 						Lua = {
 							format = { enable = false },
@@ -150,13 +150,17 @@ return {
 				settings = {
 					json = {
 						validate = { enable = true },
-						format = { enable = true },
+						format = { enable = false },
 					},
 				},
 				on_new_config = function(config)
 					config.settings.json.schemas = config.settings.json.schemas or {}
 					vim.list_extend(config.settings.json.schemas, require("schemastore").json.schemas())
 				end,
+			})
+
+			lspconfig.bashls.setup({
+				capabilities = capabilities,
 			})
 
 			lspconfig.eslint.setup({
