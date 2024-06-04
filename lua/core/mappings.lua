@@ -8,6 +8,7 @@ vim.keymap.set({ "i", "x" }, "<C-s>", "<ESC><cmd>silent! update | redraw<CR>", {
 vim.keymap.set("n", "c", '"_c', { noremap = true, silent = true })
 
 vim.keymap.set("n", "<leader>c", "<cmd>close<CR>", { desc = "Close window", noremap = true })
+vim.keymap.set("n", "<leader><leader>", "<C-6>", { desc = "Toggle last and current buffers" })
 
 -- Telescope
 vim.keymap.set(

@@ -86,6 +86,7 @@ return {
 							["<C-o>"] = require("telescope.actions.layout").toggle_preview,
 							["<Esc>"] = require("telescope.actions").close,
 							["<CR>"] = select_one_or_multi,
+							["<C-d>"] = require("telescope.actions").delete_buffer,
 						},
 					},
 				},
