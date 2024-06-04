@@ -31,6 +31,54 @@ return {
 				},
 			}
 
+			vim.api.nvim_create_autocmd("LspAttach", {
+				group = vim.api.nvim_create_augroup("UserLspConfig", {}),
+				callback = function(ev)
+					vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", { buffer = true })
+					vim.keymap.set(
+						"n",
+						"gd",
+						"<cmd>Telescope lsp_definitions<cr>",
+						{ desc = "Show lsp definitions", buffer = true }
+					)
+					vim.keymap.set(
+						"n",
+						"gD",
+						"<cmd>lua vim.lsp.buf.declaration()<cr>",
+						{ desc = "Go to declaration", buffer = true }
+					)
+					vim.keymap.set(
+						{ "n", "v" },
+						"<leader>la",
+						"<cmd>lua vim.lsp.buf.code_action()<cr>",
+						{ desc = "Code actions", buffer = true }
+					)
+					vim.keymap.set(
+						"n",
+						"gi",
+						"<cmd>Telescope lsp_implementations<cr>",
+						{ desc = "Show lsp implementations", buffer = true }
+					)
+					vim.keymap.set(
+						"n",
+						"go",
+						"<cmd>Telescope lsp_type_definitions<cr>",
+						{ desc = "Show lsp type definitions", buffer = true }
+					)
+					vim.keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>", { buffer = true })
+					vim.keymap.set("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<cr>", { buffer = true })
+					vim.keymap.set(
+						"n",
+						"<leader>lr",
+						"<cmd>lua vim.lsp.buf.rename()<cr>",
+						{ desc = "Lsp rename", buffer = true }
+					)
+					vim.keymap.set("n", "gl", "<cmd>lua vim.diagnostic.open_float()<cr>", { buffer = true })
+					vim.keymap.set("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<cr>", { buffer = true })
+					vim.keymap.set("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<cr>", { buffer = true })
+				end,
+			})
+
 			local sign = function(opts)
 				vim.fn.sign_define(opts.name, {
 					texthl = opts.name,
