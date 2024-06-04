@@ -35,9 +35,4 @@ vim.keymap.set("n", "<leader>fb", function()
 	})
 end, { desc = "Buffers", remap = true })
 
--- Lsp
-vim.keymap.set("n", "<leader>la", function()
-	vim.lsp.buf.code_action()
-end, { desc = "Code action" })
-
 vim.api.nvim_set_keymap("t", "<esc><esc>", "<C-\\><C-n><CR>", { noremap = true, silent = true })
