@@ -10,7 +10,6 @@ return {
 	cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
 	opts = function()
 		local options = {
-			auto_install = true,
 			sync_install = false,
 			highlight = {
 				enable = true,
