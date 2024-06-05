@@ -1,6 +1,6 @@
 return {
 	"folke/noice.nvim",
-	event = "User FilePost",
+	event = "VeryLazy",
 	dependencies = {
 		"MunifTanjim/nui.nvim",
 	},

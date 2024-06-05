@@ -3,7 +3,6 @@ local opt = vim.opt
 opt.clipboard = "unnamedplus" -- Sync with system clipboard
 opt.completeopt = { "menu", "menuone", "noselect" }
 opt.copyindent = true
-opt.conceallevel = 2 -- Hide * markup for bold and italic, but not markers with substitutions
 opt.confirm = true -- Confirm to save changes before exiting modified buffer
 opt.cursorline = false -- Disable highlighting of the current line
 opt.expandtab = true -- Use spaces instead of tabs
