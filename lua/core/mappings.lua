@@ -8,7 +8,8 @@ vim.keymap.set({ "i", "x" }, "<C-s>", "<ESC><cmd>silent! update | redraw<CR>", {
 vim.keymap.set("n", "c", '"_c', { noremap = true, silent = true })
 
 vim.keymap.set("n", "<leader>c", "<cmd>close<CR>", { desc = "Close window", noremap = true })
-vim.keymap.set("n", "<leader><leader>", "<C-6>", { desc = "Toggle last and current buffers" })
+vim.keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" }) -- split window vertically
+vim.keymap.set("n", "<leader>sh", "<C-w>s", { desc = "Split window horizontally" }) -- split window horizontally
 
 -- Telescope
 vim.keymap.set(

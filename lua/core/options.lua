@@ -22,7 +22,6 @@ opt.shiftwidth = 4
 opt.softtabstop = 4
 opt.shortmess:append("WIcCq") -- Silence
 opt.showmode = false -- Dont show mode since we have a statusline
-opt.scrolloff = 4
 opt.signcolumn = "number" -- Always show the signcolumn, otherwise it would shift the text each time
 opt.smartindent = true -- Insert indents automatically
 opt.splitbelow = true -- Put new windows below current
