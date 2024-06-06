@@ -16,25 +16,26 @@ vim.keymap.set(
 	"n",
 	"<leader>ff",
 	"<cmd>lua require('utils.telescope-fallback').project_files()<CR>",
-	{ desc = "Find Files", remap = true }
+	{ desc = "Find Files", noremap = true }
 )
-vim.keymap.set("n", "<leader>fd", "<cmd>Telescope diagnostics<CR>", { desc = "Diagnostics", remap = true })
+vim.keymap.set("n", "<leader>fd", "<cmd>Telescope diagnostics<CR>", { desc = "Diagnostics", noremap = true })
 vim.keymap.set(
 	"n",
 	"<leader>fs",
 	"<cmd>Telescope lsp_document_symbols<CR>",
-	{ desc = "Document symbols", remap = true }
+	{ desc = "Document symbols", noremap = true }
 )
-vim.keymap.set("n", "<leader>fg", "<cmd>Telescope live_grep<CR>", { desc = "Live Grep", remap = true })
-vim.keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<CR>", { desc = "Help files", remap = true })
-vim.keymap.set("n", "<leader>fr", "<cmd>Telescope oldfiles<CR>", { desc = "Recent Files", remap = true })
-vim.keymap.set("n", "<leader>ft", "<cmd>TodoTelescope<CR>", { desc = "Todo", remap = true })
-vim.keymap.set("n", "<leader>fz", "<cmd>Telescope zoxide list<CR>", { desc = "Change directory", remap = true })
+vim.keymap.set("n", "<leader>fg", "<cmd>Telescope live_grep<CR>", { desc = "Live Grep", noremap = true })
+vim.keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<CR>", { desc = "Help files", noremap = true })
+vim.keymap.set("n", "<leader>fr", "<cmd>Telescope oldfiles<CR>", { desc = "Recent Files", noremap = true })
+vim.keymap.set("n", "<leader>ft", "<cmd>TodoTelescope<CR>", { desc = "Todo", noremap = true })
+vim.keymap.set("n", "<leader>fz", "<cmd>Telescope zoxide list<CR>", { desc = "Change directory", noremap = true })
 vim.keymap.set("n", "<leader>fb", function()
 	require("telescope.builtin").buffers({
 		sort_mru = true,
 		show_all_buffers = false,
 	})
-end, { desc = "Buffers", remap = true })
+end, { desc = "Buffers", noremap = true })
 
+-- Terminal normal mode
 vim.api.nvim_set_keymap("t", "<esc><esc>", "<C-\\><C-n><CR>", { noremap = true, silent = true })
