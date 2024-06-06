@@ -3,5 +3,5 @@
 ## Installation
 
 ```shell
-git clone https://github.com/nvim-config.git "${HOME}/.config/nvim"
+git clone git@github.com:ruizii/nvim-config.git "${HOME}/.config/nvim"
 ```
