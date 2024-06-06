@@ -1,7 +1,7 @@
 return {
 	"echasnovski/mini.clue",
 	version = false,
-	event = "User FilePost",
+	event = "VeryLazy",
 	config = function()
 		local miniclue = require("mini.clue")
 		miniclue.setup({
@@ -38,6 +38,7 @@ return {
 				-- Enhance this by adding descriptions for <Leader> mapping groups
 				{ mode = "n", keys = "<leader>l", desc = "+Lsp" },
 				{ mode = "n", keys = "<leader>f", desc = "+Telescope" },
+				{ mode = "n", keys = "<leader>s", desc = "+Splits" },
 				miniclue.gen_clues.builtin_completion(),
 				miniclue.gen_clues.g(),
 				miniclue.gen_clues.marks(),
