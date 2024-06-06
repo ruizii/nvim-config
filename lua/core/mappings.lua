@@ -1,8 +1,8 @@
 -- Convenience
-vim.keymap.set("n", "<esc>", "<cmd>nohlsearch<CR>")
+vim.keymap.set("n", "<esc>", "<cmd>nohlsearch<CR>", { desc = "Remove search highlight on esc", noremap = true })
 vim.keymap.set({ "n" }, "<Leader>/", "gcc", { desc = "Toggle comment", remap = true })
 vim.keymap.set({ "x", "o" }, "<Leader>/", "gc", { desc = "Toggle comment", remap = true })
-vim.keymap.set("n", "gc", "<nop>")
+vim.keymap.set("n", "gc", "<nop>", { desc = "Unmap gc" })
 vim.keymap.set("n", "c", '"_c', { noremap = true, silent = true })
 
 vim.keymap.set("n", "<leader>c", "<cmd>close<CR>", { desc = "Close window", noremap = true })
