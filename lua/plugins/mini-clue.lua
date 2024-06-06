@@ -47,11 +47,6 @@ return {
 			},
 			window = {
 				delay = 400,
-				config = {
-					anchor = "NW",
-					row = "auto",
-					col = "auto",
-				},
 			},
 		})
 	end,
