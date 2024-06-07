@@ -1,6 +1,6 @@
 return {
 	"folke/edgy.nvim",
-	event = "User FilePost",
+	lazy = false,
 	opts = {
 		left = {},
 		bottom = {
