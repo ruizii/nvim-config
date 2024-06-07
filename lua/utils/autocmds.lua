@@ -1,4 +1,5 @@
 vim.api.nvim_create_augroup("userconfig", { clear = true })
+vim.api.nvim_create_augroup("NvFilePost", { clear = true })
 
 local autocmd = vim.api.nvim_create_autocmd
 
@@ -51,7 +52,7 @@ vim.cmd([[
 ]])
 
 autocmd({ "UIEnter", "BufReadPost", "BufNewFile" }, {
-	group = vim.api.nvim_create_augroup("NvFilePost", { clear = true }),
+	group = "NvFilePost",
 	callback = function(args)
 		local file = vim.api.nvim_buf_get_name(args.buf)
 		local buftype = vim.api.nvim_buf_get_option(args.buf, "buftype")
