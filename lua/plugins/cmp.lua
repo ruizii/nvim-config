@@ -8,24 +8,6 @@ return {
 			"hrsh7th/cmp-path",
 			"hrsh7th/cmp-nvim-lsp",
 			"onsails/lspkind.nvim",
-			{
-				"windwp/nvim-autopairs",
-				config = function()
-					local autopairs = require("nvim-autopairs")
-					autopairs.setup({
-						check_ts = true,
-						ts_config = {
-							lua = { "string" },
-							javascript = { "template_string" },
-							java = false,
-						},
-					})
-
-					local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-					local cmp = require("cmp")
-					cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
-				end,
-			},
 		},
 		config = function()
 			local cmp = require("cmp")
@@ -90,6 +72,25 @@ return {
 					}),
 				},
 			})
+		end,
+	},
+	{
+		"windwp/nvim-autopairs",
+		event = "InsertEnter",
+		config = function()
+			local autopairs = require("nvim-autopairs")
+			autopairs.setup({
+				check_ts = true,
+				ts_config = {
+					lua = { "string" },
+					javascript = { "template_string" },
+					java = false,
+				},
+			})
+
+			local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+			local cmp = require("cmp")
+			cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 		end,
 	},
 	{

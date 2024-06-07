@@ -1,5 +1,4 @@
 vim.api.nvim_create_augroup("userconfig", {})
-vim.api.nvim_create_augroup("NvFilePost", {})
 
 local autocmd = vim.api.nvim_create_autocmd
 
@@ -30,49 +29,6 @@ autocmd("BufWritePre", {
 	command = "%s/\\s\\+$//e",
 })
 
-autocmd("LspAttach", {
-	group = vim.api.nvim_create_augroup("UserLspConfig", {}),
-	callback = function(ev)
-		vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", { buffer = true })
-		vim.keymap.set(
-			"n",
-			"gd",
-			"<cmd>Telescope lsp_definitions<cr>",
-			{ desc = "Show lsp definitions", buffer = true }
-		)
-		vim.keymap.set(
-			"n",
-			"gD",
-			"<cmd>lua vim.lsp.buf.declaration()<cr>",
-			{ desc = "Go to declaration", buffer = true }
-		)
-		vim.keymap.set(
-			{ "n", "v" },
-			"<leader>la",
-			"<cmd>lua vim.lsp.buf.code_action()<cr>",
-			{ desc = "Code actions", buffer = true }
-		)
-		vim.keymap.set(
-			"n",
-			"gi",
-			"<cmd>Telescope lsp_implementations<cr>",
-			{ desc = "Show lsp implementations", buffer = true }
-		)
-		vim.keymap.set(
-			"n",
-			"go",
-			"<cmd>Telescope lsp_type_definitions<cr>",
-			{ desc = "Show lsp type definitions", buffer = true }
-		)
-		vim.keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>", { buffer = true })
-		vim.keymap.set("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<cr>", { buffer = true })
-		vim.keymap.set("n", "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<cr>", { desc = "Lsp rename", buffer = true })
-		vim.keymap.set("n", "gl", "<cmd>lua vim.diagnostic.open_float()<cr>", { buffer = true })
-		vim.keymap.set("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<cr>", { buffer = true })
-		vim.keymap.set("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<cr>", { buffer = true })
-	end,
-})
-
 autocmd("Filetype", {
 	group = "userconfig",
 	desc = "keymap 'q' to close help/quickfix/netrw/etc windows",
@@ -95,10 +51,10 @@ vim.cmd([[
 ]])
 
 autocmd({ "UIEnter", "BufReadPost", "BufNewFile" }, {
-	group = "NvFilePost",
+	group = vim.api.nvim_create_augroup("NvFilePost", { clear = true }),
 	callback = function(args)
 		local file = vim.api.nvim_buf_get_name(args.buf)
-		local buftype = vim.api.nvim_buf_get_option(args.buf, "buftype")
+		local buftype = vim.api.nvim_get_option_value("buftype", { buf = args.buf })
 
 		if not vim.g.ui_entered and args.event == "UIEnter" then
 			vim.g.ui_entered = true
@@ -114,7 +70,7 @@ autocmd({ "UIEnter", "BufReadPost", "BufNewFile" }, {
 				if vim.g.editorconfig then
 					require("editorconfig").config(args.buf)
 				end
-			end, 0)
+			end)
 		end
 	end,
 })

@@ -1,7 +1,7 @@
 return {
 	"echasnovski/mini.clue",
 	version = false,
-	event = "VimEnter",
+	keys = { "<leader>", "<c-r>", "<c-w>", '"', "'", "`", "c", "v", "g" },
 	config = function()
 		local miniclue = require("mini.clue")
 		miniclue.setup({

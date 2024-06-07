@@ -1,6 +1,5 @@
 return {
 	"rebelot/heirline.nvim",
-	dependencies = { "nvim-tree/nvim-web-devicons", "navarasu/onedark.nvim" },
 	event = { "User FilePost" },
 	config = function()
 		local conditions = require("heirline.conditions")

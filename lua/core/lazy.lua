@@ -33,20 +33,12 @@ require("lazy").setup({
 			not_loaded = "",
 		},
 	},
-	checker = {
-		enabled = true,
-	},
 	change_detection = {
 		enabled = false,
 		notify = false,
 	},
 	performance = {
-		cache = {
-			enabled = true,
-		},
-		reset_packpath = true,
 		rtp = {
-			reset = true,
 			disabled_plugins = {
 				"2html_plugin",
 				"tohtml",

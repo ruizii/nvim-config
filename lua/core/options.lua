@@ -1,7 +1,6 @@
 local opt = vim.opt
 
 opt.clipboard = "unnamedplus" -- Sync with system clipboard
-opt.completeopt = { "menu", "menuone", "noselect" }
 opt.copyindent = true
 opt.confirm = true -- Confirm to save changes before exiting modified buffer
 opt.cursorline = false -- Disable highlighting of the current line
@@ -41,5 +40,4 @@ opt.virtualedit = "block" -- Allow cursor to move where there is no text in visu
 opt.wrap = false -- Disable line wrap
 opt.smoothscroll = true
 opt.pumheight = 10
-vim.g.markdown_recommended_style = 0
 vim.cmd("autocmd FileType * set formatoptions-=ro")

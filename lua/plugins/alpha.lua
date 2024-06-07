@@ -1,6 +1,7 @@
 return {
 	"goolord/alpha-nvim",
 	event = { "VimEnter" },
+	init = false,
 	config = function()
 		local alpha = require("alpha")
 		local dashboard = require("alpha.themes.dashboard")
@@ -54,6 +55,5 @@ return {
 				pcall(vim.cmd.AlphaRedraw)
 			end,
 		})
-		-- dashboard.section.footer.val = "\n \n \n" .. "gay."
 	end,
 }

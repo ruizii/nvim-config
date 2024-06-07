@@ -2,13 +2,60 @@ return {
 	{
 		"neovim/nvim-lspconfig",
 		event = "User FilePost",
-
 		config = function()
 			local on_init = function(client)
 				if client.supports_method("textDocument/semanticTokens") then
 					client.server_capabilities.semanticTokensProvider = nil
 				end
 			end
+
+			vim.api.nvim_create_autocmd("LspAttach", {
+				group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
+				callback = function()
+					vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", { buffer = true })
+					vim.keymap.set(
+						"n",
+						"gd",
+						"<cmd>Telescope lsp_definitions<cr>",
+						{ desc = "Show lsp definitions", buffer = true }
+					)
+					vim.keymap.set(
+						"n",
+						"gD",
+						"<cmd>lua vim.lsp.buf.declaration()<cr>",
+						{ desc = "Go to declaration", buffer = true }
+					)
+					vim.keymap.set(
+						{ "n", "v" },
+						"<leader>la",
+						"<cmd>lua vim.lsp.buf.code_action()<cr>",
+						{ desc = "Code actions", buffer = true }
+					)
+					vim.keymap.set(
+						"n",
+						"gi",
+						"<cmd>Telescope lsp_implementations<cr>",
+						{ desc = "Show lsp implementations", buffer = true }
+					)
+					vim.keymap.set(
+						"n",
+						"go",
+						"<cmd>Telescope lsp_type_definitions<cr>",
+						{ desc = "Show lsp type definitions", buffer = true }
+					)
+					vim.keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>", { buffer = true })
+					vim.keymap.set("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<cr>", { buffer = true })
+					vim.keymap.set(
+						"n",
+						"<leader>lr",
+						"<cmd>lua vim.lsp.buf.rename()<cr>",
+						{ desc = "Lsp rename", buffer = true }
+					)
+					vim.keymap.set("n", "gl", "<cmd>lua vim.diagnostic.open_float()<cr>", { buffer = true })
+					vim.keymap.set("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<cr>", { buffer = true })
+					vim.keymap.set("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<cr>", { buffer = true })
+				end,
+			})
 
 			local lspconfig = require("lspconfig")
 			local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -46,10 +93,11 @@ return {
 
 			lspconfig.lua_ls.setup({
 				lspconfig.lua_ls.setup({
-					on_init = on_init,
 					capabilities = capabilities,
+					on_init = on_init,
 					settings = {
 						Lua = {
+							runtime = { version = "LuaJIT" },
 							format = { enable = false },
 							hint = {
 								enable = true,
@@ -59,19 +107,27 @@ return {
 								enable = true,
 								callSnippet = "Replace",
 							},
+							workspace = {
+								checkThirdParty = false,
+								maxPreload = 100000,
+								preloadFileSize = 10000,
+							},
+							diagnostics = {
+								globals = { "vim" },
+							},
 						},
 					},
 				}),
 			})
 
 			lspconfig.gopls.setup({
-				on_init = on_init,
 				capabilities = capabilities,
+				on_init = on_init,
 			})
 
 			lspconfig.clangd.setup({
-				on_init = on_init,
 				capabilities = capabilities,
+				on_init = on_init,
 				cmd = {
 					"clangd",
 					"--clang-tidy",
@@ -83,8 +139,8 @@ return {
 			})
 
 			lspconfig.pyright.setup({
-				on_init = on_init,
 				capabilities = capabilities,
+				on_init = on_init,
 				settings = {
 					python = {
 						analysis = {
@@ -97,8 +153,8 @@ return {
 			})
 
 			lspconfig.jsonls.setup({
-				on_init = on_init,
 				capabilities = capabilities,
+				on_init = on_init,
 				settings = {
 					json = {
 						validate = { enable = true },
@@ -112,13 +168,13 @@ return {
 			})
 
 			lspconfig.bashls.setup({
-				on_init = on_init,
 				capabilities = capabilities,
+				on_init = on_init,
 			})
 
 			lspconfig.eslint.setup({
-				on_init = on_init,
 				capabilities = capabilities,
+				on_init = on_init,
 				settings = { format = false },
 			})
 
