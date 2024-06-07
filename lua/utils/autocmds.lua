@@ -1,9 +1,6 @@
-local utils = require("utils.create-autocmd")
-local create_autocmd = utils.create_autocmd
-
 vim.api.nvim_create_augroup("userconfig", { clear = true })
 
-create_autocmd("TextYankPost", {
+vim.api.nvim_create_autocmd("TextYankPost", {
 	group = "userconfig",
 	desc = "Highlight text on yank",
 	pattern = "*",
@@ -16,21 +13,21 @@ create_autocmd("TextYankPost", {
 	end,
 })
 
-create_autocmd("BufWinEnter", {
+vim.api.nvim_create_autocmd("BufWinEnter", {
 	group = "userconfig",
 	desc = "Open file in last position",
 	pattern = "*",
 	command = [[ if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g`\"" | endif ]],
 })
 
-create_autocmd("BufWritePre", {
+vim.api.nvim_create_autocmd("BufWritePre", {
 	group = "userconfig",
 	desc = "Remove whitespaces on save",
 	pattern = "*",
 	command = "%s/\\s\\+$//e",
 })
 
-create_autocmd("Filetype", {
+vim.api.nvim_create_autocmd("Filetype", {
 	group = "userconfig",
 	desc = "keymap 'q' to close help/quickfix/netrw/etc windows",
 	pattern = "help,qf,netrw",
@@ -44,7 +41,14 @@ create_autocmd("Filetype", {
 	end,
 })
 
-create_autocmd({ "UIEnter", "BufReadPost", "BufNewFile" }, {
+vim.cmd([[
+    augroup kitty_mp
+    autocmd!
+    au VimLeave * :silent !kitty @ set-spacing padding=default margin=default
+    au VimEnter * :silent !kitty @ set-spacing padding=0 margin=0 3 0 3
+]])
+
+vim.api.nvim_create_autocmd({ "UIEnter", "BufReadPost", "BufNewFile" }, {
 	group = vim.api.nvim_create_augroup("NvFilePost", { clear = true }),
 	callback = function(args)
 		local file = vim.api.nvim_buf_get_name(args.buf)
