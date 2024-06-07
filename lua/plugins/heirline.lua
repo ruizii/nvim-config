@@ -72,7 +72,7 @@ return {
 			["V-LINE"] = "purple",
 			["V-BLOCK"] = "purple",
 			COMMAND = "orange",
-			SELECT = "purple",
+			SELECT = "red",
 			["S-LINE"] = "purple",
 			["S-BLOCK"] = "purple",
 			REPLACE = "red",
@@ -122,6 +122,7 @@ return {
 				return { fg = self.icon_color }
 			end,
 		}
+
 		local FileName = {
 			provider = function(self)
 				local filename = vim.fn.fnamemodify(self.filename, ":t")
@@ -356,14 +357,16 @@ return {
 			condition = function()
 				return vim.fn.reg_recording() ~= "" and vim.o.cmdheight == 0
 			end,
-			provider = " ",
-			hl = { fg = "orange", bold = true },
-			utils.surround({ "[", "]" }, nil, {
+			{
+				provider = "@",
+				hl = { fg = "red", bold = true },
+			},
+			{
 				provider = function()
-					return vim.fn.reg_recording()
+					return vim.fn.reg_recording() .. " "
 				end,
 				hl = { fg = "green", bold = true },
-			}),
+			},
 			update = {
 				"RecordingEnter",
 				"RecordingLeave",
@@ -374,6 +377,7 @@ return {
 		local Space = { provider = " " }
 
 		local DefaultStatusLine = {
+			MacroRec,
 			ViMode,
 			Space,
 			Space,
