@@ -5,13 +5,11 @@ end
 
 local load_core = function()
 	vim.g.mapleader = " "
-	leader_map()
 	require("utils.autocmds")
 	require("core.options")
 	require("core.mappings")
 	require("core.lazy")
 	load_colorscheme("onedark")
-	load_utils()
 end
 
 load_core()
