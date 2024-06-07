@@ -5,7 +5,6 @@
   "cmp-path": { "branch": "main", "commit": "91ff86cd9c29299a64f968ebb45846c485725f23" },
   "conform.nvim": { "branch": "master", "commit": "069e971295a34a810484b7b2ef54b3c735214181" },
   "edgy.nvim": { "branch": "main", "commit": "de79b7d92a5979cd71a9a1d8b6282515345e5055" },
-  "floating-input.nvim": { "branch": "main", "commit": "8480827466a51d7baac56ddec4ccfb355fcef43a" },
   "gitsigns.nvim": { "branch": "main", "commit": "379a5a915aea3e9ba0d4a778e8478584ac0f9011" },
   "harpoon": { "branch": "harpoon2", "commit": "0378a6c428a0bed6a2781d459d7943843f374bce" },
   "heirline.nvim": { "branch": "master", "commit": "0d797435e54645a5f98bad7ad6046aac1ef95c1e" },
