@@ -1,5 +1,4 @@
 local map = vim.keymap.set
-vim.g.mapleader = " "
 
 -- Convenience
 map("n", "<esc>", "<cmd>nohlsearch<CR>", { desc = "Remove search highlight on esc", noremap = true })
