@@ -43,6 +43,13 @@ autocmd("Filetype", {
 	end,
 })
 
+autocmd("FileType", {
+	pattern = "*",
+	callback = function()
+		vim.opt.formatoptions = { c = false, r = false, o = false }
+	end,
+})
+
 vim.cmd([[
     augroup kitty_mp
     autocmd!

@@ -19,7 +19,7 @@ opt.relativenumber = true -- Relative line numbers
 opt.shiftround = true -- Round indent
 opt.shiftwidth = 4
 opt.softtabstop = 4
-opt.shortmess:append("WIcCq") -- Silence
+opt.shortmess:append("WIcCq") -- Sh
 opt.showmode = false -- Dont show mode since we have a statusline
 opt.signcolumn = "number" -- Always show the signcolumn, otherwise it would shift the text each time
 opt.smartindent = true -- Insert indents automatically
@@ -40,4 +40,3 @@ opt.virtualedit = "block" -- Allow cursor to move where there is no text in visu
 opt.wrap = false -- Disable line wrap
 opt.smoothscroll = true
 opt.pumheight = 10
-vim.cmd("autocmd FileType * set formatoptions-=ro")
