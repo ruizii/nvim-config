@@ -7,7 +7,10 @@ return {
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-path",
 			"hrsh7th/cmp-nvim-lsp",
+			"dcampos/nvim-snippy",
+			"dcampos/cmp-snippy",
 			"onsails/lspkind.nvim",
+			"honza/vim-snippets",
 		},
 		config = function()
 			local cmp = require("cmp")
@@ -23,30 +26,25 @@ return {
 			cmp.setup({
 				snippet = {
 					expand = function(args)
-						vim.snippet.expand(args.body)
+						require("snippy").expand_snippet(args.body)
 					end,
 				},
 				completion = {
 					completeopt = "menu,menuone,noinsert",
 				},
 				mapping = cmp.mapping.preset.insert({
-					["<Tab>"] = cmp.mapping(function(fallback)
-						if cmp.visible() and has_words_before() then
-							cmp.confirm({ select = true })
-						else
-							fallback()
-						end
-					end, { "i", "s" }),
-					["<Down>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
-					["<Up>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
-					["<C-b>"] = cmp.mapping.scroll_docs(-4),
-					["<C-f>"] = cmp.mapping.scroll_docs(4),
+					["<C-Space>"] = cmp.mapping.complete(),
+					["<C-y>"] = cmp.mapping.confirm({ select = true }),
+					["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
+					["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
+					["<C-u>"] = cmp.mapping.scroll_docs(-4),
+					["<C-d>"] = cmp.mapping.scroll_docs(4),
 				}),
 				sources = cmp.config.sources({
-					{ name = "nvim_lsp", priority = 1000 },
-					{ name = "path", priority = 500 },
-				}, {
-					{ name = "buffer", priority = 250 },
+					{ name = "nvim_lsp" },
+					{ name = "snippy" },
+					{ name = "path" },
+					{ name = "buffer" },
 				}),
 				window = {
 					completion = {
@@ -66,6 +64,7 @@ return {
 						show_labelDetails = true,
 						menu = {
 							nvim_lsp = "[LSP]",
+							snippy = "[Snippy]",
 							buffer = "[Buffer]",
 							path = "[Path]",
 						},
@@ -92,51 +91,5 @@ return {
 			local cmp = require("cmp")
 			cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 		end,
-	},
-	{
-		"garymjr/nvim-snippets",
-		keys = {
-			{
-				"<Tab>",
-				function()
-					if vim.snippet.active({ direction = 1 }) then
-						vim.schedule(function()
-							vim.snippet.jump(1)
-						end)
-						return
-					end
-					return "<Tab>"
-				end,
-				expr = true,
-				silent = true,
-				mode = "i",
-			},
-			{
-				"<Tab>",
-				function()
-					vim.schedule(function()
-						vim.snippet.jump(1)
-					end)
-				end,
-				expr = true,
-				silent = true,
-				mode = "s",
-			},
-			{
-				"<S-Tab>",
-				function()
-					if vim.snippet.active({ direction = -1 }) then
-						vim.schedule(function()
-							vim.snippet.jump(-1)
-						end)
-						return
-					end
-					return "<S-Tab>"
-				end,
-				expr = true,
-				silent = true,
-				mode = { "i", "s" },
-			},
-		},
 	},
 }
