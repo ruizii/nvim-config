@@ -170,13 +170,6 @@ return {
 			hl = { fg = "blue", bold = true },
 		}
 
-		local FileEncoding = {
-			provider = function()
-				local enc = (vim.bo.fenc ~= "" and vim.bo.fenc) or vim.o.enc -- :h 'enc'
-				return enc ~= "utf-8" and enc:upper()
-			end,
-		}
-
 		local FileSize = {
 			provider = function()
 				local suffix = { "b", "k", "M", "G", "T", "P", "E" }
