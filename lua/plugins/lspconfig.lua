@@ -17,7 +17,7 @@ return {
 						"n",
 						"gd",
 						"<cmd>Telescope lsp_definitions<cr>",
-						{ desc = "Show lsp definitions", buffer = true }
+						{ desc = "Go to lsp definition", buffer = true }
 					)
 					vim.keymap.set(
 						"n",

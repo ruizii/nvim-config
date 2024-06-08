@@ -4,7 +4,7 @@ local map = vim.keymap.set
 map("n", "<esc>", "<cmd>nohlsearch<CR>", { desc = "Remove search highlight on esc", noremap = true })
 map({ "n" }, "<Leader>/", "gcc", { desc = "Toggle comment", remap = true })
 map({ "x", "o" }, "<Leader>/", "gc", { desc = "Toggle comment", remap = true })
-map("n", "<C-s>", "<cmd>update | redraw<CR>", { noremap = true, silent = true })
+map("n", "<C-s>", "<cmd>write | redraw<CR>", { noremap = true, silent = true })
 map("n", "gc", "<nop>", { desc = "Unmap gc" })
 map("n", "c", '"_c', { noremap = true, silent = true })
 
