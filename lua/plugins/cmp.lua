@@ -24,7 +24,11 @@ return {
 					and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 			end
 
+			vim.g.cmp_toggle = false
 			cmp.setup({
+				enabled = function()
+					return vim.g.cmp_toggle
+				end,
 				snippet = {
 					expand = function(args)
 						snippy.expand_snippet(args.body)
