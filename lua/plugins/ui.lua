@@ -47,6 +47,7 @@ return {
 			virtual_symbol = "■",
 			enable_named_colors = false,
 			enable_tailwind = true,
+			enable_short_hex = false,
 		},
 	},
 	{
