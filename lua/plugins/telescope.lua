@@ -44,7 +44,7 @@ return {
 
 			local ts = require("telescope")
 			local h_percentage = 0.85
-			local w_percentage = 1
+			local w_percentage = 0.85
 			local w_limit = 140
 
 			vim.api.nvim_set_hl(0, "TodoBgFIX", { blend = 0 })
@@ -70,7 +70,7 @@ return {
 								return math.floor(rows * h_percentage)
 							end,
 							preview_width = 80,
-							preview_cutoff = 10,
+							preview_cutoff = 120,
 							preview_height = 0.4,
 						},
 						vertical = {
