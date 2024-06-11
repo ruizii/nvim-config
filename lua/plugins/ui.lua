@@ -22,6 +22,11 @@ return {
 		end,
 	},
 	{
+		"stevearc/dressing.nvim",
+		lazy = false,
+		opts = {},
+	},
+	{
 		"folke/todo-comments.nvim",
 		event = "User FilePost",
 		cmd = { "TodoTrouble", "TodoTelescope" },

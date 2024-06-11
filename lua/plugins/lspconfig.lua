@@ -120,6 +120,34 @@ return {
 				}),
 			})
 
+			lspconfig.volar.setup({
+				filetypes = { "vue" },
+				init_options = {
+					vue = {
+						hybridMode = false,
+					},
+					typescript = {
+						tsdk = vim.fn.getcwd() .. "/node_modules/typescript/lib",
+					},
+				},
+			})
+
+			lspconfig.tsserver.setup({
+				filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+				init_options = {
+					typescript = {
+						tsdk = vim.fn.getcwd() .. "/node_modules/typescript/lib",
+					},
+				},
+			})
+
+			lspconfig.cssls.setup({})
+
+			lspconfig.html.setup({
+				capabilities = capabilities,
+				filetypes = { "html", "vue" },
+			})
+
 			lspconfig.gopls.setup({
 				capabilities = capabilities,
 				on_init = on_init,
@@ -170,12 +198,6 @@ return {
 			lspconfig.bashls.setup({
 				capabilities = capabilities,
 				on_init = on_init,
-			})
-
-			lspconfig.eslint.setup({
-				capabilities = capabilities,
-				on_init = on_init,
-				settings = { format = false },
 			})
 
 			vim.diagnostic.config({
