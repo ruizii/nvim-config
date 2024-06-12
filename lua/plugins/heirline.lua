@@ -125,7 +125,7 @@ return {
 
 		local FileName = {
 			provider = function(self)
-				local filename = vim.fn.fnamemodify(self.filename, ":t")
+				local filename = vim.fn.fnamemodify(self.filename, ":.")
 				if filename == "" then
 					return "[No Name]"
 				end
