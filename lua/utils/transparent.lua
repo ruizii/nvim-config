@@ -29,6 +29,7 @@ local config = {
 		"FloatBorder",
 		"Pmenu",
 		"WinBar",
+		"WinBarNC",
 	},
 }
 
