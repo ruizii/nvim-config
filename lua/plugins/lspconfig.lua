@@ -159,7 +159,7 @@ return {
 				cmd = {
 					"clangd",
 					"--clang-tidy",
-					"--header-insertion=iwyu",
+					"--header-insertion=never",
 					"--completion-style=detailed",
 					"--function-arg-placeholders",
 					"--fallback-style=none",
