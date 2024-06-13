@@ -17,6 +17,8 @@ map({ "x", "o" }, "<Leader>/", "gc", { desc = "Toggle comment", remap = true })
 map("n", "<C-s>", "<cmd>write | redraw<CR>", { noremap = true, silent = true })
 map("n", "gc", "<nop>", { desc = "Unmap gc" })
 map("n", "c", '"_c', { noremap = true, silent = true })
+map("n", "<C-d>", "<C-d>zz", { desc = "Scroll downwards" })
+map("n", "<C-u>", "<C-u>zz", { desc = "Scroll upwards" })
 
 map("n", "<leader>c", "<cmd>close<CR>", { desc = "Close window", noremap = true })
 map("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" }) -- split window vertically
