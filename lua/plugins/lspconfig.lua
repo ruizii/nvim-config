@@ -21,6 +21,12 @@ return {
 					)
 					vim.keymap.set(
 						"n",
+						"<leader>ls",
+						"<cmd>Telescope lsp_document_symbols<CR>",
+						{ desc = "Document symbols", noremap = true }
+					)
+					vim.keymap.set(
+						"n",
 						"gD",
 						"<cmd>lua vim.lsp.buf.declaration()<cr>",
 						{ desc = "Go to declaration", buffer = true }
@@ -30,6 +36,12 @@ return {
 						"<leader>la",
 						"<cmd>lua vim.lsp.buf.code_action()<cr>",
 						{ desc = "Code actions", buffer = true }
+					)
+					vim.keymap.set(
+						"n",
+						"<leader>ld",
+						"<cmd>Lsp diagnostics<CR>",
+						{ desc = "Diagnostics", noremap = true }
 					)
 					vim.keymap.set(
 						"n",

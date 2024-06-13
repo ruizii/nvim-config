@@ -31,8 +31,6 @@ map(
 	"<cmd>lua require('utils.telescope-fallback').project_files()<CR>",
 	{ desc = "Find Files", noremap = true }
 )
-map("n", "<leader>fd", "<cmd>Telescope diagnostics<CR>", { desc = "Diagnostics", noremap = true })
-map("n", "<leader>fs", "<cmd>Telescope lsp_document_symbols<CR>", { desc = "Document symbols", noremap = true })
 map("n", "<leader>fg", "<cmd>Telescope live_grep<CR>", { desc = "Live Grep", noremap = true })
 map("n", "<leader>fh", "<cmd>Telescope help_tags<CR>", { desc = "Help files", noremap = true })
 map("n", "<leader>fr", "<cmd>Telescope oldfiles<CR>", { desc = "Recent Files", noremap = true })
