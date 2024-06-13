@@ -5,17 +5,6 @@ return {
 		left = {},
 		bottom = {
 			{
-				ft = "toggleterm",
-				title = "Terminal",
-				size = { height = 0.36 },
-				filter = function(buf, win)
-					return vim.api.nvim_win_get_config(win).relative == ""
-				end,
-				wo = {
-					winbar = false,
-				},
-			},
-			{
 				ft = "noice",
 				title = "Logs",
 				size = { height = 0.4 },
