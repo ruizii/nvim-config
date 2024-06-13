@@ -23,7 +23,6 @@ return {
 		},
 		exit_when_last = true,
 		wo = {
-
 			winhighlight = "WinBar:NONE,Normal:NONE,WinBarNC:NONE",
 		},
 		animate = {

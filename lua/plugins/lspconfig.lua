@@ -40,7 +40,7 @@ return {
 					vim.keymap.set(
 						"n",
 						"<leader>ld",
-						"<cmd>Lsp diagnostics<CR>",
+						"<cmd>Telescope diagnostics<CR>",
 						{ desc = "Diagnostics", noremap = true }
 					)
 					vim.keymap.set(
