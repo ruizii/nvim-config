@@ -25,6 +25,8 @@ map("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" }) -- split 
 map("n", "<leader>sh", "<C-w>s", { desc = "Split window horizontally" }) -- split window horizontally
 map("v", "<", "<gv", { noremap = true, silent = true })
 map("v", ">", ">gv", { noremap = true, silent = true })
+map("n", "H", "<nop>")
+map("n", "L", "<nop>")
 
 -- Telescope
 map(
