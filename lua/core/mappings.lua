@@ -27,6 +27,7 @@ map("v", "<", "<gv", { noremap = true, silent = true })
 map("v", ">", ">gv", { noremap = true, silent = true })
 map("n", "H", "<nop>")
 map("n", "L", "<nop>")
+map("n", "J", "<nop>")
 
 -- Telescope
 map(
