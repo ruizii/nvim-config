@@ -212,6 +212,11 @@ return {
 				on_init = on_init,
 			})
 
+			lspconfig.asm_lsp.setup({
+				on_init = on_init,
+				filetypes = { "asm", "s", "S" },
+			})
+
 			vim.diagnostic.config({
 				virtual_text = true,
 				signs = true,
