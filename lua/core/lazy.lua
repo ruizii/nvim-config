@@ -33,9 +33,6 @@ require("lazy").setup({
 			not_loaded = "",
 		},
 	},
-	checker = {
-		enabled = true,
-	},
 	change_detection = {
 		enabled = false,
 	},
