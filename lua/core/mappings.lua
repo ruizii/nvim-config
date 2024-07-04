@@ -21,8 +21,6 @@ map("n", "<C-d>", "<C-d>zz", { desc = "Scroll downwards" })
 map("n", "<C-u>", "<C-u>zz", { desc = "Scroll upwards" })
 
 map("n", "<leader>c", "<cmd>close<CR>", { desc = "Close window", noremap = true })
-map("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" }) -- split window vertically
-map("n", "<leader>sh", "<C-w>s", { desc = "Split window horizontally" }) -- split window horizontally
 map("v", "<", "<gv", { noremap = true, silent = true })
 map("v", ">", ">gv", { noremap = true, silent = true })
 map("n", "H", "<nop>")
