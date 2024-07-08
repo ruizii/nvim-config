@@ -10,7 +10,7 @@ return {
 		},
 		formatters_by_ft = {
 			lua = { "stylua" },
-			python = { "isort", "black" },
+			python = { "ruff_format" },
 			c = { "clang-format" },
 			cpp = { "clang-format" },
 			go = { "goimports", "gofmt" },

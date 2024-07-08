@@ -178,18 +178,9 @@ return {
 				},
 			})
 
-			lspconfig.pyright.setup({
+			lspconfig.ruff.setup({
 				capabilities = capabilities,
 				on_init = on_init,
-				settings = {
-					python = {
-						analysis = {
-							diagnosticSeverityOverrides = {
-								reportWildcardImportFromLibrary = "none",
-							},
-						},
-					},
-				},
 			})
 
 			lspconfig.jsonls.setup({
