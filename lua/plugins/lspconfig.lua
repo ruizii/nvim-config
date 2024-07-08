@@ -103,6 +103,13 @@ return {
 			sign({ name = "DiagnosticSignHint", text = "󰠠" })
 			sign({ name = "DiagnosticSignInfo", text = "" })
 
+			local on_attach = function(client, bufnr)
+				if client.name == "ruff_lsp" then
+					-- Disable hover in favor of Pyright
+					client.server_capabilities.hoverProvider = false
+				end
+			end
+
 			lspconfig.lua_ls.setup({
 				lspconfig.lua_ls.setup({
 					capabilities = capabilities,
@@ -179,8 +186,20 @@ return {
 			})
 
 			lspconfig.ruff.setup({
-				capabilities = capabilities,
-				on_init = on_init,
+				on_attach = on_attach,
+			})
+
+			lspconfig.pyright.setup({
+				settings = {
+					pyright = {
+						disableOrganizeImports = true,
+					},
+				},
+				python = {
+					analysis = {
+						ignore = { "*" },
+					},
+				},
 			})
 
 			lspconfig.jsonls.setup({
