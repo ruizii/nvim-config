@@ -41,9 +41,6 @@ return {
 			local w_percentage = 0.85
 			local w_limit = 140
 
-			vim.api.nvim_set_hl(0, "TodoBgFIX", { blend = 0 })
-			vim.api.nvim_set_hl(0, "TodoBgNOTE", { blend = 0 })
-			vim.api.nvim_set_hl(0, "TodoBgTODO", { blend = 0 })
 			vim.api.nvim_set_hl(0, "TelescopePathSeparator", { link = "Comment" })
 
 			ts.setup({
