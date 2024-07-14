@@ -8,6 +8,8 @@ return {
 			"Pmenu",
 			"WinBar",
 			"WinBarNC",
+			"MiniClueBorder",
+			"MiniClueDescSingle",
 		},
 	},
 }
