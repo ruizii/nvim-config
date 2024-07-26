@@ -38,6 +38,7 @@ opt.undolevels = 2000
 opt.updatetime = 200 -- Save swap file and trigger CursorHold
 opt.virtualedit = "block" -- Allow cursor to move where there is no text in visual block mode
 opt.wrap = false -- Disable line wrap
+opt.scrolloff = 8
 opt.smoothscroll = true
 opt.pumheight = 10
 
