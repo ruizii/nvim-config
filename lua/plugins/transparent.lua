@@ -1,15 +1,18 @@
 return {
 	"xiyaowong/transparent.nvim",
 	lazy = false,
-	opts = {
-		extra_groups = {
-			"NormalFloat",
-			"FloatBorder",
-			"Pmenu",
-			"WinBar",
-			"WinBarNC",
-			"MiniClueBorder",
-			"MiniClueDescSingle",
-		},
-	},
+	config = function()
+		require("transparent").setup({
+			extra_groups = {
+				"NormalFloat",
+				"FloatBorder",
+				"Pmenu",
+				"WinBar",
+				"WinBarNC",
+				"MiniClueBorder",
+				"MiniClueDescSingle",
+			},
+		})
+		require("transparent").clear_prefix("NeoTree")
+	end,
 }

@@ -38,28 +38,30 @@ return {
 					completeopt = "menu,menuone,noinsert",
 				},
 				mapping = cmp.mapping.preset.insert({
-					["<Tab>"] = cmp.mapping(function(fallback)
-						if cmp.visible() and has_words_before() then
-							cmp.confirm({ select = true })
-						else
-							fallback()
-						end
-					end, { "i", "s" }),
+					-- ["<Tab>"] = cmp.mapping(function(fallback)
+					-- 	if cmp.visible() and has_words_before() then
+					-- 		cmp.confirm({ select = true })
+					-- 	else
+					-- 		fallback()
+					-- 	end
+					-- end, { "i", "s" }),
+					--
+					-- ["<C-n>"] = cmp.mapping(function()
+					-- 	if snippy.can_jump(1) then
+					-- 		snippy.next()
+					-- 	end
+					-- end, { "i", "s" }),
+					--
+					-- ["<C-p>"] = cmp.mapping(function()
+					-- 	if snippy.can_jump(-1) then
+					-- 		snippy.previous()
+					-- 	end
+					-- end, { "i", "s" }),
 
-					["<C-n>"] = cmp.mapping(function()
-						if snippy.can_jump(1) then
-							snippy.next()
-						end
-					end, { "i", "s" }),
+					["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
+					["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
+					["<C-y>"] = cmp.mapping.confirm({ select = true }),
 
-					["<C-p>"] = cmp.mapping(function()
-						if snippy.can_jump(-1) then
-							snippy.previous()
-						end
-					end, { "i", "s" }),
-
-					["<Down>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
-					["<Up>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
 					["<C-u>"] = cmp.mapping.scroll_docs(-4),
 					["<C-d>"] = cmp.mapping.scroll_docs(4),
 				}),
