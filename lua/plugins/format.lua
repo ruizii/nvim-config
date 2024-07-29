@@ -19,6 +19,7 @@ return {
 			vue = { "prettierd" },
 			html = { "prettierd" },
 			typescript = { "prettierd" },
+			rust = { "rustfmt" },
 		},
 	},
 }
