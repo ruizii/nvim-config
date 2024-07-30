@@ -38,32 +38,10 @@ return {
 					completeopt = "menu,menuone,noinsert",
 				},
 				mapping = cmp.mapping.preset.insert({
-					-- ["<Tab>"] = cmp.mapping(function(fallback)
-					-- 	if cmp.visible() and has_words_before() then
-					-- 		cmp.confirm({ select = true })
-					-- 	else
-					-- 		fallback()
-					-- 	end
-					-- end, { "i", "s" }),
-					--
-					-- ["<C-n>"] = cmp.mapping(function()
-					-- 	if snippy.can_jump(1) then
-					-- 		snippy.next()
-					-- 	end
-					-- end, { "i", "s" }),
-					--
-					-- ["<C-p>"] = cmp.mapping(function()
-					-- 	if snippy.can_jump(-1) then
-					-- 		snippy.previous()
-					-- 	end
-					-- end, { "i", "s" }),
-
 					["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
 					["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
+					["<C-e>"] = cmp.mapping.abort(),
 					["<C-y>"] = cmp.mapping.confirm({ select = true }),
-
-					["<C-u>"] = cmp.mapping.scroll_docs(-4),
-					["<C-d>"] = cmp.mapping.scroll_docs(4),
 				}),
 				sources = cmp.config.sources({
 					{ name = "nvim_lsp" },
@@ -83,16 +61,13 @@ return {
 				---@diagnostic disable-next-line
 				formatting = {
 					format = lspkind.cmp_format({
-						mode = "symbol",
+						symbol_map = {
+							Function = "λ",
+						},
+						mode = "symbol_text",
 						maxwidth = 50,
 						ellipsis_char = "...",
 						show_labelDetails = true,
-						menu = {
-							nvim_lsp = "[LSP]",
-							snippy = "[Snippy]",
-							buffer = "[Buffer]",
-							path = "[Path]",
-						},
 					}),
 				},
 			})
