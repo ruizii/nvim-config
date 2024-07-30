@@ -20,14 +20,13 @@ return {
 		local sep = " "
 
 		dashboard.section.buttons.val = {
-			dashboard.button("f", "󰈢" .. sep .. " File Browser", function()
-				require("utils.telescope-fallback").project_files()
-			end),
-			dashboard.button("n", "󰈔" .. sep .. " New File", "<Cmd>ene <BAR><CR>"),
-			dashboard.button("r", "" .. sep .. " Recent Files", "<Cmd>Telescope oldfiles<CR>"),
+			dashboard.button("f", "󰈢" .. sep .. " File Browser", "<cmd>Telescope find_files<CR>"),
+			dashboard.button("e", "" .. sep .. " Git Files", "<cmd>Telescope git_files<CR>"),
+			dashboard.button("n", "󰈔" .. sep .. " New File", "<cmd>ene <BAR><CR>"),
+			dashboard.button("r", "" .. sep .. " Recent Files", "<cmd>Telescope oldfiles<CR>"),
 			dashboard.button("g", "󰈞" .. sep .. " Grep Files", ":Telescope live_grep<CR>"),
-			dashboard.button("z", "󱧮" .. sep .. " Change Directory", "<Cmd>Telescope zoxide list<CR>"),
-			dashboard.button("q", "󰅙" .. sep .. " Quit", "<Cmd>qa<CR>"),
+			dashboard.button("z", "󱧮" .. sep .. " Change Directory", "<cmd>Telescope zoxide list<CR>"),
+			dashboard.button("q", "󰅙" .. sep .. " Quit", "<cmd>qa<CR>"),
 		}
 
 		dashboard.section.footer.opts.hl = "Normal"
