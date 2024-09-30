@@ -91,7 +91,7 @@ return {
 			}
 
 			local sign = function(opts)
-				vim.diagnostic.config({
+				vim.fn.sign_define(opts.name, {
 					texthl = opts.name,
 					text = opts.text,
 					numhl = "",
