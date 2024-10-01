@@ -22,5 +22,16 @@ return {
 			php = { "php_cs_fixer" },
 			rust = { "rustfmt" },
 		},
+		formatters = {
++                       ["php_cs_fixer"] = {
++                               command = "php-cs-fixer",
++                               args = {
++                                       "fix",
++                                       "--config=" .. vim.fn.expand("$HOME/.php-cs-fixer.php"),
++                                       "$FILENAME",
++                               },
++                               stdin = false,
++                       },
++               },
 	},
 }
