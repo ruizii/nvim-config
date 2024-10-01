@@ -218,7 +218,7 @@ return {
 			lspconfig.intelephense.setup({
 				capabilities = capabilities,
 				on_init = on_init,
-				root_dir = lspconfig.util.root_pattern("composer.json", ".git", "*.php"),
+				root_dir = [[root_pattern("composer.json", ".git", "*.php")]],
 				format = {
 					enable = false,
 				},
