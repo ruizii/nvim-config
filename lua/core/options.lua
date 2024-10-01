@@ -1,6 +1,5 @@
 local opt = vim.opt
 
-
 opt.clipboard = "unnamedplus" -- Sync with system clipboard
 opt.copyindent = true
 opt.confirm = true -- Confirm to save changes before exiting modified buffer
@@ -51,18 +50,18 @@ vim.cmd("let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']")
 
 -- WSL --
 
---vim.cmd([[
-    --let s:win32yank = resolve('/mnt/c/Program Files/Neovim/bin/win32yank.exe')
-    --let g:clipboard = #{
-                --\   name: 'win32yank',
-                --\   copy: {
-                --\     '+': [s:win32yank, '-i', '--crlf'],
-                --\     '*': [s:win32yank, '-i', '--crlf'],
-                --\   },
-                --\   paste: {
-                --\     '+': [s:win32yank, '-o', '--lf'],
-                --\     '*': [s:win32yank, '-o', '--lf'],
-                --\   },
-                --\ }
-    --unlet s:win32yank
---]])
+vim.cmd([[
+    let s:win32yank = resolve('/mnt/c/Program Files/Neovim/bin/win32yank.exe')
+    let g:clipboard = #{
+                \   name: 'win32yank',
+                \   copy: {
+                \     '+': [s:win32yank, '-i', '--crlf'],
+                \     '*': [s:win32yank, '-i', '--crlf'],
+                \   },
+                \   paste: {
+                \     '+': [s:win32yank, '-o', '--lf'],
+                \     '*': [s:win32yank, '-o', '--lf'],
+                \   },
+                \ }
+    unlet s:win32yank
+]])

@@ -215,6 +215,15 @@ return {
 				filetypes = { "asm", "s", "S" },
 			})
 
+			lspconfig.intelephense.setup({
+				capabilities = capabilities,
+				on_init = on_init,
+				root_dir = [[root_pattern("composer.json", ".git", "*.php")]],
+				format = {
+					enable = false,
+				},
+			})
+
 			vim.diagnostic.config({
 				virtual_text = true,
 				signs = true,
