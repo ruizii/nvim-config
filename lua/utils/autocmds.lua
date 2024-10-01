@@ -82,8 +82,10 @@ autocmd({ "UIEnter", "BufReadPost", "BufNewFile" }, {
 	end,
 })
 
-vim.api.nvim_create_autocmd("VimLeave", {
-	callback = function()
-		vim.opt.guicursor = "a:ver25"
-	end,
-})
+---- WSL Cursor Shape Fix ----
+
+-- vim.api.nvim_create_autocmd("VimLeave", {
+-- 	callback = function()
+-- 		vim.opt.guicursor = "a:ver25"
+-- 	end,
+-- })
