@@ -34,7 +34,6 @@ map("n", "<leader>fg", "<cmd>Telescope live_grep<CR>", { desc = "Live Grep", nor
 map("n", "<leader>fh", "<cmd>Telescope help_tags<CR>", { desc = "Help files", noremap = true })
 map("n", "<leader>fr", "<cmd>Telescope oldfiles<CR>", { desc = "Recent Files", noremap = true })
 map("n", "<leader>ft", "<cmd>TodoTelescope<CR>", { desc = "Todo", noremap = true })
-map("n", "<leader>fz", "<cmd>Telescope zoxide list<CR>", { desc = "Change directory", noremap = true })
 map("n", "<leader>fb", function()
 	require("telescope.builtin").buffers({
 		sort_mru = true,

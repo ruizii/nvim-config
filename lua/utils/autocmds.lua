@@ -84,8 +84,10 @@ autocmd({ "UIEnter", "BufReadPost", "BufNewFile" }, {
 
 ---- WSL Cursor Shape Fix ----
 
-vim.api.nvim_create_autocmd("VimLeave", {
+autocmd("VimLeave", {
 	callback = function()
-		vim.opt.guicursor = "a:ver25"
+		if vim.fn.has("win32") or os.getenv("WSL_DISTRO_NAME") then
+			vim.opt.guicursor = "a:ver25"
+		end
 	end,
 })

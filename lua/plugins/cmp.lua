@@ -24,14 +24,14 @@ return {
 					and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 			end
 
-			snippy.setup({
-				mappings = {
-					is = {
-						["<Tab>"] = "expand_or_advance",
-						["<S-Tab>"] = "previous",
-					},
-				},
-			})
+	                snippy.setup({
+                            mappings = {
+	                        is = {
+	                            ["<Tab>"] = "expand_or_advance",
+	                            ["<S-Tab>"] = "previous",
+	                        },
+			    },
+            	        })
 
 			vim.g.cmp_toggle = true
 			cmp.setup({

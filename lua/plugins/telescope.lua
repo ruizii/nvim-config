@@ -12,12 +12,6 @@ return {
 					require("telescope").load_extension("fzf")
 				end,
 			},
-			{
-				"jvgrootveld/telescope-zoxide",
-				config = function()
-					require("telescope").load_extension("zoxide")
-				end,
-			},
 		},
 		config = function()
 			-- Function for opening files when tab-selected or opening a single file

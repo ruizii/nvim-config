@@ -25,7 +25,7 @@ return {
 			dashboard.button("n", "󰈔" .. sep .. " New File", "<cmd>ene <BAR><CR>"),
 			dashboard.button("r", "" .. sep .. " Recent Files", "<cmd>Telescope oldfiles<CR>"),
 			dashboard.button("g", "󰈞" .. sep .. " Grep Files", ":Telescope live_grep<CR>"),
-			dashboard.button("z", "󱧮" .. sep .. " Change Directory", "<cmd>Telescope zoxide list<CR>"),
+			dashboard.button("s", "󰚰" .. sep .. " Update Plugins", "<cmd>Lazy sync<CR>"),
 			dashboard.button("q", "󰅙" .. sep .. " Quit", "<cmd>qa<CR>"),
 		}
 
