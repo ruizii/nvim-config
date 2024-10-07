@@ -218,7 +218,10 @@ return {
 			lspconfig.intelephense.setup({
 				capabilities = capabilities,
 				on_init = on_init,
-				root_dir = [[root_pattern("composer.json", ".git", "*.php")]],
+				init_options = {
+					globalStoragePath = os.getenv("HOME") .. "/.local/share/intelephense",
+				},
+				-- root_dir = [[root_pattern("composer.json", ".git", "*.php")]],
 				format = {
 					enable = false,
 				},
