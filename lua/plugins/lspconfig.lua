@@ -218,9 +218,9 @@ return {
 			lspconfig.intelephense.setup({
 				capabilities = capabilities,
 				on_init = on_init,
-			        init_options = {
-          			    globalStoragePath = os.getenv('HOME') .. '/.local/share/intelephense'
-     				},
+				init_options = {
+					globalStoragePath = os.getenv("HOME") .. "/.local/share/intelephense",
+				},
 				format = {
 					enable = false,
 				},
