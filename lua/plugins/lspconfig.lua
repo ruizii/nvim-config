@@ -34,7 +34,7 @@ return {
 					vim.keymap.set(
 						"n",
 						"<leader>ld",
-						"<cmd>Telescope diagnostics<CR>",
+						"<cmd>lua require('telescope.builtin').diagnostics({ previewer = false })<CR>",
 						{ desc = "Diagnostics", noremap = true }
 					)
 					vim.keymap.set(
@@ -57,7 +57,12 @@ return {
 						"<cmd>lua vim.lsp.buf.rename()<cr>",
 						{ desc = "Lsp rename", buffer = true }
 					)
-					vim.keymap.set("n", "gl", "<cmd>lua vim.diagnostic.open_float()<cr>", { buffer = true })
+					vim.keymap.set(
+						"n",
+						"gl",
+						"<cmd>lua vim.diagnostic.open_float()<cr>",
+						{ desc = "Open diagnostics float", buffer = true }
+					)
 					vim.keymap.set("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<cr>", { buffer = true })
 					vim.keymap.set("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<cr>", { buffer = true })
 				end,
