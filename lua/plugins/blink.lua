@@ -1,7 +1,6 @@
 return {
 	"saghen/blink.cmp",
-	event = "User FilePost",
-	-- lazy = false,
+	lazy = false,
 	-- optional: provides snippets for the snippet source
 	dependencies = "rafamadriz/friendly-snippets",
 
@@ -16,6 +15,11 @@ return {
 			select_next = { "<Down>", "<C-n>" },
 			snippet_forward = "<Tab>",
 			snippet_backward = "<S-Tab>",
+
+			show_documentation = {},
+			hide_documentation = {},
+			scroll_documentation_up = "<C-b>",
+			scroll_documentation_down = "<C-f>",
 		},
 		highlight = {
 			-- sets the fallback highlight groups to nvim-cmp's highlight groups. Remove on later release
@@ -31,8 +35,6 @@ return {
 			documentation = {
 				border = "single",
 				max_width = 80,
-				max_height = 20,
-				auto_show_delay = 10,
 			},
 		},
 		-- set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
