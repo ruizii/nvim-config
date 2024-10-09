@@ -3,12 +3,6 @@ return {
 		"neovim/nvim-lspconfig",
 		event = "User FilePost",
 		config = function()
-			local on_init = function(client)
-				if client.supports_method("textDocument/semanticTokens") then
-					client.server_capabilities.semanticTokensProvider = nil
-				end
-			end
-
 			vim.api.nvim_create_autocmd("LspAttach", {
 				group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
 				callback = function()
@@ -70,25 +64,6 @@ return {
 			})
 
 			local lspconfig = require("lspconfig")
-			local capabilities = vim.lsp.protocol.make_client_capabilities()
-
-			capabilities.textDocument.completion.completionItem = {
-				documentationFormat = { "markdown", "plaintext" },
-				snippetSupport = true,
-				preselectSupport = true,
-				insertReplaceSupport = true,
-				labelDetailsSupport = true,
-				deprecatedSupport = true,
-				commitCharactersSupport = true,
-				tagSupport = { valueSet = { 1 } },
-				resolveSupport = {
-					properties = {
-						"documentation",
-						"detail",
-						"additionalTextEdits",
-					},
-				},
-			}
 
 			local sign = function(opts)
 				vim.fn.sign_define(opts.name, {
@@ -105,8 +80,6 @@ return {
 
 			lspconfig.lua_ls.setup({
 				lspconfig.lua_ls.setup({
-					capabilities = capabilities,
-					on_init = on_init,
 					settings = {
 						Lua = {
 							runtime = { version = "LuaJIT" },
@@ -156,18 +129,12 @@ return {
 			lspconfig.cssls.setup({})
 
 			lspconfig.html.setup({
-				capabilities = capabilities,
 				filetypes = { "html", "vue" },
 			})
 
-			lspconfig.gopls.setup({
-				capabilities = capabilities,
-				on_init = on_init,
-			})
+			lspconfig.gopls.setup({})
 
 			lspconfig.clangd.setup({
-				capabilities = capabilities,
-				on_init = on_init,
 				cmd = {
 					"clangd",
 					"--clang-tidy",
@@ -191,8 +158,6 @@ return {
 			})
 
 			lspconfig.jsonls.setup({
-				capabilities = capabilities,
-				on_init = on_init,
 				settings = {
 					json = {
 						validate = { enable = true },
@@ -205,19 +170,13 @@ return {
 				end,
 			})
 
-			lspconfig.bashls.setup({
-				capabilities = capabilities,
-				on_init = on_init,
-			})
+			lspconfig.bashls.setup({})
 
 			lspconfig.asm_lsp.setup({
-				on_init = on_init,
 				filetypes = { "asm", "s", "S" },
 			})
 
 			lspconfig.intelephense.setup({
-				capabilities = capabilities,
-				on_init = on_init,
 				init_options = {
 					globalStoragePath = os.getenv("HOME") .. "/.local/share/intelephense",
 				},

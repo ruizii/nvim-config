@@ -50,6 +50,7 @@ require("lazy").setup({
 				"netrwSettings",
 				"netrwFileHandlers",
 				"matchit",
+				"matchparen",
 				"tar",
 				"tarPlugin",
 				"rrhelper",
