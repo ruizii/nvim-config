@@ -134,16 +134,7 @@ return {
 
 			lspconfig.gopls.setup({})
 
-			lspconfig.clangd.setup({
-				cmd = {
-					"clangd",
-					"--clang-tidy",
-					"--header-insertion=never",
-					"--completion-style=detailed",
-					"--function-arg-placeholders",
-					"--fallback-style=none",
-				},
-			})
+			lspconfig.clangd.setup({})
 
 			lspconfig.pyright.setup({
 				settings = {
