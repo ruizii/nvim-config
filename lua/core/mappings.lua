@@ -1,15 +1,5 @@
 local map = vim.keymap.set
 
--- Toggle cmp
-map({ "n", "i" }, "<C-Space>", function()
-	vim.g.cmp_toggle = not vim.g.cmp_toggle
-	if vim.g.cmp_toggle then
-		vim.notify("Autocomplete enabled")
-	else
-		vim.notify("Autocomplete disabled")
-	end
-end, { desc = "toggle nvim-cmp" })
-
 -- Convenience
 map("n", "<esc>", "<cmd>nohlsearch<CR>", { desc = "Remove search highlight on esc", noremap = true })
 map({ "n" }, "<Leader>/", "gcc", { desc = "Toggle comment", remap = true })

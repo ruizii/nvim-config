@@ -31,15 +31,27 @@ autocmd("BufWritePre", {
 
 autocmd("Filetype", {
 	group = "userconfig",
-	desc = "keymap 'q' to close help/quickfix/netrw/etc windows",
-	pattern = "help,qf,netrw",
-	callback = function()
-		vim.keymap.set(
-			"n",
-			"q",
-			"<C-w>c",
-			{ buffer = true, desc = "Quit (or Close) help, quickfix, netrw, etc windows" }
-		)
+	desc = "Close some filetypes with <q>",
+	pattern = {
+		"PlenaryTestPopup",
+		"help",
+		"lspinfo",
+		"man",
+		"notify",
+		"qf",
+		"query",
+		"spectre_panel",
+		"startuptime",
+		"tsplayground",
+		"neotest-output",
+		"checkhealth",
+		"neotest-summary",
+		"neotest-output-panel",
+		"toggleterm",
+		"neo-tree",
+	},
+	callback = function(event)
+		vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = event.buf, silent = true })
 	end,
 })
 

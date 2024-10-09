@@ -2,6 +2,7 @@ return {
 	{
 		"hrsh7th/nvim-cmp",
 		version = false,
+		enabled = false,
 		event = "InsertEnter",
 		dependencies = {
 			"hrsh7th/cmp-buffer",
@@ -24,14 +25,14 @@ return {
 					and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 			end
 
-	                snippy.setup({
-                            mappings = {
-	                        is = {
-	                            ["<Tab>"] = "expand_or_advance",
-	                            ["<S-Tab>"] = "previous",
-	                        },
-			    },
-            	        })
+			snippy.setup({
+				mappings = {
+					is = {
+						["<Tab>"] = "expand_or_advance",
+						["<S-Tab>"] = "previous",
+					},
+				},
+			})
 
 			vim.g.cmp_toggle = true
 			cmp.setup({
@@ -95,10 +96,11 @@ return {
 					java = false,
 				},
 			})
-
-			local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-			local cmp = require("cmp")
-			cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 		end,
+		--
+		-- 	local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+		-- 	local cmp = require("cmp")
+		-- 	cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
+		-- end,
 	},
 }
