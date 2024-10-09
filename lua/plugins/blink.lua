@@ -11,11 +11,10 @@ return {
 			select_next = { "<Down>", "<C-n>" },
 			snippet_forward = "<Tab>",
 			snippet_backward = "<S-Tab>",
-
 			show_documentation = {},
 			hide_documentation = {},
-			scroll_documentation_up = "<C-b>",
-			scroll_documentation_down = "<C-f>",
+			scroll_documentation_up = "<C-u>",
+			scroll_documentation_down = "<C-d>",
 		},
 		highlight = {
 			-- sets the fallback highlight groups to nvim-cmp's highlight groups. Remove on later release
