@@ -55,7 +55,7 @@ return {
 			gitBranch = {
 				provider = "git_branch",
 				hl = {
-					fg = "peanut",
+					fg = "fg",
 					bg = "NONE",
 					style = "bold",
 				},
@@ -83,11 +83,17 @@ return {
 			gitDiffChanged = {
 				provider = "git_diff_changed",
 				hl = {
-					fg = "fg",
+					fg = "aqua",
 					bg = "NONE",
 				},
 				left_sep = " ",
 				right_sep = " ",
+			},
+			nvim_macro = {
+				provider = "macro",
+				hl = {
+					fg = "red",
+				},
 			},
 			separator = {
 				provider = "",
@@ -96,10 +102,11 @@ return {
 				provider = {
 					name = "file_info",
 					opts = {
-						type = "relative-short",
+						type = "relative",
 					},
 				},
 				hl = {
+					fg = "aqua",
 					style = "bold",
 				},
 				left_sep = " ",
@@ -110,21 +117,29 @@ return {
 				hl = {
 					fg = "red",
 				},
+				left_sep = " ",
+				right_sep = " ",
 			},
 			diagnostic_warnings = {
 				provider = "diagnostic_warnings",
 				hl = {
 					fg = "yellow",
 				},
+				left_sep = " ",
+				right_sep = " ",
 			},
 			diagnostic_hints = {
 				provider = "diagnostic_hints",
 				hl = {
 					fg = "aqua",
 				},
+				left_sep = " ",
+				right_sep = " ",
 			},
 			diagnostic_info = {
 				provider = "diagnostic_info",
+				left_sep = " ",
+				right_sep = " ",
 			},
 			lsp_client_names = {
 				provider = "lsp_client_names",
@@ -152,16 +167,6 @@ return {
 				left_sep = " ",
 				right_sep = " ",
 			},
-			file_encoding = {
-				provider = "file_encoding",
-				hl = {
-					fg = "orange",
-					bg = "NONE",
-					style = "italic",
-				},
-				left_sep = " ",
-				right_sep = " ",
-			},
 			position = {
 				provider = "position",
 				hl = {
@@ -174,25 +179,31 @@ return {
 			},
 			line_percentage = {
 				provider = "line_percentage",
-				hl = {
-					fg = "aqua",
-					bg = "NONE",
-					style = "bold",
-				},
+				hl = function()
+					return {
+						fg = require("feline.providers.vi_mode").get_mode_color(),
+						bg = "NONE",
+						name = "NeovimModeHLColor",
+					}
+				end,
 				left_sep = " ",
 				right_sep = " ",
 			},
 			scroll_bar = {
 				provider = "scroll_bar",
-				hl = {
-					fg = "yellow",
-					style = "bold",
-				},
+				hl = function()
+					return {
+						fg = require("feline.providers.vi_mode").get_mode_color(),
+						bg = "NONE",
+						name = "NeovimModeHLColor",
+					}
+				end,
 			},
 		}
 
 		local left = {
 			c.vim_mode,
+			c.nvim_macro,
 			c.gitBranch,
 			c.gitDiffAdded,
 			c.gitDiffRemoved,
@@ -202,16 +213,15 @@ return {
 
 		local middle = {
 			c.fileinfo,
+		}
+
+		local right = {
 			c.diagnostic_errors,
 			c.diagnostic_warnings,
 			c.diagnostic_info,
 			c.diagnostic_hints,
-		}
-
-		local right = {
 			c.lsp_client_names,
 			c.file_type,
-			c.file_encoding,
 			c.position,
 			c.line_percentage,
 			c.scroll_bar,
