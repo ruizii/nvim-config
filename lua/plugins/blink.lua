@@ -7,8 +7,6 @@ return {
 		keymap = {
 			show = {},
 			accept = "<C-y>",
-			select_prev = { "<Up>", "<C-p>" },
-			select_next = { "<Down>", "<C-n>" },
 			snippet_forward = "<Tab>",
 			snippet_backward = "<S-Tab>",
 			show_documentation = {},
@@ -29,6 +27,8 @@ return {
 			},
 			documentation = {
 				border = "single",
+				auto_show = true,
+				auto_show_delay_ms = 50,
 				max_width = 80,
 			},
 		},
