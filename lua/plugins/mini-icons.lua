@@ -8,6 +8,11 @@ return {
 		},
 		filetype = {
 			dotenv = { glyph = "", hl = "MiniIconsYellow" },
+			sh = { glyph = "", hl = "MiniIconsBlue" },
+			c = { glyph = "", hl = "MiniIconsBlue" },
+			cpp = { glyph = "", hl = "MiniIconsBlue" },
+			hpp = { glyph = "", hl = "MiniIconsPurple" },
+			h = { glyph = "", hl = "MiniIconsPurple" },
 		},
 	},
 	init = function()
