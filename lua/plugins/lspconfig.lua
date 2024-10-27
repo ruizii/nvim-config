@@ -141,17 +141,7 @@ return {
 
 			lspconfig.clangd.setup({})
 
-			lspconfig.pyright.setup({
-				settings = {
-					python = {
-						analysis = {
-							diagnosticSeverityOverrides = {
-								reportWildcardImportFromLibrary = "none",
-							},
-						},
-					},
-				},
-			})
+			lspconfig.ruff.setup({})
 
 			lspconfig.jsonls.setup({
 				settings = {
