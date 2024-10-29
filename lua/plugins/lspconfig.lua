@@ -141,14 +141,12 @@ return {
 
 			lspconfig.clangd.setup({})
 
-			lspconfig.basedpyright.setup({
+			lspconfig.pyright.setup({
 				settings = {
-					basedpyright = {
+					python = {
 						analysis = {
 							diagnosticSeverityOverrides = {
-								-- TODO: Remove when figuring out how to not break pwntools
 								reportWildcardImportFromLibrary = "none",
-								reportMissingTypeStubs = "none",
 							},
 						},
 					},
