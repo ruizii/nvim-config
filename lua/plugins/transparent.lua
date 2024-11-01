@@ -13,6 +13,5 @@ return {
 				"MiniClueDescSingle",
 			},
 		})
-		require("transparent").clear_prefix("NeoTree")
 	end,
 }
