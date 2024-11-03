@@ -37,18 +37,10 @@ autocmd("Filetype", {
 		"help",
 		"lspinfo",
 		"man",
-		"notify",
 		"qf",
 		"query",
-		"spectre_panel",
 		"startuptime",
-		"tsplayground",
-		"neotest-output",
 		"checkhealth",
-		"neotest-summary",
-		"neotest-output-panel",
-		"toggleterm",
-		"neo-tree",
 	},
 	callback = function(event)
 		vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = event.buf, silent = true })
