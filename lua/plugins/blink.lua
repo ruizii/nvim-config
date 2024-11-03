@@ -4,16 +4,12 @@ return {
 	dependencies = "rafamadriz/friendly-snippets",
 	version = "v0.*",
 	opts = {
-		keymap = {
-			show = {},
-			accept = "<C-y>",
-			snippet_forward = "<Tab>",
-			snippet_backward = "<S-Tab>",
-			show_documentation = {},
-			hide_documentation = {},
-			scroll_documentation_up = "<C-u>",
-			scroll_documentation_down = "<C-d>",
-		},
+		keymap = "default",
+		-- keymap = {
+		-- 	preset = "default",
+		-- 	["<C-u>"] = { "scroll_documentation_up", "fallback" },
+		-- 	["<C-d>"] = { "scroll_documentation_down", "fallback" },
+		-- },
 		highlight = {
 			-- sets the fallback highlight groups to nvim-cmp's highlight groups. Remove on later release
 			use_nvim_cmp_as_default = true,
