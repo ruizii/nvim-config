@@ -68,3 +68,15 @@ if is_wsl ~= "not wsl" then
         unlet s:win32yank
     ]])
 end
+
+-- Kitty --
+local is_kitty = os.getenv("KITTY_WINDOW_ID") or "not kitty"
+
+if is_kitty ~= "not kitty" then
+	vim.cmd([[
+        augroup kitty_mp
+        autocmd!
+        au VimLeave * :silent !kitty @ set-spacing padding=default margin=default
+        au VimEnter * :silent !kitty @ set-spacing padding=0 margin=0 3 0 3
+    ]])
+end

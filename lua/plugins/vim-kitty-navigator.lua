@@ -1,6 +1,10 @@
 return {
 	"knubie/vim-kitty-navigator",
 	lazy = false,
+	cond = function()
+		local is_kitty = os.getenv("KITTY_WINDOW_ID") or "not kitty"
+		return is_kitty ~= "not kitty"
+	end,
 	init = function()
 		vim.g.kitty_navigator_no_mappings = 1
 

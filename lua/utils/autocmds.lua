@@ -54,13 +54,6 @@ autocmd("FileType", {
 	end,
 })
 
-vim.cmd([[
-    augroup kitty_mp
-    autocmd!
-    au VimLeave * :silent !kitty @ set-spacing padding=default margin=default
-    au VimEnter * :silent !kitty @ set-spacing padding=0 margin=0 3 0 3
-]])
-
 autocmd({ "UIEnter", "BufReadPost", "BufNewFile" }, {
 	group = vim.api.nvim_create_augroup("NvFilePost", { clear = true }),
 	callback = function(args)
