@@ -174,7 +174,13 @@ return {
 
 			lspconfig.intelephense.setup({
 				init_options = {
-					globalStoragePath = os.getenv("HOME") .. "/.local/share/intelephense",
+					globalStoratePath = function()
+						if vim.fn.has("win32") == 1 then
+							return os.getenv("UserProfile") .. "/.intelephense"
+						else
+							return os.getenv("HOME") .. "/.local/share/intelephense"
+						end
+					end,
 				},
 				format = {
 					enable = false,

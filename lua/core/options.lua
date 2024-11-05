@@ -49,8 +49,9 @@ vim.g.loaded_node_provider = 0
 vim.g.c_syntax_for_h = 1
 
 -- WSL --
+local is_wsl = os.getenv("WSL_DISTRO_NAME") or "not wsl"
 
-if os.getenv("WSL_DISTRO_NAME") then
+if is_wsl ~= "not wsl" then
 	vim.cmd([[
         let s:win32yank = resolve('/mnt/c/Program Files/Neovim/bin/win32yank.exe')
         let g:clipboard = #{
