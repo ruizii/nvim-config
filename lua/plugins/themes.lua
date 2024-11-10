@@ -1,6 +1,6 @@
 return {
 	"navarasu/onedark.nvim",
-	lazy = false,
+	lazy = true, -- Currently using default theme
 	priority = 1000,
 	opts = {
 		style = "dark",
