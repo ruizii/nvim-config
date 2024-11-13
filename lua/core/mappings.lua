@@ -18,9 +18,6 @@ map("n", "L", "<nop>")
 map("n", "J", "<nop>")
 
 -- Telescope
-map("n", "<leader><leader>", function()
-	require("telescope").extensions.smart_open.smart_open({})
-end, { noremap = true, silent = true })
 map("n", "<leader>fe", "<cmd>Telescope git_files<CR>", { desc = "Git Files", noremap = true })
 map("n", "<leader>ff", "<cmd>Telescope find_files<CR>", { desc = "Find Files", noremap = true })
 map("n", "<leader>fg", "<cmd>Telescope live_grep<CR>", { desc = "Live Grep", noremap = true })
