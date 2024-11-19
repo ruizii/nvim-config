@@ -139,7 +139,12 @@ return {
 
 			lspconfig.gopls.setup({})
 
-			lspconfig.clangd.setup({})
+			lspconfig.clangd.setup({
+				cmd = {
+					"clangd",
+					"--header-insertion=never",
+				},
+			})
 
 			lspconfig.pyright.setup({
 				settings = {

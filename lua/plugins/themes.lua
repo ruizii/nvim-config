@@ -2,8 +2,8 @@ return {
 	{
 
 		"navarasu/onedark.nvim",
-		lazy = true, -- Currently using default theme
 		priority = 1000,
+		enabled = false,
 		opts = {
 			style = "dark",
 			highlights = {
@@ -25,7 +25,7 @@ return {
 	},
 	{
 		"wnkz/monoglow.nvim",
-		lazy = false,
+		enabled = false,
 		priority = 1000,
 		opts = {},
 	},
