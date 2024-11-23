@@ -3,7 +3,7 @@ return {
 
 		"navarasu/onedark.nvim",
 		priority = 1000,
-		enabled = false,
+		enabled = true,
 		opts = {
 			style = "dark",
 			highlights = {
@@ -25,7 +25,7 @@ return {
 	},
 	{
 		"wnkz/monoglow.nvim",
-		enabled = false,
+		lazy = false,
 		priority = 1000,
 		opts = {},
 	},
