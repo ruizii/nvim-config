@@ -69,6 +69,7 @@ return {
 			})
 
 			local lspconfig = require("lspconfig")
+			local capabilities = require("blink.cmp").get_lsp_capabilities()
 
 			local sign = function(opts)
 				vim.fn.sign_define(opts.name, {
@@ -84,33 +85,33 @@ return {
 			sign({ name = "DiagnosticSignInfo", text = "" })
 
 			lspconfig.lua_ls.setup({
-				lspconfig.lua_ls.setup({
-					settings = {
-						Lua = {
-							runtime = { version = "LuaJIT" },
-							format = { enable = false },
-							hint = {
-								enable = true,
-								arrayIndex = "Disable",
-							},
-							completion = {
-								enable = true,
-								callSnippet = "Replace",
-							},
-							workspace = {
-								checkThirdParty = false,
-								maxPreload = 100000,
-								preloadFileSize = 10000,
-							},
-							diagnostics = {
-								globals = { "vim" },
-							},
+				capabilities = capabilities,
+				settings = {
+					Lua = {
+						runtime = { version = "LuaJIT" },
+						format = { enable = false },
+						hint = {
+							enable = true,
+							arrayIndex = "Disable",
+						},
+						completion = {
+							enable = true,
+							callSnippet = "Replace",
+						},
+						workspace = {
+							checkThirdParty = false,
+							maxPreload = 100000,
+							preloadFileSize = 10000,
+						},
+						diagnostics = {
+							globals = { "vim" },
 						},
 					},
-				}),
+				},
 			})
 
 			lspconfig.volar.setup({
+				capabilities = capabilities,
 				filetypes = { "vue" },
 				init_options = {
 					vue = {
@@ -123,6 +124,7 @@ return {
 			})
 
 			lspconfig.ts_ls.setup({
+				capabilities = capabilities,
 				filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
 				init_options = {
 					typescript = {
@@ -131,15 +133,21 @@ return {
 				},
 			})
 
-			lspconfig.cssls.setup({})
+			lspconfig.cssls.setup({
+				capabilities = capabilities,
+			})
 
 			lspconfig.html.setup({
+				capabilities = capabilities,
 				filetypes = { "html", "vue" },
 			})
 
-			lspconfig.gopls.setup({})
+			lspconfig.gopls.setup({
+				capabilities = capabilities,
+			})
 
 			lspconfig.clangd.setup({
+				capabilities = capabilities,
 				cmd = {
 					"clangd",
 					"--header-insertion=never",
@@ -147,6 +155,7 @@ return {
 			})
 
 			lspconfig.pyright.setup({
+				capabilities = capabilities,
 				settings = {
 					python = {
 						analysis = {
@@ -159,6 +168,7 @@ return {
 			})
 
 			lspconfig.jsonls.setup({
+				capabilities = capabilities,
 				settings = {
 					json = {
 						validate = { enable = true },
@@ -171,13 +181,17 @@ return {
 				end,
 			})
 
-			lspconfig.bashls.setup({})
+			lspconfig.bashls.setup({
+				capabilities = capabilities,
+			})
 
 			lspconfig.asm_lsp.setup({
+				capabilities = capabilities,
 				filetypes = { "asm", "s", "S" },
 			})
 
 			lspconfig.intelephense.setup({
+				capabilities = capabilities,
 				init_options = {
 					globalStoragePath = function()
 						if vim.fn.has("win32") == 1 then

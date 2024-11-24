@@ -11,14 +11,15 @@ return {
 		-- 	["<C-d>"] = { "scroll_documentation_down", "fallback" },
 		-- },
 		highlight = {
-			-- sets the fallback highlight groups to nvim-cmp's highlight groups. Remove on later release
-			use_nvim_cmp_as_default = true,
+			use_nvim_cmp_as_default = false,
 		},
 		windows = {
 			autocomplete = {
 				min_width = 10,
 				border = "single",
-				draw = "reversed",
+				draw = {
+					columns = { { "label", "label_description" }, { "kind_icon" } },
+				},
 				scrolloff = 0,
 			},
 			documentation = {
@@ -27,7 +28,11 @@ return {
 				auto_show_delay_ms = 50,
 				max_width = 80,
 			},
+			ghost_text = {
+				enabled = true,
+			},
 		},
+
 		-- set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
 		nerd_font_variant = "mono",
 		kind_icons = {
