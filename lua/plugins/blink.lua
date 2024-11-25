@@ -28,9 +28,6 @@ return {
 				auto_show_delay_ms = 50,
 				max_width = 80,
 			},
-			ghost_text = {
-				enabled = true,
-			},
 		},
 
 		-- set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'

@@ -16,15 +16,16 @@ return {
 			orange = "#d19a66",
 			peanut = "#f6d5a4",
 			red = "#e06c75",
-			aqua = "#61afef",
+			aqua = "#4DC4FF",
 			darkblue = "#282c34",
 			dark_red = "#f75f5f",
+			glow = "#1BFD9C",
 		}
 
 		local vi_mode_colors = {
 			NORMAL = "aqua",
 			OP = "aqua",
-			INSERT = "green",
+			INSERT = "glow",
 			VISUAL = "purple",
 			LINES = "purple",
 			BLOCK = "purple",
@@ -46,7 +47,7 @@ return {
 						fg = require("feline.providers.vi_mode").get_mode_color(),
 						bg = "NONE",
 						style = "bold",
-						name = "NeovimModeHLColor",
+						name = require("feline.providers.vi_mode").get_mode_highlight_name(),
 					}
 				end,
 				left_sep = " ",
@@ -144,7 +145,7 @@ return {
 			lsp_client_names = {
 				provider = "lsp_client_names",
 				hl = {
-					fg = "purple",
+					fg = "fg",
 					bg = "NONE",
 					style = "bold",
 				},
@@ -169,11 +170,13 @@ return {
 			},
 			position = {
 				provider = "position",
-				hl = {
-					fg = "green",
-					bg = "NONE",
-					style = "bold",
-				},
+				hl = function()
+					return {
+						fg = require("feline.providers.vi_mode").get_mode_color(),
+						bg = "NONE",
+						name = require("feline.providers.vi_mode").get_mode_highlight_name(),
+					}
+				end,
 				left_sep = " ",
 				right_sep = " ",
 			},
@@ -183,7 +186,7 @@ return {
 					return {
 						fg = require("feline.providers.vi_mode").get_mode_color(),
 						bg = "NONE",
-						name = "NeovimModeHLColor",
+						name = require("feline.providers.vi_mode").get_mode_highlight_name(),
 					}
 				end,
 				left_sep = " ",
@@ -195,7 +198,7 @@ return {
 					return {
 						fg = require("feline.providers.vi_mode").get_mode_color(),
 						bg = "NONE",
-						name = "NeovimModeHLColor",
+						name = require("feline.providers.vi_mode").get_mode_highlight_name(),
 					}
 				end,
 			},
