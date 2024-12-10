@@ -10,7 +10,7 @@ return {
 			["<C-d>"] = { "scroll_documentation_down", "fallback" },
 		},
 
-		blocked_filetypes = { "text" },
+		blocked_filetypes = { "text", "markdown" },
 
 		completion = {
 			trigger = {
