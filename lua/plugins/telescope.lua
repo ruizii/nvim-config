@@ -7,13 +7,8 @@ return {
 			{ "nvim-lua/plenary.nvim" },
 			{
 				"nvim-telescope/telescope-fzf-native.nvim",
-				build = function()
-					if vim.fn.has("win32") == 1 then
-						return "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build"
-					else
-						return "make"
-					end
-				end,
+				build = "make",
+				-- build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
 				config = function()
 					require("telescope").load_extension("fzf")
 				end,

@@ -10,8 +10,6 @@ return {
 			["<C-d>"] = { "scroll_documentation_down", "fallback" },
 		},
 
-		blocked_filetypes = { "text", "markdown" },
-
 		completion = {
 			trigger = {
 				show_in_snippet = false,
@@ -39,8 +37,8 @@ return {
 		},
 		-- set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
 
-		nerd_font_variant = "mono",
 		appearance = {
+            nerd_font_variant = "mono",
 			use_nvim_cmp_as_default = false,
 
 			kind_icons = {
