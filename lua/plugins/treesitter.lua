@@ -9,7 +9,6 @@ return {
 	dependencies = {
 		"HiPhish/rainbow-delimiters.nvim",
 		main = "rainbow-delimiters.setup",
-		enabled = false,
 	},
 
 	init = function(plugin)
