@@ -19,13 +19,13 @@ return {
 			aqua = "#4DC4FF",
 			darkblue = "#282c34",
 			dark_red = "#f75f5f",
-			glow = "#1BFD9C",
+			glow = "#1BFD9C", -- Just in case
 		}
 
 		local vi_mode_colors = {
 			NORMAL = "aqua",
 			OP = "aqua",
-			INSERT = "glow",
+			INSERT = "green",
 			VISUAL = "purple",
 			LINES = "purple",
 			BLOCK = "purple",
