@@ -8,6 +8,7 @@ return {
 
 	dependencies = {
 		"HiPhish/rainbow-delimiters.nvim",
+		enabled = false,
 		main = "rainbow-delimiters.setup",
 	},
 
