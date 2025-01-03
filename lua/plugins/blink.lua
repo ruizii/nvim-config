@@ -4,6 +4,12 @@ return {
 	dependencies = "rafamadriz/friendly-snippets",
 	version = "v0.*",
 	opts = {
+		enabled = function()
+			return not vim.tbl_contains({ "text", "markdown" }, vim.bo.filetype)
+				and vim.bo.buftype ~= "prompt"
+				and vim.b.completion ~= false
+		end,
+
 		keymap = {
 			preset = "default",
 			["<C-u>"] = { "scroll_documentation_up", "fallback" },
@@ -15,6 +21,9 @@ return {
 				show_in_snippet = false,
 			},
 			menu = {
+				auto_show = function(ctx)
+					return ctx.mode ~= "cmdline" or not vim.tbl_contains({ "/", "?" }, vim.fn.getcmdtype())
+				end,
 				min_width = 10,
 				max_height = 10,
 				border = "single",
@@ -35,10 +44,10 @@ return {
 				},
 			},
 		},
-		-- set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
 
+		-- set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
 		appearance = {
-            nerd_font_variant = "mono",
+			nerd_font_variant = "mono",
 			use_nvim_cmp_as_default = false,
 
 			kind_icons = {
@@ -67,6 +76,10 @@ return {
 				Event = "",
 				Operator = "󰆕",
 				TypeParameter = "",
+				highlight = function(ctx)
+					local _, hl, _ = require("mini.icons").get("lsp", ctx.kind)
+					return hl
+				end,
 			},
 		},
 	},
