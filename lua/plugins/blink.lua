@@ -28,6 +28,7 @@ return {
 				max_height = 10,
 				border = "single",
 				draw = {
+					treesitter = { "lsp" },
 					columns = { { "label", "label_description", gap = 1 }, { "kind_icon" } },
 				},
 				scrolloff = 0,
