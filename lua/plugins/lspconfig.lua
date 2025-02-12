@@ -185,12 +185,6 @@ return {
 				capabilities = capabilities,
 			})
 
-			lspconfig.asm_lsp.setup({
-				capabilities = capabilities,
-				filetypes = { "asm", "s", "S" },
-				single_file_support = true,
-			})
-
 			lspconfig.intelephense.setup({
 				capabilities = capabilities,
 				init_options = {
