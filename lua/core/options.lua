@@ -49,9 +49,9 @@ vim.g.loaded_node_provider = 0
 vim.g.c_syntax_for_h = 1
 
 -- WSL --
-local is_wsl = os.getenv("WSL_DISTRO_NAME") or "not wsl"
+local is_wsl = os.getenv("WSL_DISTRO_NAME") ~= nil
 
-if is_wsl ~= "not wsl" then
+if is_wsl then
 	vim.cmd([[
         let s:win32yank = resolve('/mnt/c/Program Files/Neovim/bin/win32yank.exe')
         let g:clipboard = #{
@@ -70,9 +70,9 @@ if is_wsl ~= "not wsl" then
 end
 
 -- Kitty --
-local is_kitty = os.getenv("KITTY_WINDOW_ID") or "not kitty"
+local is_kitty = os.getenv("KITTY_WINDOW_ID") ~= nil
 
-if is_kitty ~= "not kitty" then
+if is_kitty then
 	vim.cmd([[
         augroup kitty_mp
         autocmd!
