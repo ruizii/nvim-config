@@ -13,6 +13,7 @@ return {
 				},
 				break_line = {
 					enabled = true,
+					after = 60,
 				},
 			},
 		})
