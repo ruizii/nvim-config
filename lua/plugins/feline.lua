@@ -1,5 +1,5 @@
 return {
-	"freddiehaddad/feline.nvim",
+	"dexxiez/feline.nvim",
 	event = "User FilePost",
 	config = function()
 		local line_ok, feline = pcall(require, "feline")
