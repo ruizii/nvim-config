@@ -5,7 +5,13 @@ return {
 		"MunifTanjim/nui.nvim",
 	},
 	opts = {
+		notify = {
+			enabled = false,
+		},
 		lsp = {
+			progress = {
+				enabled = false,
+			},
 			override = {
 				["vim.lsp.util.convert_input_to_markdown_lines"] = true,
 				["vim.lsp.util.stylize_markdown"] = true,
@@ -24,11 +30,6 @@ return {
 			lsp_doc_border = true, -- add a border to hover docs and signature help
 		},
 		views = {
-			mini = {
-				win_options = {
-					winblend = 0,
-				},
-			},
 			hover = {
 				border = {
 					style = "single",
