@@ -13,6 +13,9 @@ return {
 			style = "minimal",
 			top_down = false,
 		},
+		picker = {
+			enabled = true,
+		},
 
 		styles = {
 			input = {
