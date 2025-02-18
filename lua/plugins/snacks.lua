@@ -15,6 +15,13 @@ return {
 		},
 		picker = {
 			enabled = true,
+			win = {
+				input = {
+					keys = {
+						["<Esc>"] = { "close", mode = { "n", "i" } },
+					},
+				},
+			},
 		},
 
 		styles = {
