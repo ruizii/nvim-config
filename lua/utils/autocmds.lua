@@ -83,6 +83,7 @@ autocmd("LspProgress", {
 	---@param ev {data: {client_id: integer, params: lsp.ProgressParams}}
 	callback = function(ev)
 		local spinner = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" }
+		---@diagnostic disable-next-line
 		vim.notify(vim.lsp.status(), "info", {
 			id = "lsp_progress",
 			title = "LSP Progress",
@@ -97,9 +98,10 @@ autocmd("LspProgress", {
 ---- WSL Cursor Shape Fix ----
 autocmd("VimLeave", {
 	callback = function()
-		local is_wsl = os.getenv("WSL_DISTRO_NAME") or "not wsl"
+		local is_wsl = os.getenv("WSL_DISTRO_NAME") ~= nil
+		local is_windows = vim.fn.has("win32") == 1
 
-		if vim.fn.has("win32") == 1 or is_wsl ~= "not wsl" then
+		if is_windows or is_wsl then
 			vim.opt.guicursor = "a:ver25"
 		end
 	end,
