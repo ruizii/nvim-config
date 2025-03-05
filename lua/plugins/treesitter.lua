@@ -6,12 +6,6 @@ return {
 	lazy = vim.fn.argc(-1) == 0,
 	cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
 
-	dependencies = {
-		"HiPhish/rainbow-delimiters.nvim",
-		enabled = false,
-		main = "rainbow-delimiters.setup",
-	},
-
 	init = function(plugin)
 		require("lazy.core.loader").add_to_rtp(plugin)
 		require("nvim-treesitter.query_predicates")
