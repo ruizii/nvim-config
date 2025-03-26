@@ -2,7 +2,7 @@ return {
 	"saghen/blink.cmp",
 	event = "InsertEnter",
 	dependencies = "rafamadriz/friendly-snippets",
-	version = "v0.*",
+	version = "1.*",
 	opts = {
 		enabled = function()
 			return not vim.tbl_contains({ "text", "markdown" }, vim.bo.filetype)
