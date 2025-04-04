@@ -110,6 +110,10 @@ return {
 				},
 			})
 
+			lspconfig.zls.setup({
+				capabilities = capabilities,
+			})
+
 			lspconfig.volar.setup({
 				capabilities = capabilities,
 				filetypes = { "vue" },
