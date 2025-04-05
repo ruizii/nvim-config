@@ -34,6 +34,7 @@ return {
 				scrolloff = 0,
 			},
 			documentation = {
+				auto_show = true,
 				window = {
 					max_width = 80,
 					border = "single",
