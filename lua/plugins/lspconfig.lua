@@ -127,6 +127,8 @@ return {
 				},
 			})
 
+			lspconfig.rust_analyzer.setup({})
+
 			lspconfig.ts_ls.setup({
 				capabilities = capabilities,
 				filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
