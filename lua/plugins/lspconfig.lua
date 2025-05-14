@@ -71,19 +71,6 @@ return {
 			local lspconfig = require("lspconfig")
 			local capabilities = require("blink.cmp").get_lsp_capabilities()
 
-			local sign = function(opts)
-				vim.fn.sign_define(opts.name, {
-					texthl = opts.name,
-					text = opts.text,
-					numhl = "",
-				})
-			end
-
-			sign({ name = "DiagnosticSignError", text = "" })
-			sign({ name = "DiagnosticSignWarn", text = "" })
-			sign({ name = "DiagnosticSignHint", text = "󰠠" })
-			sign({ name = "DiagnosticSignInfo", text = "" })
-
 			lspconfig.lua_ls.setup({
 				capabilities = capabilities,
 				settings = {
@@ -209,7 +196,20 @@ return {
 
 			vim.diagnostic.config({
 				virtual_text = false,
-				signs = true,
+				signs = {
+					text = {
+						[vim.diagnostic.severity.ERROR] = "",
+						[vim.diagnostic.severity.WARN] = "",
+						[vim.diagnostic.severity.INFO] = "󰠠",
+						[vim.diagnostic.severity.HINT] = "",
+					},
+					numhl = {
+						[vim.diagnostic.severity.ERROR] = "",
+						[vim.diagnostic.severity.WARN] = "",
+						[vim.diagnostic.severity.INFO] = "",
+						[vim.diagnostic.severity.HINT] = "",
+					},
+				},
 				update_in_insert = false,
 				severity_sort = false,
 				underline = true,
