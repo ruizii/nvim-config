@@ -8,6 +8,7 @@ return {
 			timeout_ms = 1000,
 			lsp_fallback = false,
 		},
+
 		formatters_by_ft = {
 			lua = { "stylua" },
 			python = { "isort", "ruff_format" },
@@ -20,6 +21,12 @@ return {
 			html = { "prettierd" },
 			typescript = { "prettierd" },
 			rust = { "rustfmt" },
+		},
+
+		formatters = {
+			shfmt = {
+				prepend_args = { "-ci" },
+			},
 		},
 	},
 }
