@@ -68,10 +68,9 @@ return {
 				end,
 			})
 
-			local lspconfig = require("lspconfig")
 			local capabilities = require("blink.cmp").get_lsp_capabilities()
 
-			lspconfig.lua_ls.setup({
+			vim.lsp.config("lua_ls", {
 				capabilities = capabilities,
 				settings = {
 					Lua = {
@@ -97,49 +96,32 @@ return {
 				},
 			})
 
-			lspconfig.zls.setup({
+			vim.lsp.config("zls", {
 				capabilities = capabilities,
 			})
 
-			lspconfig.volar.setup({
-				capabilities = capabilities,
-				filetypes = { "vue" },
-				init_options = {
-					vue = {
-						hybridMode = false,
-					},
-					typescript = {
-						tsdk = vim.fn.getcwd() .. "/node_modules/typescript/lib",
-					},
+			vim.lsp.config("rust_analyzer", {})
+
+			vim.lsp.config("ts_ls", {
+				typescript = {
+					tsdk = vim.fn.getcwd() .. "/node_modules/typescript/lib",
 				},
 			})
 
-			lspconfig.rust_analyzer.setup({})
-
-			lspconfig.ts_ls.setup({
-				capabilities = capabilities,
-				filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
-				init_options = {
-					typescript = {
-						tsdk = vim.fn.getcwd() .. "/node_modules/typescript/lib",
-					},
-				},
-			})
-
-			lspconfig.cssls.setup({
+			vim.lsp.config("cssls", {
 				capabilities = capabilities,
 			})
 
-			lspconfig.html.setup({
+			vim.lsp.config("html", {
 				capabilities = capabilities,
 				filetypes = { "html", "vue" },
 			})
 
-			lspconfig.gopls.setup({
+			vim.lsp.config("gopls", {
 				capabilities = capabilities,
 			})
 
-			lspconfig.clangd.setup({
+			vim.lsp.config("clangd", {
 				capabilities = capabilities,
 				cmd = {
 					"clangd",
@@ -147,7 +129,7 @@ return {
 				},
 			})
 
-			lspconfig.pyright.setup({
+			vim.lsp.config("clangd", {
 				capabilities = capabilities,
 				settings = {
 					python = {
@@ -160,7 +142,7 @@ return {
 				},
 			})
 
-			lspconfig.jsonls.setup({
+			vim.lsp.config("jsonls", {
 				capabilities = capabilities,
 				settings = {
 					json = {
@@ -174,25 +156,38 @@ return {
 				end,
 			})
 
-			lspconfig.bashls.setup({
+			vim.lsp.config("bashls", {
 				capabilities = capabilities,
 			})
 
-			lspconfig.intelephense.setup({
-				capabilities = capabilities,
-				init_options = {
-					globalStoragePath = function()
-						if vim.fn.has("win32") == 1 then
-							return os.getenv("UserProfile") .. "/.intelephense"
-						else
-							return os.getenv("HOME") .. "/.local/share/intelephense"
-						end
-					end,
-				},
-				format = {
-					enable = false,
-				},
+			vim.lsp.enable({
+				"lua_ls",
+				"zls",
+				"rust_analyzer",
+				"ts_ls",
+				"cssls",
+				"html",
+				"gopls",
+				"clangd",
+				"jsonls",
+				"bashls",
 			})
+
+			-- lspconfig.intelephense.setup({
+			-- 	capabilities = capabilities,
+			-- 	init_options = {
+			-- 		globalStoragePath = function()
+			-- 			if vim.fn.has("win32") == 1 then
+			-- 				return os.getenv("UserProfile") .. "/.intelephense"
+			-- 			else
+			-- 				return os.getenv("HOME") .. "/.local/share/intelephense"
+			-- 			end
+			-- 		end,
+			-- 	},
+			-- 	format = {
+			-- 		enable = false,
+			-- 	},
+			-- })
 
 			vim.diagnostic.config({
 				virtual_text = false,
