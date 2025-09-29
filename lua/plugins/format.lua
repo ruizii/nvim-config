@@ -11,15 +11,15 @@ return {
 
 		formatters_by_ft = {
 			lua = { "stylua" },
-			python = { "isort", "ruff_format" },
+			typescript = { "prettierd" },
+			javascript = { "prettierd" },
+			css = { "prettierd" },
+			html = { "prettierd" },
+			go = { "goimports", "gofmt" },
 			c = { "clang-format" },
 			cpp = { "clang-format" },
-			go = { "goimports", "gofmt" },
+			python = { "isort", "ruff_format" },
 			sh = { "shfmt" },
-			javascript = { "prettierd" },
-			vue = { "prettierd" },
-			html = { "prettierd" },
-			typescript = { "prettierd" },
 			rust = { "rustfmt" },
 		},
 

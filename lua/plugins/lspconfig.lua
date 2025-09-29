@@ -96,12 +96,6 @@ return {
 				},
 			})
 
-			vim.lsp.config("zls", {
-				capabilities = capabilities,
-			})
-
-			vim.lsp.config("rust_analyzer", {})
-
 			vim.lsp.config("ts_ls", {
 				typescript = {
 					tsdk = vim.fn.getcwd() .. "/node_modules/typescript/lib",
@@ -129,7 +123,7 @@ return {
 				},
 			})
 
-			vim.lsp.config("clangd", {
+			vim.lsp.config("pyright", {
 				capabilities = capabilities,
 				settings = {
 					python = {
@@ -162,32 +156,15 @@ return {
 
 			vim.lsp.enable({
 				"lua_ls",
-				"zls",
-				"rust_analyzer",
 				"ts_ls",
 				"cssls",
 				"html",
 				"gopls",
 				"clangd",
+				"pyright",
 				"jsonls",
 				"bashls",
 			})
-
-			-- lspconfig.intelephense.setup({
-			-- 	capabilities = capabilities,
-			-- 	init_options = {
-			-- 		globalStoragePath = function()
-			-- 			if vim.fn.has("win32") == 1 then
-			-- 				return os.getenv("UserProfile") .. "/.intelephense"
-			-- 			else
-			-- 				return os.getenv("HOME") .. "/.local/share/intelephense"
-			-- 			end
-			-- 		end,
-			-- 	},
-			-- 	format = {
-			-- 		enable = false,
-			-- 	},
-			-- })
 
 			vim.diagnostic.config({
 				virtual_text = false,
