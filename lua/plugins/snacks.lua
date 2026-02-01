@@ -1,6 +1,7 @@
 return {
 	"folke/snacks.nvim",
-	event = "UIEnter",
+	lazy = false,
+	priority = 1000,
 	opts = {
 		bigfile = { enabled = true },
 		input = {
