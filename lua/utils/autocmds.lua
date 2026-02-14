@@ -50,7 +50,7 @@ autocmd("Filetype", {
 autocmd("FileType", {
 	pattern = "*",
 	callback = function()
-		vim.opt.formatoptions = { c = false, r = false, o = false }
+		vim.opt.formatoptions:remove({ "c", "r", "o" })
 	end,
 })
 
