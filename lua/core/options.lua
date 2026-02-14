@@ -78,5 +78,6 @@ if is_kitty then
         autocmd!
         au VimLeave * :silent !kitty @ set-spacing padding=default margin=default
         au VimEnter * :silent !kitty @ set-spacing padding=0 margin=0 3 0 3
+        augroup END
     ]])
 end
