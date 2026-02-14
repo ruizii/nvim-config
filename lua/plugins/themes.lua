@@ -2,6 +2,7 @@ return {
 	{
 
 		"navarasu/onedark.nvim",
+		enabled = false,
 		priority = 1000,
 		opts = {
 			style = "dark",
@@ -24,6 +25,7 @@ return {
 	},
 	{
 		"wnkz/monoglow.nvim",
+		enabled = false,
 		priority = 1000,
 		opts = {},
 	},
