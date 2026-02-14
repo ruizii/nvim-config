@@ -1,4 +1,4 @@
-vim.api.nvim_create_augroup("userconfig", {})
+vim.api.nvim_create_augroup("userconfig", { clear = true })
 
 local autocmd = vim.api.nvim_create_autocmd
 
