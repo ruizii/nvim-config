@@ -86,6 +86,8 @@ return {
 			"TelescopePrompt",
 			"TelescopeResults",
 			"conform-info",
+			"toggleterm",
+			"text",
 		}
 
 		-- Auto-install parsers and enable highlighting on FileType

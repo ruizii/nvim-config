@@ -35,4 +35,4 @@ end, { desc = "Buffers", noremap = true })
 map("n", "<leader>x", "<cmd>HexToggle<cr>", { desc = "Toggle hex" })
 
 -- Terminal normal mode
-map("t", "<esc><esc>", "<C-\\><C-n><CR>", { noremap = true, silent = true })
+map("t", "<esc><esc>", "<C-\\><C-n>", { noremap = true, silent = true })
