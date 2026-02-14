@@ -29,27 +29,6 @@ return {
 		opts = {},
 	},
 	{
-		"lukas-reineke/indent-blankline.nvim",
-		enabled = false,
-		event = "User FilePost",
-		main = "ibl",
-		opts = {
-			indent = {
-				char = "▏",
-			},
-			scope = {
-				show_start = false,
-				show_end = false,
-			},
-		},
-
-		config = function(_, opts)
-			local hooks = require("ibl.hooks")
-			require("ibl").setup(opts)
-			hooks.register(hooks.type.WHITESPACE, hooks.builtin.hide_first_tab_indent_level)
-		end,
-	},
-	{
 		"brenoprata10/nvim-highlight-colors",
 		event = "User FilePost",
 		opts = {
