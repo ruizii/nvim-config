@@ -5,7 +5,14 @@ return {
 		config = function()
 			vim.api.nvim_create_autocmd("LspAttach", {
 				group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
-				callback = function()
+				callback = function(args)
+					local client = vim.lsp.get_client_by_id(args.data.client_id)
+
+					if client then
+						client.server_capabilities.documentFormattingProvider = false
+						client.server_capabilities.documentRangeFormattingProvider = false
+					end
+
 					vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", { buffer = true })
 					vim.keymap.set(
 						"n",

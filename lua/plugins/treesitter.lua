@@ -85,6 +85,7 @@ return {
 			"blink-cmp-menu",
 			"TelescopePrompt",
 			"TelescopeResults",
+			"conform-info",
 		}
 
 		-- Auto-install parsers and enable highlighting on FileType
