@@ -1,7 +1,7 @@
 return {
 	"rachartier/tiny-inline-diagnostic.nvim",
-	event = "VeryLazy", -- Or `LspAttach`
-	priority = 1000, -- needs to be loaded in first
+	event = "VeryLazy",
+	priority = 1000,
 	config = function()
 		require("tiny-inline-diagnostic").setup({
 			preset = "ghost",
@@ -13,7 +13,7 @@ return {
 				},
 				break_line = {
 					enabled = true,
-					after = 60,
+					after = 80,
 				},
 			},
 		})
