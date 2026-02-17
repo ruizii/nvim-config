@@ -77,6 +77,9 @@ return {
 			"checkhealth",
 			"lazy",
 			"mason",
+			"snacks_picker_input",
+			"snacks_layout_box",
+			"snacks_picker_list",
 			"snacks_notif",
 			"snacks_win",
 			"snacks_input",
@@ -88,6 +91,7 @@ return {
 			"conform-info",
 			"toggleterm",
 			"text",
+			"blink-cmp-documentation",
 		}
 
 		-- Auto-install parsers and enable highlighting on FileType
