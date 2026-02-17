@@ -83,6 +83,7 @@ return {
 			"snacks_notif",
 			"snacks_win",
 			"snacks_input",
+			"bigfile",
 			"noice",
 			"neo-tree",
 			"blink-cmp-menu",
