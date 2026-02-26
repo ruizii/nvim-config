@@ -20,6 +20,11 @@ return {
 						"<cmd>Telescope lsp_definitions<cr>",
 						{ desc = "Go to lsp definition", buffer = true }
 					)
+					vim.keymap.set("n", "gt", function()
+						require("telescope.builtin").lsp_type_definitions({
+							jump_type = "vsplit",
+						})
+					end, { desc = "Go to lsp type definition", buffer = true })
 					vim.keymap.set(
 						"n",
 						"<leader>ls",
