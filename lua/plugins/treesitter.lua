@@ -84,6 +84,7 @@ return {
 			"snacks_win",
 			"snacks_input",
 			"bigfile",
+			"man",
 			"noice",
 			"neo-tree",
 			"blink-cmp-menu",
