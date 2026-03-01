@@ -133,6 +133,9 @@ return {
 					"clangd",
 					"--header-insertion=never",
 				},
+				init_options = {
+					fallbackFlags = { "-std=c23" },
+				},
 			})
 
 			vim.lsp.config("pyright", {
