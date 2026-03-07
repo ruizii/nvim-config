@@ -94,6 +94,7 @@ return {
 			"toggleterm",
 			"text",
 			"blink-cmp-documentation",
+			"conf",
 		}
 
 		-- Auto-install parsers and enable highlighting on FileType
