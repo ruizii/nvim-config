@@ -4,7 +4,6 @@ return {
 	priority = 1000,
 	config = function()
 		require("tiny-inline-diagnostic").setup({
-			preset = "ghost",
 			transparent_bg = true,
 			options = {
 				multilines = {
@@ -13,7 +12,6 @@ return {
 				},
 				break_line = {
 					enabled = true,
-					after = 80,
 				},
 			},
 		})
