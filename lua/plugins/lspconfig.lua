@@ -28,7 +28,7 @@ return {
 					vim.keymap.set(
 						"n",
 						"<leader>ls",
-						"<cmd>Telescope lsp_document_symbols<CR>",
+						"<cmd>Telescope lsp_dynamic_workspace_symbols<CR>",
 						{ desc = "Document symbols", noremap = true }
 					)
 					vim.keymap.set(

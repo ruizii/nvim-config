@@ -9,8 +9,8 @@ return {
 		},
 	},
 	opts = {
-		direction = "float",
-		size = 18,
+		direction = "horizontal",
+		size = 22,
 		hide_numbers = true,
 		start_in_insert = true,
 	},
