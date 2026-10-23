@@ -12,6 +12,18 @@ return {
 
 		keymap = {
 			preset = "default",
+			["<Tab>"] = {
+				function(cmp)
+					if cmp.snippet_active() then
+						return cmp.accept()
+					else
+						return cmp.select_and_accept()
+					end
+				end,
+				"snippet_forward",
+				"fallback",
+			},
+			["<S-Tab>"] = { "snippet_backward", "fallback" },
 			["<C-u>"] = { "scroll_documentation_up", "fallback" },
 			["<C-d>"] = { "scroll_documentation_down", "fallback" },
 		},
@@ -20,6 +32,7 @@ return {
 			trigger = {
 				show_in_snippet = false,
 			},
+			list = { selection = { auto_insert = false } },
 			menu = {
 				auto_show = function(ctx)
 					return ctx.mode ~= "cmdline" or not vim.tbl_contains({ "/", "?" }, vim.fn.getcmdtype())
