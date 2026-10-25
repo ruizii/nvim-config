@@ -43,6 +43,14 @@ return {
 				draw = {
 					treesitter = { "lsp" },
 					columns = { { "label", "label_description", gap = 1 }, { "kind_icon" } },
+					components = {
+						kind_icon = {
+							highlight = function(ctx)
+								local _, hl, _ = require("mini.icons").get("lsp", ctx.kind)
+								return hl
+							end,
+						},
+					},
 				},
 				scrolloff = 0,
 			},
@@ -91,10 +99,6 @@ return {
 				Event = "",
 				Operator = "󰆕",
 				TypeParameter = "",
-				highlight = function(ctx)
-					local _, hl, _ = require("mini.icons").get("lsp", ctx.kind)
-					return hl
-				end,
 			},
 		},
 	},

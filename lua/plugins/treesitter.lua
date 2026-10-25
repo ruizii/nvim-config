@@ -13,7 +13,8 @@ return {
 			end
 
 			local ok = pcall(vim.treesitter.start, buf, lang)
-			if ok then
+			-- Python's built-in indent file handles more cases than the treesitter one
+			if ok and lang ~= "python" then
 				vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
 			end
 			return ok
@@ -73,6 +74,9 @@ return {
 
 		local group = vim.api.nvim_create_augroup("TreesitterSetup", { clear = true })
 
+		-- Languages nvim-treesitter has parsers for, computed on first use
+		local available
+
 		local ignore_filetypes = {
 			"checkhealth",
 			"lazy",
@@ -109,10 +113,24 @@ return {
 				local lang = vim.treesitter.language.get_lang(event.match) or event.match
 				local buf = event.buf
 
-				ts.install({ lang })
+				available = available or ts.get_available()
+				if not vim.list_contains(available, lang) then
+					return
+				end
 
-				vim.schedule(function()
+				local ok, installed = pcall(vim.treesitter.language.add, lang)
+				if ok and installed then
 					start(buf, lang)
+					return
+				end
+
+				-- Parser missing: install it, then start once it's ready
+				ts.install({ lang }):await(function(err)
+					if not err then
+						vim.schedule(function()
+							start(buf, lang)
+						end)
+					end
 				end)
 			end,
 		})

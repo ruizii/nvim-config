@@ -15,8 +15,16 @@ return {
 	},
 
 	config = function()
-		vim.api.nvim_set_hl(0, "NeoTreeDirectoryName", { link = "Identifier", bg = nil, bold = true })
-		vim.api.nvim_set_hl(0, "MiniIconsAzure", { link = "Identifier", bg = nil, bold = true })
+		local function set_highlights()
+			vim.api.nvim_set_hl(0, "NeoTreeDirectoryName", { link = "Identifier", bg = nil, bold = true })
+			vim.api.nvim_set_hl(0, "NeoTreeMiniIconsAzure", { link = "Identifier", bg = nil, bold = true })
+		end
+		set_highlights()
+		vim.api.nvim_create_autocmd("ColorScheme", {
+			group = vim.api.nvim_create_augroup("NeoTreeHighlights", { clear = true }),
+			callback = set_highlights,
+		})
+
 		require("neo-tree").setup({
 			window = {
 				mappings = {
@@ -43,7 +51,8 @@ return {
 							icon.text = text
 						end
 						if hl then
-							icon.highlight = hl
+							-- Scope the Azure override to neo-tree instead of changing MiniIconsAzure globally
+							icon.highlight = hl == "MiniIconsAzure" and "NeoTreeMiniIconsAzure" or hl
 						end
 					end,
 				},

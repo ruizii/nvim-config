@@ -3,6 +3,12 @@ return {
 		"neovim/nvim-lspconfig",
 		event = "User FilePost",
 		config = function()
+			-- Remove the built-in gr* defaults so `gr` triggers immediately
+			for _, lhs in ipairs({ "grn", "grr", "gri", "grt", "grx" }) do
+				pcall(vim.keymap.del, "n", lhs)
+			end
+			pcall(vim.keymap.del, { "n", "x" }, "gra")
+
 			vim.api.nvim_create_autocmd("LspAttach", {
 				group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
 				callback = function(args)
@@ -13,7 +19,6 @@ return {
 						client.server_capabilities.documentRangeFormattingProvider = false
 					end
 
-					vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", { buffer = true })
 					vim.keymap.set(
 						"n",
 						"gd",
@@ -29,7 +34,7 @@ return {
 						"n",
 						"<leader>ls",
 						"<cmd>Telescope lsp_dynamic_workspace_symbols<CR>",
-						{ desc = "Document symbols", noremap = true }
+						{ desc = "Workspace symbols", buffer = true }
 					)
 					vim.keymap.set(
 						"n",
@@ -47,7 +52,7 @@ return {
 						"n",
 						"<leader>ld",
 						"<cmd>lua require('telescope.builtin').diagnostics({ previewer = false })<CR>",
-						{ desc = "Diagnostics", noremap = true }
+						{ desc = "Diagnostics", buffer = true }
 					)
 					vim.keymap.set(
 						"n",
@@ -75,15 +80,14 @@ return {
 						"<cmd>lua vim.diagnostic.open_float()<cr>",
 						{ desc = "Open diagnostics float", buffer = true }
 					)
-					vim.keymap.set("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<cr>", { buffer = true })
-					vim.keymap.set("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<cr>", { buffer = true })
 				end,
 			})
 
-			local capabilities = require("blink.cmp").get_lsp_capabilities()
+			vim.lsp.config("*", {
+				capabilities = require("blink.cmp").get_lsp_capabilities(),
+			})
 
 			vim.lsp.config("lua_ls", {
-				capabilities = capabilities,
 				settings = {
 					Lua = {
 						runtime = { version = "LuaJIT" },
@@ -98,37 +102,16 @@ return {
 						},
 						workspace = {
 							checkThirdParty = false,
-							maxPreload = 100000,
-							preloadFileSize = 10000,
-						},
-						diagnostics = {
-							globals = { "vim" },
 						},
 					},
 				},
 			})
 
-			vim.lsp.config("ts_ls", {
-				typescript = {
-					tsdk = vim.fn.getcwd() .. "/node_modules/typescript/lib",
-				},
-			})
-
-			vim.lsp.config("cssls", {
-				capabilities = capabilities,
-			})
-
 			vim.lsp.config("html", {
-				capabilities = capabilities,
 				filetypes = { "html", "vue" },
 			})
 
-			vim.lsp.config("gopls", {
-				capabilities = capabilities,
-			})
-
 			vim.lsp.config("clangd", {
-				capabilities = capabilities,
 				cmd = {
 					"clangd",
 					"--header-insertion=never",
@@ -136,7 +119,6 @@ return {
 			})
 
 			vim.lsp.config("pyright", {
-				capabilities = capabilities,
 				settings = {
 					python = {
 						analysis = {
@@ -149,21 +131,12 @@ return {
 			})
 
 			vim.lsp.config("jsonls", {
-				capabilities = capabilities,
 				settings = {
 					json = {
 						validate = { enable = true },
 						format = { enable = false },
 					},
 				},
-				on_new_config = function(config)
-					config.settings.json.schemas = config.settings.json.schemas or {}
-					vim.list_extend(config.settings.json.schemas, require("schemastore").json.schemas())
-				end,
-			})
-
-			vim.lsp.config("bashls", {
-				capabilities = capabilities,
 			})
 
 			vim.lsp.enable({

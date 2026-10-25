@@ -9,9 +9,6 @@ return {
 				"nvim-telescope/telescope-fzf-native.nvim",
 				build = "make",
 				-- build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
-				config = function()
-					require("telescope").load_extension("fzf")
-				end,
 			},
 		},
 		config = function()
@@ -23,7 +20,10 @@ return {
 					require("telescope.actions").close(prompt_bufnr)
 					for _, j in pairs(multi) do
 						if j.path ~= nil then
-							vim.cmd(string.format("%s %s", "edit", j.path))
+							vim.cmd.edit(vim.fn.fnameescape(j.path))
+							if j.lnum then
+								pcall(vim.api.nvim_win_set_cursor, 0, { j.lnum, math.max((j.col or 1) - 1, 0) })
+							end
 						end
 					end
 				else
@@ -84,11 +84,10 @@ return {
 						override_file_sorter = true,
 						case_mode = "smart_case",
 					},
-					smart_open = {
-						match_algorithm = "fzf",
-					},
 				},
 			})
+
+			ts.load_extension("fzf")
 		end,
 	},
 }

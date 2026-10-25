@@ -6,7 +6,7 @@ return {
 		notify_on_error = false,
 		format_on_save = {
 			timeout_ms = 1000,
-			lsp_fallback = false,
+			lsp_format = "never",
 		},
 
 		formatters_by_ft = {
@@ -15,7 +15,7 @@ return {
 			javascript = { "prettierd" },
 			css = { "prettierd" },
 			html = { "prettierd" },
-			go = { "goimports", "gofmt" },
+			go = { "goimports" },
 			c = { "clang-format" },
 			cpp = { "clang-format" },
 			python = { "isort", "ruff_format" },

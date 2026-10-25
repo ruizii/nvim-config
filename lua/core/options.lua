@@ -23,7 +23,6 @@ opt.expandtab = true
 opt.shortmess:append("WIcCq") -- Sh
 opt.showmode = false -- Dont show mode since we have a statusline
 opt.signcolumn = "yes" -- Always show the signcolumn, otherwise it would shift the text each time
-opt.smartindent = true -- Insert indents automatically
 opt.splitbelow = true -- Put new windows below current
 opt.splitkeep = "screen"
 opt.splitright = true -- Put new windows right of current
@@ -34,7 +33,6 @@ opt.backup = false
 opt.writebackup = false
 opt.breakindent = true
 opt.linebreak = true
-opt.undolevels = 500
 opt.updatetime = 200 -- Save swap file and trigger CursorHold
 opt.virtualedit = "block" -- Allow cursor to move where there is no text in visual block mode
 opt.wrap = false -- Disable line wrap
@@ -73,11 +71,18 @@ end
 local is_kitty = os.getenv("KITTY_WINDOW_ID") ~= nil
 
 if is_kitty then
-	vim.cmd([[
-        augroup kitty_mp
-        autocmd!
-        au VimLeave * :silent !kitty @ set-spacing padding=default margin=default
-        au VimEnter * :silent !kitty @ set-spacing padding=0 margin=0 3 0 3
-        augroup END
-    ]])
+	local group = vim.api.nvim_create_augroup("kitty_mp", { clear = true })
+	vim.api.nvim_create_autocmd("VimEnter", {
+		group = group,
+		callback = function()
+			vim.system({ "kitty", "@", "set-spacing", "padding=0", "margin=0", "3", "0", "3" })
+		end,
+	})
+	vim.api.nvim_create_autocmd("VimLeave", {
+		group = group,
+		callback = function()
+			-- Wait so the reset finishes before Neovim exits
+			vim.system({ "kitty", "@", "set-spacing", "padding=default", "margin=default" }):wait()
+		end,
+	})
 end

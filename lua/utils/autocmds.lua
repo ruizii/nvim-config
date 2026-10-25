@@ -7,7 +7,7 @@ autocmd("TextYankPost", {
 	desc = "Highlight text on yank",
 	pattern = "*",
 	callback = function()
-		vim.highlight.on_yank({
+		vim.hl.on_yank({
 			higroup = "CurSearch",
 			timeout = 150,
 			on_visual = true,
@@ -26,7 +26,15 @@ autocmd("BufWritePre", {
 	group = "userconfig",
 	desc = "Remove whitespaces on save",
 	pattern = "*",
-	command = "%s/\\s\\+$//e",
+	callback = function()
+		-- Trailing double spaces are hard line breaks in markdown
+		if vim.bo.filetype == "markdown" then
+			return
+		end
+		local view = vim.fn.winsaveview()
+		vim.cmd([[keeppatterns %s/\s\+$//e]])
+		vim.fn.winrestview(view)
+	end,
 })
 
 autocmd("Filetype", {
@@ -48,9 +56,11 @@ autocmd("Filetype", {
 })
 
 autocmd("FileType", {
+	group = "userconfig",
+	desc = "Don't continue comments on new lines",
 	pattern = "*",
 	callback = function()
-		vim.opt.formatoptions:remove({ "c", "r", "o" })
+		vim.opt_local.formatoptions:remove({ "c", "r", "o" })
 	end,
 })
 
@@ -70,16 +80,14 @@ autocmd({ "UIEnter", "BufReadPost", "BufNewFile" }, {
 
 			vim.schedule(function()
 				vim.api.nvim_exec_autocmds("FileType", {})
-
-				if vim.g.editorconfig then
-					require("editorconfig").config(args.buf)
-				end
 			end)
 		end
 	end,
 })
 
 autocmd("LspProgress", {
+	group = "userconfig",
+	desc = "Show LSP progress in a notification",
 	---@param ev {data: {client_id: integer, params: lsp.ProgressParams}}
 	callback = function(ev)
 		local spinner = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" }
@@ -97,6 +105,8 @@ autocmd("LspProgress", {
 
 ---- WSL Cursor Shape Fix ----
 autocmd("VimLeave", {
+	group = "userconfig",
+	desc = "Restore bar cursor on exit",
 	callback = function()
 		local is_wsl = os.getenv("WSL_DISTRO_NAME") ~= nil
 		local is_windows = vim.fn.has("win32") == 1
