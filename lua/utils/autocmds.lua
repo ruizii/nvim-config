@@ -102,17 +102,3 @@ autocmd("LspProgress", {
 		})
 	end,
 })
-
----- WSL Cursor Shape Fix ----
-autocmd("VimLeave", {
-	group = "userconfig",
-	desc = "Restore bar cursor on exit",
-	callback = function()
-		local is_wsl = os.getenv("WSL_DISTRO_NAME") ~= nil
-		local is_windows = vim.fn.has("win32") == 1
-
-		if is_windows or is_wsl then
-			vim.opt.guicursor = "a:ver25"
-		end
-	end,
-})
