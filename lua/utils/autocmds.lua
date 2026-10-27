@@ -37,7 +37,7 @@ autocmd("BufWritePre", {
 	end,
 })
 
-autocmd("Filetype", {
+autocmd("FileType", {
 	group = "userconfig",
 	desc = "Close some filetypes with <q>",
 	pattern = {

@@ -27,7 +27,7 @@ return {
 					)
 					vim.keymap.set("n", "gt", function()
 						require("telescope.builtin").lsp_type_definitions({
-							jump_type = "vsplit",
+							jump_type = "never",
 						})
 					end, { desc = "Go to lsp type definition", buffer = true })
 					vim.keymap.set(
@@ -66,7 +66,7 @@ return {
 						"<cmd>Telescope lsp_type_definitions<cr>",
 						{ desc = "Show lsp type definitions", buffer = true }
 					)
-					vim.keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>", { buffer = true })
+					vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references jump_type=never<cr>", { buffer = true })
 					vim.keymap.set("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<cr>", { buffer = true })
 					vim.keymap.set(
 						"n",
