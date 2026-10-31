@@ -20,7 +20,6 @@ return {
 		},
 	},
 	{
-		-- Lazy-loaded; `:colorscheme monoglow` loads it on demand
 		"wnkz/monoglow.nvim",
 		opts = {},
 	},
